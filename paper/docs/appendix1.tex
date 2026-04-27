@@ -1,0 +1,44 @@
+\chapter{补充复查表格}
+\label{cha:appendix_review_tables}
+
+本附录给出实验复查时可使用的记录字段。附录表格不替代正文实验结果，而是用于说明困难样本和部署一致性复查应保留哪些信息。
+
+\section{困难样本复查字段}
+
+表 \ref{tab:appendix_hardcase_template} 用于记录不同场景风险下的样本观察结果。该表仅保留论文复查所需字段，不展开本地文件组织细节。
+
+\begin{table}[htbp]
+    \centering
+    \caption{困难样本复查字段}
+    \label{tab:appendix_hardcase_template}
+    \begin{tabular}{p{2.5cm} p{3.2cm} p{3.2cm} p{3.0cm}}
+        \toprule
+        样本代号 & 风险类型 & 检测表现 & 备注 \\
+        \midrule
+        A-01 & 反光遮挡 & 类别置信度波动 & 用于阈值稳定性分析 \\
+        A-02 & 电动车局部可见 & 召回受阈值影响 & 用于电动车漏检分析 \\
+        A-03 & 拥挤重叠 & NMS 结果不稳定 & 用于边框一致性分析 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{部署一致性复查字段}
+
+表 \ref{tab:appendix_deploy_check} 给出了部署一致性复查时应记录的字段。后续若补充训练端、ONNX 端、OM 端和板端逐样本对齐实验，可沿用该表记录类别、边框、阈值和运行状态。
+
+\begin{table}[htbp]
+    \centering
+    \caption{部署一致性复查字段}
+    \label{tab:appendix_deploy_check}
+    \begin{tabular}{p{2.8cm} p{4.0cm} p{4.2cm}}
+        \toprule
+        复查项 & 记录内容 & 判断依据 \\
+        \midrule
+        类别顺序 & person / ebike 是否一致 & 类别配置与输出解释一致 \\
+        输入预处理 & 尺寸、缩放、颜色通道 & 输入契约一致 \\
+        输出张量 & 坐标格式、分数含义 & 输出契约一致 \\
+        后处理参数 & conf、NMS 阈值 & 阈值行为可比较 \\
+        运行状态 & 成功样本数、失败样本数、平均时延 & 板端结果可复查 \\
+        \bottomrule
+    \end{tabular}
+\end{table}

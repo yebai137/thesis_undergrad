@@ -1,0 +1,39 @@
+# LaTeX intermediate files
+paper/*.aux
+paper/*.bbl
+paper/*.bcf
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.lof
+paper/*.log
+paper/*.lot
+paper/*.out
+paper/*.run.xml
+paper/*.synctex.gz
+paper/*.toc
+paper/*.xdv
+paper/_minted-*/
+paper/docs/*.aux
+paper/docs/*.log
+
+# Local editor / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python/cache artifacts
+__pycache__/
+*.pyc
+.cache/
+
+# Large or temporary local archives
+*.zip
+*.tar
+*.tar.gz
+*.tmp
+
+# Local planning/cache trees not part of thesis deliverable
+.planning/
+upstream/

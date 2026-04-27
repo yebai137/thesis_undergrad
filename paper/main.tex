@@ -1,0 +1,44 @@
+﻿\documentclass{scutthesis}
+%\documentclass[print-both-sides]{scutthesis}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+\input{docs/info}
+\input{docs/abstract}
+\setlength{\headheight}{15pt}
+
+\begin{document}
+\frontmatter
+\pagenumbering{Roman}
+\makeUndergraduateCover
+\makedisclaim[image/签名.png]
+\makeabstract
+\maketableofcontents
+\makelistoffiguretable
+
+\mainmatter
+\include{docs/chap01}
+\newclearpage
+\include{docs/chap02}
+\newclearpage
+\include{docs/chap03}
+\newclearpage
+\include{docs/chap04}
+\newclearpage
+\include{docs/chap05}
+\newclearpage
+\backmatter
+\renewcommand{\chaptermark}[1]{\markboth{\songti #1}{}}
+\include{docs/conclusion}
+\newclearpage
+\makereferences
+\include{docs/ack}
+\newclearpage
+{
+    \appendix
+    \renewcommand{\chaptermark}[1]{\markboth{\songti  附录\thechapter\ ~#1}{}}
+    \include{docs/appendix1}
+    \newclearpage
+}
+\end{document}
