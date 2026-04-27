@@ -11,6 +11,7 @@ from statistics import mean
 import matplotlib.font_manager as font_manager
 import matplotlib.pyplot as plt
 import numpy as np
+from fontTools.ttLib import TTCollection
 
 
 FIG_DIR = Path(__file__).resolve().parent
@@ -19,16 +20,31 @@ REPO_ROOT = THESIS_DIR.parent
 PAPER_IMAGE_DIR = THESIS_DIR / "paper" / "image" / "generated"
 TIMING_ROOT = REPO_ROOT / "logs" / "direct_runs" / "20260427_timing_instrumentation"
 
-FONT_REGULAR = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc")
-FONT_BOLD = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc")
-if FONT_REGULAR.exists():
-    font_manager.fontManager.addfont(str(FONT_REGULAR))
-if FONT_BOLD.exists():
-    font_manager.fontManager.addfont(str(FONT_BOLD))
+FONT_CACHE = FIG_DIR / ".cache" / "fonts"
+NOTO_CJK_REGULAR_TTC = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc")
+NOTO_CJK_BOLD_TTC = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc")
+
+
+def _extract_noto_sc_face(ttc_path: Path, output_path: Path) -> Path | None:
+    if not ttc_path.exists():
+        return None
+    if output_path.exists() and output_path.stat().st_mtime >= ttc_path.stat().st_mtime:
+        return output_path
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    collection = TTCollection(str(ttc_path))
+    collection.fonts[2].save(output_path)
+    return output_path
+
+
+FONT_REGULAR = _extract_noto_sc_face(NOTO_CJK_REGULAR_TTC, FONT_CACHE / "NotoSansCJKSC-Regular.otf")
+FONT_BOLD = _extract_noto_sc_face(NOTO_CJK_BOLD_TTC, FONT_CACHE / "NotoSansCJKSC-Bold.otf")
+for font_path in (FONT_REGULAR, FONT_BOLD):
+    if font_path is not None and font_path.exists():
+        font_manager.fontManager.addfont(str(font_path))
 
 plt.rcParams.update({
     "font.family": "sans-serif",
-    "font.sans-serif": ["Noto Sans CJK JP", "Droid Sans Fallback", "DejaVu Sans"],
+    "font.sans-serif": ["Noto Sans CJK SC", "Noto Sans CJK JP", "Droid Sans Fallback", "DejaVu Sans"],
     "axes.unicode_minus": False,
     "font.size": 10,
     "axes.titlesize": 10.5,
