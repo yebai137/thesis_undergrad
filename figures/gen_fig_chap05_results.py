@@ -58,6 +58,8 @@ COLORS = {
     "gray": "#7B8794",
 }
 
+HATCHES = ["////", "\\\\\\\\", "....", "xxxx", "----"]
+
 
 def _save(fig: plt.Figure, stem: str) -> None:
     FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -113,7 +115,15 @@ def fig_detection_metrics() -> None:
 
     names = list(overall_metrics)
     values = [overall_metrics[name] for name in names]
-    bars = axes[0].bar(names, values, color=[COLORS["blue"], COLORS["teal"], COLORS["gold"], COLORS["coral"]])
+    bars = axes[0].bar(
+        names,
+        values,
+        color=[COLORS["blue"], COLORS["teal"], COLORS["gold"], COLORS["coral"]],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+    )
+    for bar, hatch in zip(bars, HATCHES):
+        bar.set_hatch(hatch)
     axes[0].set_title("总体检测指标")
     axes[0].set_ylabel("指标值")
     axes[0].set_ylim(0.84, 0.94)
@@ -123,8 +133,26 @@ def fig_detection_metrics() -> None:
     width = 0.34
     recalls = [class_metrics[name]["Recall"] for name in class_metrics]
     maps = [class_metrics[name]["mAP@0.5"] for name in class_metrics]
-    bars_recall = axes[1].bar(x - width / 2, recalls, width, label="Recall", color=COLORS["teal"])
-    bars_map = axes[1].bar(x + width / 2, maps, width, label="mAP@0.5", color=COLORS["coral"])
+    bars_recall = axes[1].bar(
+        x - width / 2,
+        recalls,
+        width,
+        label="Recall",
+        color=COLORS["teal"],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+        hatch="////",
+    )
+    bars_map = axes[1].bar(
+        x + width / 2,
+        maps,
+        width,
+        label="mAP@0.5",
+        color=COLORS["coral"],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+        hatch="....",
+    )
     axes[1].set_title("分类别指标")
     axes[1].set_xticks(x)
     axes[1].set_xticklabels(list(class_metrics))
@@ -146,18 +174,18 @@ def fig_threshold_sensitivity() -> None:
     person_recall = np.array([0.884, 0.878, 0.872, 0.866])
 
     fig, ax = plt.subplots(figsize=(7.2, 3.55))
-    ax.plot(conf, precision, marker="o", label="Precision", color=COLORS["blue"])
-    ax.plot(conf, recall, marker="s", label="Recall", color=COLORS["teal"])
-    ax.plot(conf, f1, marker="^", label="F1", color=COLORS["coral"])
-    ax.plot(conf, ebike_recall, marker="D", label="ebike Recall", color=COLORS["gold"])
-    ax.plot(conf, person_recall, marker="v", label="person Recall", color=COLORS["gray"])
+    ax.plot(conf, precision, marker="o", linestyle="-", label="Precision", color=COLORS["blue"])
+    ax.plot(conf, recall, marker="s", linestyle="--", label="Recall", color=COLORS["teal"])
+    ax.plot(conf, f1, marker="^", linestyle="-.", label="F1", color=COLORS["coral"])
+    ax.plot(conf, ebike_recall, marker="D", linestyle=":", label="ebike Recall", color=COLORS["gold"])
+    ax.plot(conf, person_recall, marker="v", linestyle=(0, (5, 2, 1, 2)), label="person Recall", color=COLORS["gray"])
     ax.set_title("置信度阈值敏感性")
     ax.set_xlabel("置信度阈值")
     ax.set_ylabel("指标值")
     ax.set_xticks(conf)
     ax.set_ylim(0.84, 0.97)
-    ax.legend(ncol=5, loc="upper center", bbox_to_anchor=(0.5, -0.26))
-    fig.tight_layout(rect=[0, 0.16, 1, 1])
+    ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.24), columnspacing=1.2)
+    fig.tight_layout(rect=[0, 0.18, 1, 1])
     _save(fig, "fig_chap05_threshold_sensitivity")
 
 
@@ -183,7 +211,9 @@ def fig_timing_breakdown() -> None:
 
     fig, ax = plt.subplots(figsize=(7.2, 3.55))
     colors = [COLORS["gray"], COLORS["teal"], COLORS["coral"], COLORS["sky"], COLORS["orange"]]
-    bars = ax.bar(labels, values, color=colors, edgecolor="white", linewidth=0.6)
+    bars = ax.bar(labels, values, color=colors, edgecolor="#2C2C2C", linewidth=0.45)
+    for bar, hatch in zip(bars, HATCHES):
+        bar.set_hatch(hatch)
     ax.set_title("板端分段计时结果（不同运行口径）")
     ax.set_ylabel("耗时 / ms（log）")
     ax.set_yscale("log")
