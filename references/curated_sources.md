@@ -6,7 +6,7 @@
 
 1. Shi W, Cao J, Zhang Q, et al. Edge Computing: Vision and Challenges.
    支撑边缘计算在时延、隐私、本地决策方面的理论背景。
-2. Lin Y C, Liu H C, et al. Edge-Computing-Based People-Counting System for Elevators Using MobileNet-SSD.
+2. Shen T.-C., Chu E. T.-H. Edge-Computing-Based People-Counting System for Elevators Using MobileNet-SSD.
    支撑电梯场景边缘视觉应用落地的直接背景。
 
 ### Detection and hard-case improvement
@@ -41,6 +41,18 @@
 2. Tan M, Le Q V. EfficientNet.
 3. Tan M, Pang R, Le Q V. EfficientDet.
 4. Redmon J, Farhadi A. YOLO9000.
+5. Carion N, et al. DETR.
+   用于说明端到端检测器作为另一类检测路线，但本文优先选择更便于边缘链路复查的 YOLO 系列。
+
+### Adjacent video understanding tasks
+
+1. Wojke N, Bewley A, Paulus D. DeepSORT.
+2. Zhang Y, et al. ByteTrack.
+3. Cao Z, et al. OpenPose.
+4. Feichtenhofer C, et al. SlowFast Networks.
+
+说明：
+这些文献用于界定目标跟踪、姿态估计和视频行为理解等相邻方向。本文不把这些任务纳入主体贡献，只用它们说明研究范围为什么收束在 `person + ebike` 双目标检测与边缘一致性评价。
 
 ## Local Evidence Sources
 
