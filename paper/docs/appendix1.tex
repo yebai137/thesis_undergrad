@@ -5,7 +5,7 @@
 
 \section{困难样本复查字段}
 
-表 \ref{tab:appendix_hardcase_template} 用于记录不同场景风险下的样本观察结果。该表仅保留论文复查所需字段，不展开本地文件组织细节。
+表 \ref{tab:appendix_hardcase_template} 用于记录困难样本的观察结果。该表仅保留论文复查所需字段，不展开本地文件组织细节，也不把样本整理为新的人工分组实验。
 
 \begin{table}[htbp]
     \centering
@@ -13,11 +13,11 @@
     \label{tab:appendix_hardcase_template}
     \begin{tabular}{p{2.5cm} p{3.2cm} p{3.2cm} p{3.0cm}}
         \toprule
-        样本代号 & 风险类型 & 检测表现 & 备注 \\
+        字段 & 记录内容 & 检测表现 & 备注 \\
         \midrule
-        A-01 & 反光遮挡 & 类别置信度波动 & 用于阈值稳定性分析 \\
-        A-02 & 电动车局部可见 & 召回受阈值影响 & 用于电动车漏检分析 \\
-        A-03 & 拥挤重叠 & NMS 结果不稳定 & 用于边框解释评价 \\
+        样本编号 & 图像或视频帧标识 & 是否有漏检、误检或重复框 & 对应日志或截图路径 \\
+        场景描述 & 文字描述可见干扰 & 类别分数和边框变化 & 不作为统计分组 \\
+        复查结论 & 关联阈值、NMS 或后处理设置 & 是否需要进入正文讨论 & 对应表格或图编号 \\
         \bottomrule
     \end{tabular}
 \end{table}

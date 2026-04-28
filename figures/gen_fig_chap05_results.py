@@ -19,6 +19,8 @@ THESIS_DIR = FIG_DIR.parent
 REPO_ROOT = THESIS_DIR.parent
 PAPER_IMAGE_DIR = THESIS_DIR / "paper" / "image" / "generated"
 TIMING_ROOT = REPO_ROOT / "logs" / "direct_runs" / "20260427_timing_instrumentation"
+FULL_VAL_METRICS = REPO_ROOT / "logs" / "direct_runs" / "20260419_phase3_3_full_val_synced" / "iter_01" / "analysis" / "performance_summary.json"
+THRESHOLD_REPORT = REPO_ROOT / "doc" / "reports" / "2026-04-25_Thesis_Threshold_Sensitivity_Recompute.json"
 
 FONT_CACHE = FIG_DIR / ".cache" / "fonts"
 NOTO_CJK_REGULAR_TTC = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc")
@@ -110,16 +112,79 @@ def _load_video_summary() -> dict:
     return json.loads(matches[0].read_text())
 
 
+def _load_full_val_overall() -> dict:
+    payload = json.loads(FULL_VAL_METRICS.read_text())
+    return payload["overall"]
+
+
+def _micro_overall(classes: list[dict]) -> dict[str, float]:
+    tp = sum(float(item.get("tp", 0.0)) for item in classes)
+    fp = sum(float(item.get("fp", 0.0)) for item in classes)
+    fn = sum(float(item.get("fn", 0.0)) for item in classes)
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    f1 = 2.0 * precision * recall / (precision + recall) if precision + recall else 0.0
+    return {"precision": precision, "recall": recall, "f1": f1}
+
+
+def _load_threshold_rows() -> list[dict]:
+    payload = json.loads(THRESHOLD_REPORT.read_text())
+    rows: list[dict] = []
+    for item in payload["thresholds"]:
+        classes = item["classes"]
+        overall = item.get("overall") or _micro_overall(classes)
+        rows.append({
+            "conf": float(item["score_threshold"]),
+            "precision": float(overall["precision"]),
+            "recall": float(overall["recall"]),
+            "f1": float(overall["f1"]),
+            "person_recall": float(classes[0]["recall"]),
+            "ebike_recall": float(classes[1]["recall"]),
+            "predictions": int(item.get("prediction_count", overall.get("pred", 0))),
+        })
+    return rows
+
+
+def _load_summary_from_campaign(campaign_id: str) -> dict | None:
+    campaign_root = REPO_ROOT / "logs" / "direct_runs" / campaign_id
+    if not campaign_root.exists():
+        return None
+    candidates = sorted(campaign_root.glob("iter_*/analysis/split_val_summary.json"))
+    if not candidates:
+        candidates = sorted(campaign_root.glob("iter_*/analysis/overall_summary.json"))
+    if not candidates:
+        candidates = sorted(campaign_root.glob("iter_*/analysis/performance_summary.json"))
+    if not candidates:
+        return None
+    payload = json.loads(candidates[-1].read_text())
+    if "overall" in payload:
+        return payload["overall"]
+    return payload
+
+
+def _load_video_metric_summary(campaign_id: str) -> dict | None:
+    campaign_root = REPO_ROOT / "logs" / "direct_runs" / campaign_id
+    if not campaign_root.exists():
+        return None
+    candidates = sorted(campaign_root.glob("iter_*/analysis/summary.json"))
+    if not candidates:
+        return None
+    return json.loads(candidates[-1].read_text())
+
+
 def fig_detection_metrics() -> None:
+    overall = _load_full_val_overall()
+    classes = {item["class_name"]: item for item in overall["classes"]}
+    micro = _micro_overall(overall["classes"])
     overall_metrics = {
-        "Precision": 0.901,
-        "Recall": 0.923,
-        "F1": 0.912,
-        "mAP@0.5": 0.910,
+        "Precision": micro["precision"],
+        "Recall": micro["recall"],
+        "F1": micro["f1"],
+        "mAP@0.5": overall["map50"],
     }
     class_metrics = {
-        "person": {"Recall": 0.888, "mAP@0.5": 0.869},
-        "ebike": {"Recall": 0.961, "mAP@0.5": 0.952},
+        "person": {"Recall": classes["person"]["recall"], "mAP@0.5": classes["person"]["ap50"]},
+        "ebike": {"Recall": classes["ebike"]["recall"], "mAP@0.5": classes["ebike"]["ap50"]},
     }
 
     fig, axes = plt.subplots(
@@ -182,27 +247,119 @@ def fig_detection_metrics() -> None:
 
 
 def fig_threshold_sensitivity() -> None:
-    conf = np.array([0.20, 0.25, 0.30, 0.35])
-    precision = np.array([0.911, 0.921, 0.925, 0.935])
-    recall = np.array([0.919, 0.916, 0.912, 0.909])
-    f1 = np.array([0.915, 0.919, 0.919, 0.922])
-    ebike_recall = np.array([0.957, 0.957, 0.956, 0.956])
-    person_recall = np.array([0.884, 0.878, 0.872, 0.866])
+    rows = _load_threshold_rows()
+    conf = np.array([row["conf"] for row in rows])
+    precision = np.array([row["precision"] for row in rows])
+    recall = np.array([row["recall"] for row in rows])
+    f1 = np.array([row["f1"] for row in rows])
+    ebike_recall = np.array([row["ebike_recall"] for row in rows])
+    person_recall = np.array([row["person_recall"] for row in rows])
+    predictions = np.array([row["predictions"] for row in rows])
 
-    fig, ax = plt.subplots(figsize=(7.2, 3.55))
+    fig, ax = plt.subplots(figsize=(7.35, 3.75))
     ax.plot(conf, precision, marker="o", linestyle="-", label="Precision", color=COLORS["blue"])
     ax.plot(conf, recall, marker="s", linestyle="--", label="Recall", color=COLORS["teal"])
     ax.plot(conf, f1, marker="^", linestyle="-.", label="F1", color=COLORS["coral"])
     ax.plot(conf, ebike_recall, marker="D", linestyle=":", label="ebike Recall", color=COLORS["gold"])
     ax.plot(conf, person_recall, marker="v", linestyle=(0, (5, 2, 1, 2)), label="person Recall", color=COLORS["gray"])
+    ax2 = ax.twinx()
+    ax2.plot(conf, predictions, marker="x", linestyle="-", label="Pred boxes", color="#4B5563", alpha=0.75)
+    ax2.set_ylabel("预测框数量")
+    ax2.set_ylim(max(0, predictions.min() - 60), predictions.max() + 60)
     ax.set_title("置信度阈值敏感性")
     ax.set_xlabel("置信度阈值")
     ax.set_ylabel("指标值")
     ax.set_xticks(conf)
-    ax.set_ylim(0.84, 0.97)
-    ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.24), columnspacing=1.2)
+    ax.set_ylim(0.84, 0.98)
+    handles, labels = ax.get_legend_handles_labels()
+    handles2, labels2 = ax2.get_legend_handles_labels()
+    ax.legend(handles + handles2, labels + labels2, ncol=3, loc="upper center",
+              bbox_to_anchor=(0.5, -0.24), columnspacing=1.2)
     fig.tight_layout(rect=[0, 0.18, 1, 1])
     _save(fig, "fig_chap05_threshold_sensitivity")
+
+
+def fig_nms_sensitivity() -> bool:
+    configs = [
+        ("0.35", "20260428_thesis_consistency_nms035"),
+        ("0.45", "20260428_thesis_consistency_nms045"),
+        ("0.55", "20260428_thesis_consistency_nms055"),
+    ]
+    rows = []
+    for nms_label, campaign_id in configs:
+        summary = _load_summary_from_campaign(campaign_id)
+        if summary is None:
+            print(f"skip fig_chap05_nms_sensitivity: missing {campaign_id}")
+            return False
+        classes = {item["class_name"]: item for item in summary["classes"]}
+        rows.append({
+            "nms": float(nms_label),
+            "person_f1": classes["person"]["f1"],
+            "ebike_f1": classes["ebike"]["f1"],
+            "fp": sum(item["fp"] for item in summary["classes"]),
+            "fn": sum(item["fn"] for item in summary["classes"]),
+            "pred": sum(item["pred"] for item in summary["classes"]),
+        })
+
+    nms = np.array([row["nms"] for row in rows])
+    fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.35))
+    axes[0].plot(nms, [row["person_f1"] for row in rows], marker="o", label="person F1", color=COLORS["blue"])
+    axes[0].plot(nms, [row["ebike_f1"] for row in rows], marker="s", label="ebike F1", color=COLORS["coral"])
+    axes[0].set_title("分类别 F1")
+    axes[0].set_xlabel("NMS IoU 阈值")
+    axes[0].set_ylabel("F1")
+    axes[0].set_xticks(nms)
+    axes[0].legend()
+
+    width = 0.018
+    axes[1].bar(nms - width, [row["fp"] for row in rows], width=width, label="FP", color=COLORS["orange"])
+    axes[1].bar(nms, [row["fn"] for row in rows], width=width, label="FN", color=COLORS["teal"])
+    axes[1].bar(nms + width, [row["pred"] for row in rows], width=width, label="Pred", color=COLORS["gray"])
+    axes[1].set_title("错误与预测框数量")
+    axes[1].set_xlabel("NMS IoU 阈值")
+    axes[1].set_xticks(nms)
+    axes[1].legend()
+    fig.tight_layout()
+    _save(fig, "fig_chap05_nms_sensitivity")
+    return True
+
+
+def fig_postprocess_ablation() -> bool:
+    configs = [
+        ("full", "20260428_thesis_consistency_cleanup_full"),
+        ("safe", "20260428_thesis_consistency_cleanup_safe"),
+        ("off", "20260428_thesis_consistency_cleanup_off"),
+    ]
+    rows = []
+    for label, campaign_id in configs:
+        summary = _load_summary_from_campaign(campaign_id)
+        if summary is None:
+            print(f"skip fig_chap05_postprocess_ablation: missing {campaign_id}")
+            return False
+        classes = {item["class_name"]: item for item in summary["classes"]}
+        rows.append({
+            "label": label,
+            "fp": sum(item["fp"] for item in summary["classes"]),
+            "fn": sum(item["fn"] for item in summary["classes"]),
+            "ebike_recall": classes["ebike"]["recall"],
+        })
+
+    x = np.arange(len(rows))
+    fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.35))
+    axes[0].bar(x - 0.16, [row["fp"] for row in rows], width=0.32, label="FP", color=COLORS["orange"])
+    axes[0].bar(x + 0.16, [row["fn"] for row in rows], width=0.32, label="FN", color=COLORS["teal"])
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels([row["label"] for row in rows])
+    axes[0].set_title("后处理消融错误数")
+    axes[0].legend()
+    axes[1].plot(x, [row["ebike_recall"] for row in rows], marker="o", color=COLORS["coral"])
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels([row["label"] for row in rows])
+    axes[1].set_ylim(0.85, 1.0)
+    axes[1].set_title("ebike recall")
+    fig.tight_layout()
+    _save(fig, "fig_chap05_postprocess_ablation")
+    return True
 
 
 def fig_timing_breakdown() -> None:
@@ -248,9 +405,50 @@ def fig_timing_breakdown() -> None:
     _save(fig, "fig_chap05_timing_breakdown")
 
 
+def fig_video_stability() -> bool:
+    configs = [
+        ("window=1", "20260428_thesis_consistency_video_smooth1"),
+        ("window=5", "20260428_thesis_consistency_video_smooth5"),
+    ]
+    rows = []
+    for label, campaign_id in configs:
+        summary = _load_video_metric_summary(campaign_id)
+        if summary is None:
+            print(f"skip fig_chap05_video_stability: missing {campaign_id}")
+            return False
+        timing = summary.get("timing_ms_average") or summary.get("runtime", {}).get("timing_ms_average") or {}
+        issue_summary = summary.get("count_accuracy_summary", {})
+        rows.append({
+            "label": label,
+            "frame_proc": float(timing.get("frame_proc_ms", 0.0)),
+            "model_execute": float(timing.get("model_execute_ms", 0.0)),
+            "issue_frames": float(issue_summary.get("issue_frame_count", 0.0)) if isinstance(issue_summary, dict) else 0.0,
+        })
+
+    x = np.arange(len(rows))
+    fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.35))
+    axes[0].bar(x - 0.16, [row["frame_proc"] for row in rows], width=0.32, label="frame_proc", color=COLORS["teal"])
+    axes[0].bar(x + 0.16, [row["model_execute"] for row in rows], width=0.32, label="model_execute", color=COLORS["coral"])
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels([row["label"] for row in rows])
+    axes[0].set_ylabel("耗时 / ms")
+    axes[0].set_title("视频路径分段耗时")
+    axes[0].legend()
+    axes[1].bar(x, [row["issue_frames"] for row in rows], color=COLORS["orange"], edgecolor="#2C2C2C", linewidth=0.45)
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels([row["label"] for row in rows])
+    axes[1].set_title("输出稳定性观察帧数")
+    fig.tight_layout()
+    _save(fig, "fig_chap05_video_stability")
+    return True
+
+
 def main() -> None:
     fig_detection_metrics()
     fig_threshold_sensitivity()
+    fig_nms_sensitivity()
+    fig_postprocess_ablation()
+    fig_video_stability()
     fig_timing_breakdown()
     print(f"Saved figures to {FIG_DIR} and {PAPER_IMAGE_DIR}")
 
