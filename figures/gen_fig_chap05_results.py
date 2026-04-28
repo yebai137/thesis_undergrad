@@ -376,14 +376,13 @@ def fig_nms_sensitivity() -> bool:
         })
 
     nms = np.array([row["nms"] for row in rows])
-    fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.35))
+    fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.65))
     axes[0].plot(nms, [row["person_f1"] for row in rows], marker="o", label="person F1", color=COLORS["blue"])
     axes[0].plot(nms, [row["ebike_f1"] for row in rows], marker="s", label="ebike F1", color=COLORS["coral"])
     axes[0].set_title("分类别 F1")
     axes[0].set_xlabel("NMS IoU 阈值")
     axes[0].set_ylabel("F1")
     axes[0].set_xticks(nms)
-    axes[0].legend()
 
     width = 0.018
     axes[1].bar(nms - width, [row["fp"] for row in rows], width=width, label="FP", color=COLORS["orange"])
@@ -391,9 +390,20 @@ def fig_nms_sensitivity() -> bool:
     axes[1].bar(nms + width, [row["pred"] for row in rows], width=width, label="Pred", color=COLORS["gray"])
     axes[1].set_title("错误与预测框数量")
     axes[1].set_xlabel("NMS IoU 阈值")
+    axes[1].set_ylabel("数量")
     axes[1].set_xticks(nms)
-    axes[1].legend()
-    fig.tight_layout()
+    handles0, labels0 = axes[0].get_legend_handles_labels()
+    handles1, labels1 = axes[1].get_legend_handles_labels()
+    fig.legend(
+        handles0 + handles1,
+        labels0 + labels1,
+        loc="lower center",
+        ncol=5,
+        bbox_to_anchor=(0.5, 0.01),
+        frameon=False,
+        columnspacing=1.0,
+    )
+    fig.tight_layout(rect=[0, 0.14, 1, 1])
     _save(fig, "fig_chap05_nms_sensitivity")
     return True
 
@@ -493,14 +503,18 @@ def fig_video_stability() -> bool:
         rows.append(row)
 
     x = np.arange(len(rows))
-    fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.35))
+    fig, axes = plt.subplots(
+        1,
+        3,
+        figsize=(7.35, 3.65),
+        gridspec_kw={"width_ratios": [1.08, 1.08, 0.84]},
+    )
     axes[0].bar(x - 0.16, [row["frame_proc"] for row in rows], width=0.32, label="frame_proc", color=COLORS["teal"])
     axes[0].bar(x + 0.16, [row["model_execute"] for row in rows], width=0.32, label="model_execute", color=COLORS["coral"])
     axes[0].set_xticks(x)
     axes[0].set_xticklabels([row["label"] for row in rows])
     axes[0].set_ylabel("耗时 / ms")
     axes[0].set_title("视频路径分段耗时")
-    axes[0].legend()
     axes[0].bar_label(axes[0].containers[0], labels=[f"{row['frame_proc']:.1f}" for row in rows], padding=2, fontsize=8)
     axes[0].bar_label(axes[0].containers[1], labels=[f"{row['model_execute']:.1f}" for row in rows], padding=2, fontsize=8)
 
@@ -524,24 +538,41 @@ def fig_video_stability() -> bool:
         linewidth=0.45,
         hatch="....",
     )
-    ax_retention = axes[1].twinx()
-    ax_retention.plot(
-        x,
-        [row["retention"] * 100.0 for row in rows],
-        marker="o",
-        color=COLORS["teal"],
-        label="检测保持率",
-    )
     axes[1].set_xticks(x)
     axes[1].set_xticklabels([row["label"] for row in rows])
     axes[1].set_ylabel("事件/帧数")
     axes[1].set_title("连续输出稳定性")
-    ax_retention.set_ylabel("保持率 / %")
-    ax_retention.set_ylim(90, 100)
-    handles, labels = axes[1].get_legend_handles_labels()
-    handles2, labels2 = ax_retention.get_legend_handles_labels()
-    axes[1].legend(handles + handles2, labels + labels2, loc="upper center", bbox_to_anchor=(0.5, -0.20), ncol=2)
-    fig.tight_layout(rect=[0, 0.08, 1, 1])
+    axes[1].bar_label(axes[1].containers[0], labels=[str(row["flash_windows"]) for row in rows], padding=2, fontsize=8)
+    axes[1].bar_label(axes[1].containers[1], labels=[str(row["max_zero_segment"]) for row in rows], padding=2, fontsize=8)
+
+    retention_bars = axes[2].bar(
+        x,
+        [row["retention"] * 100.0 for row in rows],
+        width=0.42,
+        color=COLORS["sky"],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+        hatch="\\\\\\\\",
+    )
+    axes[2].set_xticks(x)
+    axes[2].set_xticklabels([row["label"] for row in rows])
+    axes[2].set_ylim(95, 100)
+    axes[2].set_ylabel("保持率 / %")
+    axes[2].set_title("检测保持率")
+    axes[2].bar_label(retention_bars, labels=[f"{row['retention'] * 100.0:.1f}" for row in rows], padding=2, fontsize=8)
+
+    handles0, labels0 = axes[0].get_legend_handles_labels()
+    handles1, labels1 = axes[1].get_legend_handles_labels()
+    fig.legend(
+        handles0 + handles1,
+        labels0 + labels1,
+        loc="lower center",
+        ncol=4,
+        bbox_to_anchor=(0.5, 0.01),
+        frameon=False,
+        columnspacing=1.0,
+    )
+    fig.tight_layout(rect=[0, 0.16, 1, 1])
     _save(fig, "fig_chap05_video_stability")
     return True
 
