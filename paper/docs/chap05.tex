@@ -5,7 +5,7 @@
 
 \section{实验设置与评价范围}
 
-本文实验使用同一轻量 YOLO 双目标检测模型，类别为 \textit{person} 与 \textit{ebike}。图像验证集包含 720 张电梯轿厢图像，评价指标包括 precision、recall、F1、mAP@0.5、分类别指标和板端运行状态。板端推理使用 HongOU PI（Hi3516DV500）开发板完成，模型以 OM 离线模型形式运行，后处理包含置信度筛选和 NMS。
+本文实验使用同一轻量 YOLO 双目标检测模型，类别为 \textit{person} 与 \textit{ebike}。图像验证集包含 720 张电梯轿厢图像，评价指标包括 precision、recall、F1、mAP@0.5、分类别指标和板端运行状态。板端推理使用搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板完成，模型以 OM 离线模型形式运行，后处理包含置信度筛选和 NMS。
 
 表 \ref{tab:board_platform_specs} 给出了本文实验使用的板端平台与部署工具链。该信息用于限定本文所有板端指标的硬件和运行口径，后续检测指标、参数敏感性、视频稳定性和分段计时结果均基于同一类部署环境获得。
 
@@ -13,11 +13,13 @@
     \centering
     \caption{板端实验平台与部署工具链}
     \label{tab:board_platform_specs}
-    \begin{tabular}{ll}
+    \begin{tabular}{p{3.0cm} p{7.6cm}}
         \toprule
         项目 & 配置 \\
         \midrule
         开发板 & HongOU PI（Hi3516DV500） \\
+        平台定位 & 国产边缘 AI 视觉 SoC 开发平台 \\
+        核心 SoC & 华为海思 Hi3516DV500 视觉 SoC \\
         CPU & 双核 ARM Cortex-A55 @ 850 MHz \\
         DDR & 2 GB DDR4 \\
         eMMC & 8 GB \\
