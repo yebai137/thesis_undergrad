@@ -127,6 +127,22 @@ def _micro_overall(classes: list[dict]) -> dict[str, float]:
     return {"precision": precision, "recall": recall, "f1": f1}
 
 
+def _candidate_campaign_roots(campaign_id: str) -> list[Path]:
+    exact = REPO_ROOT / "logs" / "direct_runs" / campaign_id
+    roots: list[Path] = []
+    if exact.exists():
+        roots.append(exact)
+
+    retry_pattern = f"{campaign_id}_r*"
+    retry_roots = sorted(
+        (REPO_ROOT / "logs" / "direct_runs").glob(retry_pattern),
+        key=lambda path: int(path.name.rsplit("_r", 1)[1]) if "_r" in path.name and path.name.rsplit("_r", 1)[1].isdigit() else -1,
+        reverse=True,
+    )
+    roots.extend(path for path in retry_roots if path not in roots)
+    return roots
+
+
 def _load_threshold_rows() -> list[dict]:
     payload = json.loads(THRESHOLD_REPORT.read_text())
     rows: list[dict] = []
@@ -146,30 +162,88 @@ def _load_threshold_rows() -> list[dict]:
 
 
 def _load_summary_from_campaign(campaign_id: str) -> dict | None:
-    campaign_root = REPO_ROOT / "logs" / "direct_runs" / campaign_id
-    if not campaign_root.exists():
-        return None
-    candidates = sorted(campaign_root.glob("iter_*/analysis/split_val_summary.json"))
-    if not candidates:
-        candidates = sorted(campaign_root.glob("iter_*/analysis/overall_summary.json"))
-    if not candidates:
-        candidates = sorted(campaign_root.glob("iter_*/analysis/performance_summary.json"))
-    if not candidates:
-        return None
-    payload = json.loads(candidates[-1].read_text())
-    if "overall" in payload:
-        return payload["overall"]
-    return payload
+    for campaign_root in _candidate_campaign_roots(campaign_id):
+        candidates = sorted(campaign_root.glob("iter_*/analysis/split_val_summary.json"))
+        if not candidates:
+            candidates = sorted(campaign_root.glob("iter_*/analysis/overall_summary.json"))
+        if not candidates:
+            candidates = sorted(campaign_root.glob("iter_*/analysis/performance_summary.json"))
+        if not candidates:
+            continue
+        payload = json.loads(candidates[-1].read_text())
+        summary = payload["overall"] if "overall" in payload else payload
+        if int(summary.get("failure_count", 0) or 0) != 0:
+            continue
+        return summary
+    return None
 
 
 def _load_video_metric_summary(campaign_id: str) -> dict | None:
-    campaign_root = REPO_ROOT / "logs" / "direct_runs" / campaign_id
-    if not campaign_root.exists():
-        return None
-    candidates = sorted(campaign_root.glob("iter_*/analysis/summary.json"))
-    if not candidates:
-        return None
-    return json.loads(candidates[-1].read_text())
+    for campaign_root in _candidate_campaign_roots(campaign_id):
+        candidates = sorted(campaign_root.glob("iter_*/analysis/summary.json"))
+        if not candidates:
+            continue
+        return json.loads(candidates[-1].read_text())
+    return None
+
+
+def _load_video_stability_row(label: str, campaign_id: str) -> dict | None:
+    for campaign_root in _candidate_campaign_roots(campaign_id):
+        summary_candidates = sorted(campaign_root.glob("iter_*/analysis/summary.json"))
+        event_candidates = sorted(campaign_root.glob("iter_*/analysis/event_timeline.json"))
+        frame_candidates = sorted(campaign_root.glob(
+            "iter_*/artifacts/main/pulled/direct_video_metrics_*/frame_detections.jsonl"
+        ))
+        if not summary_candidates or not event_candidates or not frame_candidates:
+            continue
+        summary = json.loads(summary_candidates[-1].read_text())
+        events = json.loads(event_candidates[-1].read_text()).get("events", [])
+        rows = [json.loads(line) for line in frame_candidates[-1].read_text().splitlines() if line.strip()]
+        if not rows:
+            continue
+
+        frame_proc_values = [
+            float(row.get("timing_ms", {}).get("frame_proc_ms", 0.0))
+            for row in rows
+            if row.get("timing_ms")
+        ]
+        model_execute_values = [
+            float(row.get("timing_ms", {}).get("model_execute_ms", 0.0))
+            for row in rows
+            if row.get("timing_ms")
+        ]
+        present_frames = sum(1 for row in rows if int(row.get("person_count", 0) or 0) > 0)
+        zero_segments: list[int] = []
+        current_zero = 0
+        for row in rows:
+            if int(row.get("person_count", 0) or 0) == 0:
+                current_zero += 1
+            elif current_zero:
+                zero_segments.append(current_zero)
+                current_zero = 0
+        if current_zero:
+            zero_segments.append(current_zero)
+
+        person_flash_windows = sum(
+            1 for event in events if event.get("dominant_issue") == "person_flash"
+        )
+        person_flash_frames = sum(
+            int(event.get("issue_counts", {}).get("person_flash", 0) or 0)
+            for event in events
+        )
+
+        return {
+            "label": label,
+            "frame_count": int(summary.get("video", {}).get("frame_count", len(rows)) or len(rows)),
+            "frame_proc": mean(frame_proc_values) if frame_proc_values else 0.0,
+            "model_execute": mean(model_execute_values) if model_execute_values else 0.0,
+            "retention": present_frames / len(rows),
+            "flash_windows": person_flash_windows,
+            "flash_frames": person_flash_frames,
+            "zero_segments": len(zero_segments),
+            "max_zero_segment": max(zero_segments or [0]),
+        }
+    return None
 
 
 def fig_detection_metrics() -> None:
@@ -412,18 +486,11 @@ def fig_video_stability() -> bool:
     ]
     rows = []
     for label, campaign_id in configs:
-        summary = _load_video_metric_summary(campaign_id)
-        if summary is None:
+        row = _load_video_stability_row(label, campaign_id)
+        if row is None:
             print(f"skip fig_chap05_video_stability: missing {campaign_id}")
             return False
-        timing = summary.get("timing_ms_average") or summary.get("runtime", {}).get("timing_ms_average") or {}
-        issue_summary = summary.get("count_accuracy_summary", {})
-        rows.append({
-            "label": label,
-            "frame_proc": float(timing.get("frame_proc_ms", 0.0)),
-            "model_execute": float(timing.get("model_execute_ms", 0.0)),
-            "issue_frames": float(issue_summary.get("issue_frame_count", 0.0)) if isinstance(issue_summary, dict) else 0.0,
-        })
+        rows.append(row)
 
     x = np.arange(len(rows))
     fig, axes = plt.subplots(1, 2, figsize=(7.35, 3.35))
@@ -434,11 +501,47 @@ def fig_video_stability() -> bool:
     axes[0].set_ylabel("耗时 / ms")
     axes[0].set_title("视频路径分段耗时")
     axes[0].legend()
-    axes[1].bar(x, [row["issue_frames"] for row in rows], color=COLORS["orange"], edgecolor="#2C2C2C", linewidth=0.45)
+    axes[0].bar_label(axes[0].containers[0], labels=[f"{row['frame_proc']:.1f}" for row in rows], padding=2, fontsize=8)
+    axes[0].bar_label(axes[0].containers[1], labels=[f"{row['model_execute']:.1f}" for row in rows], padding=2, fontsize=8)
+
+    axes[1].bar(
+        x - 0.18,
+        [row["flash_windows"] for row in rows],
+        width=0.24,
+        label="闪烁窗口",
+        color=COLORS["orange"],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+        hatch="////",
+    )
+    axes[1].bar(
+        x + 0.08,
+        [row["max_zero_segment"] for row in rows],
+        width=0.24,
+        label="最长无输出段",
+        color=COLORS["gray"],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+        hatch="....",
+    )
+    ax_retention = axes[1].twinx()
+    ax_retention.plot(
+        x,
+        [row["retention"] * 100.0 for row in rows],
+        marker="o",
+        color=COLORS["teal"],
+        label="检测保持率",
+    )
     axes[1].set_xticks(x)
     axes[1].set_xticklabels([row["label"] for row in rows])
-    axes[1].set_title("输出稳定性观察帧数")
-    fig.tight_layout()
+    axes[1].set_ylabel("事件/帧数")
+    axes[1].set_title("连续输出稳定性")
+    ax_retention.set_ylabel("保持率 / %")
+    ax_retention.set_ylim(90, 100)
+    handles, labels = axes[1].get_legend_handles_labels()
+    handles2, labels2 = ax_retention.get_legend_handles_labels()
+    axes[1].legend(handles + handles2, labels + labels2, loc="upper center", bbox_to_anchor=(0.5, -0.20), ncol=2)
+    fig.tight_layout(rect=[0, 0.08, 1, 1])
     _save(fig, "fig_chap05_video_stability")
     return True
 
