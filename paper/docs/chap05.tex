@@ -124,11 +124,11 @@
     \label{fig:chap05_detection_metrics}
 \end{figure}
 
-为补充分类别指标的直观解释，图 \ref{fig:chap05_board_val_examples} 给出了从 720 张完整验证集板端输出中按固定规则抽取的检测示例。图中底图来自验证集原图，检测框和置信度来自 HongOU PI（Hi3516DV500）开发板生成的 \texttt{detections.jsonl}，示例筛选条件为样本运行成功、同时包含 \textit{person} 与 \textit{ebike}、两类均产生 TP 且无 FP/FN。该图用于展示板端输出形态，完整性能判断仍以表 \ref{tab:board_class_results} 和图 \ref{fig:chap05_detection_metrics} 的全量统计为准。
+为补充分类别指标的直观解释，图 \ref{fig:chap05_board_val_examples} 给出了从 720 张完整验证集板端输出中按固定规则抽取的检测示例。图中底图来自验证集原图，检测框和置信度来自 HongOU PI（Hi3516DV500）开发板生成的检测记录，并按板端记录的帧尺寸恢复到图像坐标。示例筛选条件为样本运行成功、同时包含 \textit{person} 与 \textit{ebike}、两类均产生 TP 且无 FP/FN；在满足上述条件的样本中，优先选择检测置信度较高、目标边界不贴边且可视化较清晰的样本。该图用于展示板端输出形态，完整性能判断仍以表 \ref{tab:board_class_results} 和图 \ref{fig:chap05_detection_metrics} 的全量统计为准。
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{image/generated/fig_chap05_board_val_examples.jpg}
+    \includegraphics[width=\textwidth]{image/generated/fig_chap05_board_val_examples.png}
     \caption{Hi3516DV500 板端检测输出示例}
     \label{fig:chap05_board_val_examples}
 \end{figure}

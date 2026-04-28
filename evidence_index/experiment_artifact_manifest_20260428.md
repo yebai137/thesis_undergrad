@@ -80,9 +80,9 @@
 - 原始图像：`/home/ywj/elevator_ai/datasets/PandE/personAndEbike/images/val/`
 - 检测输出：`iter_01/artifacts/val_*/pulled/detections.jsonl`
 - 筛选统计：`iter_01/artifacts/val_*/pulled/per_image.csv`
-- 选图规则：成功样本、同时包含 `person` 与 `ebike`、两类均有 TP、无 FP/FN；在候选样本中按验证集顺序分位抽取 6 张。
-- 采用样本：`1 (1002).jpg`、`1 (1554).jpg`、`1 (2186).jpg`、`1 (291).jpg`、`1 (4087).jpg`、`1 (998).jpg`
-- 生成产物：`fig_chap05_board_val_examples.jpg`
+- 选图规则：成功样本、同时包含 `person` 与 `ebike`、两类均有 TP、无 FP/FN；在候选样本中按检测置信度、边界留白、目标面积和画面居中度计算可视化质量分，从高质量候选池中按验证集顺序分位抽取 4 张。
+- 采用样本：`1 (69).jpg`、`1 (1198).jpg`、`1 (2034).jpg`、`1 (2148).jpg`
+- 生成产物：`fig_chap05_board_val_examples.{jpg,png}`
 - 用途：展示 Hi3516DV500 板端检测输出形态，定量结论仍以 720 张完整验证集统计为准。
 
 ## 图表生成

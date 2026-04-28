@@ -113,6 +113,7 @@ def _save_pil_image(image: Image.Image, stem: str) -> None:
     rgb = image.convert("RGB")
     for out_dir in (FIG_DIR, PAPER_IMAGE_DIR):
         rgb.save(out_dir / f"{stem}.jpg", quality=95, optimize=True)
+        rgb.save(out_dir / f"{stem}.png", optimize=True)
 
 
 def _font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
@@ -291,6 +292,8 @@ def _load_full_val_qualitative_candidates() -> list[dict]:
                     candidates.append({
                         "image_name": row["image_name"],
                         "image_path": image_path,
+                        "frame_width": detection_record.get("frame_width"),
+                        "frame_height": detection_record.get("frame_height"),
                         "detections": detection_record["detections"],
                     })
     if len(candidates) < 6:
@@ -312,6 +315,71 @@ def _select_evenly(items: list[dict], count: int) -> list[dict]:
         used.add(probe)
         selected.append(items[probe])
     return selected
+
+
+def _board_example_quality(record: dict) -> float:
+    frame_w = float(record.get("frame_width") or 1920)
+    frame_h = float(record.get("frame_height") or 1080)
+    detections = [
+        det for det in record["detections"]
+        if int(det.get("class_id", -1)) in (0, 1)
+    ]
+    if len(detections) < 2:
+        return -1.0
+
+    scores: list[float] = []
+    margins: list[float] = []
+    areas: list[float] = []
+    center_offsets: list[float] = []
+    edge_penalty = 0.0
+    for det in detections:
+        x1 = float(det["x1"])
+        y1 = float(det["y1"])
+        x2 = float(det["x2"])
+        y2 = float(det["y2"])
+        scores.append(float(det.get("score", 0.0)))
+        margins.append(min(x1, y1, frame_w - x2, frame_h - y2) / min(frame_w, frame_h))
+        areas.append(((x2 - x1) * (y2 - y1)) / (frame_w * frame_h))
+        center_offsets.append(
+            abs((x1 + x2) / 2 - frame_w / 2) / frame_w
+            + abs((y1 + y2) / 2 - frame_h / 2) / frame_h
+        )
+        if x1 < 20 or y1 < 20 or x2 > frame_w - 20 or y2 > frame_h - 20:
+            edge_penalty += 0.08
+
+    mean_score = sum(scores) / len(scores)
+    min_score = min(scores)
+    min_margin = min(margins)
+    max_area = max(areas)
+    mean_center_offset = sum(center_offsets) / len(center_offsets)
+    count_penalty = abs(len(detections) - 2) * 0.08
+
+    return (
+        mean_score
+        + min_score * 0.70
+        + min(max(min_margin, 0.0), 0.15) * 1.80
+        - max(0.0, 0.02 - min_margin) * 2.00
+        - max(0.0, max_area - 0.28) * 0.60
+        - mean_center_offset * 0.12
+        - count_penalty
+        - edge_penalty
+    )
+
+
+def _select_board_examples(records: list[dict], count: int) -> list[dict]:
+    ranked = sorted(
+        records,
+        key=lambda record: (-_board_example_quality(record), record["image_name"]),
+    )
+    high_quality_pool = ranked[:max(count * 4, count)]
+
+    def natural_image_key(record: dict) -> tuple[int, str]:
+        match = re.search(r"\((\d+)\)", record["image_name"])
+        if not match:
+            return (0, record["image_name"])
+        return (int(match.group(1)), record["image_name"])
+
+    return _select_evenly(sorted(high_quality_pool, key=natural_image_key), count)
 
 
 def _draw_detection_label(
@@ -347,12 +415,14 @@ def _render_board_panel(record: dict, size: tuple[int, int]) -> Image.Image:
     image = Image.open(record["image_path"]).convert("RGB")
     original_w, original_h = image.size
     panel_w, panel_h = size
+    frame_w = float(record.get("frame_width") or original_w)
+    frame_h = float(record.get("frame_height") or original_h)
     image = image.resize((panel_w, panel_h), Image.Resampling.LANCZOS)
-    scale_x = panel_w / original_w
-    scale_y = panel_h / original_h
+    scale_x = panel_w / frame_w
+    scale_y = panel_h / frame_h
     draw = ImageDraw.Draw(image)
-    box_font = _font(22, bold=True)
-    line_width = 5
+    box_font = _font(28, bold=True)
+    line_width = 6
     occupied_labels: list[tuple[int, int, int, int]] = []
     for det in record["detections"]:
         class_id = int(det.get("class_id", -1))
@@ -377,16 +447,16 @@ def fig_training_val_predictions() -> None:
 
 
 def fig_board_val_examples() -> None:
-    records = _select_evenly(_load_full_val_qualitative_candidates(), 6)
-    panel_size = (720, 405)
-    caption_h = 42
-    gutter = 18
-    cols = 3
+    records = _select_board_examples(_load_full_val_qualitative_candidates(), 4)
+    panel_size = (960, 540)
+    caption_h = 46
+    gutter = 22
+    cols = 2
     rows = 2
     width = cols * panel_size[0] + (cols + 1) * gutter
     height = rows * (panel_size[1] + caption_h) + (rows + 1) * gutter
     sheet = Image.new("RGB", (width, height), "#F7F7F5")
-    caption_font = _font(22, bold=True)
+    caption_font = _font(24, bold=True)
     for idx, record in enumerate(records):
         row = idx // cols
         col = idx % cols
