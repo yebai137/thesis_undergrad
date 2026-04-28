@@ -478,7 +478,7 @@ def fig_stage_comparison() -> None:
 
     stages = [
         ("COCO-person\nbaseline", baseline),
-        ("Linux FP32\n自训练", training),
+        ("YOLOv8n\n训练阶段", training),
         ("Hi3516DV500\nFP16/OM", board),
     ]
     metrics = [
@@ -515,7 +515,7 @@ def fig_stage_comparison() -> None:
     axes[0].set_ylabel("指标值")
     axes[0].set_ylim(0.68, 1.02)
 
-    map_labels = ["Linux FP32\n自训练", "Hi3516DV500\nFP16/OM"]
+    map_labels = ["YOLOv8n\n训练阶段", "Hi3516DV500\nFP16/OM"]
     map_values = [training["map50"], board["map50"]]
     bars = axes[1].bar(
         np.arange(2),

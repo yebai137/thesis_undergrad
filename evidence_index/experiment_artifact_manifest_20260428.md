@@ -68,11 +68,11 @@
 
 ## 定性示例图
 
-训练端示例来源：
+训练阶段示例来源：
 
 - 原始文件：`/home/ywj/elevator_ai/runs/detect/elevator_train_100epoch3/val_batch0_pred.jpg`
 - 生成产物：`fig_chap03_training_val_predictions.jpg`
-- 用途：展示 YOLOv8n 自训练模型在验证集上的预测输出形态，不替代 `results.csv` 中的训练端定量指标。
+- 用途：展示 YOLOv8n 场景化训练模型在验证集上的预测输出形态，不替代训练阶段验证集定量指标。
 
 板端示例来源：
 
