@@ -342,14 +342,14 @@
                 \zihao{-3}
                 
                 \textbf{
-                    \begin{tabular}{cc}
+                    \begin{tabular}{c@{\hspace{0.25cm}}c}
                         % [s] 两端对齐
-                        \makebox[2.56cm][s]{学院}   & \makebox[5.72cm]{\hfill\@cschool\hfill}                                  \\ \cline{2-2}
-                        \makebox[2.56cm][s]{专业}   & \makebox[5.72cm]{\hfill\@cmajor\hfill}                                   \\ \cline{2-2}
-                        \makebox[2.56cm][s]{学生姓名} & \makebox[5.72cm]{\hfill\@cauthor\hfill}                                  \\ \cline{2-2}
-                        \makebox[2.56cm][s]{学生学号} & \makebox[5.72cm]{\hfill\@studentid\hfill}                                \\ \cline{2-2}
-                        \makebox[2.56cm][s]{指导教师} & \makebox[5.72cm]{\hfill\@cmentor\hfill}                                  \\ \cline{2-2}
-                        \makebox[2.56cm][s]{提交日期} & \makebox[5.72cm]{\hfill\number\year 年\number\month 月\number\day 日\hfill} \\ \cline{2-2}
+                        \makebox[2.56cm][s]{学院}   & \makebox[6.8cm]{\hfill\@cschool\hfill}                                  \\ \cline{2-2}
+                        \makebox[2.56cm][s]{专业}   & \makebox[6.8cm]{\hfill\@cmajor\hfill}                                   \\ \cline{2-2}
+                        \makebox[2.56cm][s]{学生姓名} & \makebox[6.8cm]{\hfill\@cauthor\hfill}                                  \\ \cline{2-2}
+                        \makebox[2.56cm][s]{学生学号} & \makebox[6.8cm]{\hfill\@studentid\hfill}                                \\ \cline{2-2}
+                        \makebox[2.56cm][s]{指导教师} & \makebox[6.8cm]{\hfill\@cmentor\hfill}                                  \\ \cline{2-2}
+                        \makebox[2.56cm][s]{提交日期} & \makebox[6.8cm]{\hfill\number\year 年\number\month 月\number\day 日\hfill} \\ \cline{2-2}
                     \end{tabular}
                 }
             \end{spacing}
