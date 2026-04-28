@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 from statistics import mean
 
@@ -21,6 +22,8 @@ PAPER_IMAGE_DIR = THESIS_DIR / "paper" / "image" / "generated"
 TIMING_ROOT = REPO_ROOT / "logs" / "direct_runs" / "20260427_timing_instrumentation"
 FULL_VAL_METRICS = REPO_ROOT / "logs" / "direct_runs" / "20260419_phase3_3_full_val_synced" / "iter_01" / "analysis" / "performance_summary.json"
 THRESHOLD_REPORT = REPO_ROOT / "doc" / "reports" / "2026-04-25_Thesis_Threshold_Sensitivity_Recompute.json"
+TRAINING_RESULTS_CSV = REPO_ROOT / "runs" / "detect" / "elevator_train_100epoch3" / "results.csv"
+COCO_BASELINE_LOG = REPO_ROOT / "logs" / "daily" / "2026-01-16.md"
 
 FONT_CACHE = FIG_DIR / ".cache" / "fonts"
 NOTO_CJK_REGULAR_TTC = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc")
@@ -115,6 +118,44 @@ def _load_video_summary() -> dict:
 def _load_full_val_overall() -> dict:
     payload = json.loads(FULL_VAL_METRICS.read_text())
     return payload["overall"]
+
+
+def _load_training_final_metrics() -> dict[str, float]:
+    with TRAINING_RESULTS_CSV.open(newline="") as fp:
+        rows = list(csv.DictReader(fp))
+    if not rows:
+        raise ValueError(f"No rows in {TRAINING_RESULTS_CSV}")
+    final = rows[-1]
+    precision = float(final["metrics/precision(B)"])
+    recall = float(final["metrics/recall(B)"])
+    f1 = 2.0 * precision * recall / (precision + recall) if precision + recall else 0.0
+    return {
+        "epoch": float(final["epoch"]),
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+        "map50": float(final["metrics/mAP50(B)"]),
+        "map50_95": float(final["metrics/mAP50-95(B)"]),
+    }
+
+
+def _load_coco_person_baseline() -> dict[str, float]:
+    text = COCO_BASELINE_LOG.read_text()
+
+    def percent(label: str) -> float:
+        match = re.search(rf"\*\*{re.escape(label)}\*\*\s*\|\s*\*\*([0-9.]+)%\*\*", text)
+        if not match:
+            raise ValueError(f"Missing {label} in {COCO_BASELINE_LOG}")
+        return float(match.group(1)) / 100.0
+
+    f1_match = re.search(r"\*\*F1 Score\*\*\s*\|\s*\*\*([0-9.]+)\*\*", text)
+    if not f1_match:
+        raise ValueError(f"Missing F1 Score in {COCO_BASELINE_LOG}")
+    return {
+        "precision": percent("Precision"),
+        "recall": percent("Recall"),
+        "f1": float(f1_match.group(1)),
+    }
 
 
 def _micro_overall(classes: list[dict]) -> dict[str, float]:
@@ -244,6 +285,86 @@ def _load_video_stability_row(label: str, campaign_id: str) -> dict | None:
             "max_zero_segment": max(zero_segments or [0]),
         }
     return None
+
+
+def fig_stage_comparison() -> None:
+    baseline = _load_coco_person_baseline()
+    training = _load_training_final_metrics()
+    board_overall = _load_full_val_overall()
+    board = _micro_overall(board_overall["classes"])
+    board["map50"] = float(board_overall["map50"])
+
+    stages = [
+        ("COCO-person\nbaseline", baseline),
+        ("Linux FP32\n自训练", training),
+        ("Hi3516DV500\nFP16/OM", board),
+    ]
+    metrics = [
+        ("Precision", "precision", COLORS["blue"], "////"),
+        ("Recall", "recall", COLORS["teal"], "\\\\\\\\"),
+        ("F1", "f1", COLORS["coral"], "...."),
+    ]
+
+    fig, axes = plt.subplots(
+        1,
+        2,
+        figsize=(7.45, 3.55),
+        gridspec_kw={"width_ratios": [1.35, 0.82]},
+    )
+
+    x = np.arange(len(stages))
+    width = 0.23
+    for idx, (label, key, color, hatch) in enumerate(metrics):
+        values = [stage[key] for _, stage in stages]
+        bars = axes[0].bar(
+            x + (idx - 1) * width,
+            values,
+            width=width,
+            label=label,
+            color=color,
+            edgecolor="#2C2C2C",
+            linewidth=0.45,
+            hatch=hatch,
+        )
+        axes[0].bar_label(bars, labels=[f"{value:.3f}" for value in values], padding=2, fontsize=7.4)
+    axes[0].set_title("同集阶段参照：P/R/F1")
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels([name for name, _ in stages])
+    axes[0].set_ylabel("指标值")
+    axes[0].set_ylim(0.68, 1.02)
+
+    map_labels = ["Linux FP32\n自训练", "Hi3516DV500\nFP16/OM"]
+    map_values = [training["map50"], board["map50"]]
+    bars = axes[1].bar(
+        np.arange(2),
+        map_values,
+        width=0.48,
+        color=[COLORS["gold"], COLORS["sky"]],
+        edgecolor="#2C2C2C",
+        linewidth=0.45,
+        hatch="----",
+    )
+    axes[1].set_title("mAP@0.5")
+    axes[1].set_xticks(np.arange(2))
+    axes[1].set_xticklabels(map_labels)
+    axes[1].set_ylim(0.86, 1.00)
+    axes[1].bar_label(bars, labels=[f"{value:.3f}" for value in map_values], padding=2, fontsize=8)
+    axes[1].annotate(
+        "下降 0.078",
+        xy=(0.5, (map_values[0] + map_values[1]) / 2),
+        xytext=(0.5, 0.965),
+        textcoords="data",
+        ha="center",
+        va="center",
+        fontsize=8,
+        arrowprops={"arrowstyle": "<->", "linewidth": 0.9, "color": COLORS["gray"]},
+        color=COLORS["blue"],
+    )
+
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=3, bbox_to_anchor=(0.5, 0.01), frameon=False)
+    fig.tight_layout(rect=[0, 0.13, 1, 1])
+    _save(fig, "fig_chap05_stage_comparison")
 
 
 def fig_detection_metrics() -> None:
@@ -578,6 +699,7 @@ def fig_video_stability() -> bool:
 
 
 def main() -> None:
+    fig_stage_comparison()
     fig_detection_metrics()
     fig_threshold_sensitivity()
     fig_nms_sensitivity()

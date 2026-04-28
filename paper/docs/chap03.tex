@@ -18,6 +18,21 @@
 
 本文将迁移检查组织为语义、数值和运行三个层次。语义检查包括类别数量、类别顺序和输出张量维度；数值检查包括边框坐标、置信度范围和 NMS 后检测数量；运行检查包括模型加载、推理成功率、验证链路端到端耗时和关键分段耗时。这样的顺序能够避免在基础语义尚未对齐时直接讨论 mAP，也能避免把 batch 外围链路耗时误解为模型执行阶段耗时，从而提高实验结论的可信度。
 
+\section{YOLOv8n 自训练模型与训练端性能}
+
+在进入板端部署前，本文首先在 Linux 服务器环境中完成 YOLOv8n 双目标检测模型训练。训练任务使用 \textit{person} 与 \textit{ebike} 两类标注，输入尺寸为 $640 \times 640$，batch size 为 16，训练 100 个 epoch，并以 COCO 预训练 YOLOv8n 权重作为初始化。该训练端模型对应后续 ONNX 导出、ATC 编译和 OM 板端部署的源权重，因此训练端指标构成本文分析板端部署损失和检测能力保留情况的参照上限。
+
+图 \ref{fig:chap03_training_results} 给出了训练过程中的损失和验证集指标曲线。可以看到，训练后期 box loss、classification loss 和 DFL loss 继续保持下降或趋稳，验证集 precision、recall 和 mAP 指标整体维持在较高水平，未出现明显的训练发散现象。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{image/generated/fig_chap03_training_results.png}
+    \caption{YOLOv8n 自训练模型训练曲线}
+    \label{fig:chap03_training_results}
+\end{figure}
+
+训练端核心指标以原始训练记录 \texttt{results.csv} 为准。第 100 个 epoch 的验证集 precision 为 0.9756，recall 为 0.96469，mAP@0.5 为 0.98832，mAP@0.5:0.95 为 0.82203。上述结果说明，场景化训练后的 YOLOv8n 模型已经在服务器 FP32 口径下具备较强的双目标检测能力。第五章进一步将该训练端结果与 Hi3516DV500 板端 FP16/OM 结果对照，用于解释部署后指标的保留程度和回退幅度。
+
 \section{迁移接口契约}
 
 为避免把部署问题简化为模型加载成功，本文将迁移链路抽象为接口契约。接口契约不是额外算法模块，而是贯穿训练、导出、编译和板端运行的约束集合，用于把容易隐含在代码和配置中的输入、类别、输出、后处理和运行时假设显式化。只有这些约束在各阶段保持一致，板端 precision、recall、F1 和 mAP@0.5 才具有可解释性。
