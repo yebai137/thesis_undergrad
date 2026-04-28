@@ -6,6 +6,7 @@ from __future__ import annotations
 import csv
 import json
 import re
+import shutil
 from pathlib import Path
 from statistics import mean
 
@@ -13,6 +14,7 @@ import matplotlib.font_manager as font_manager
 import matplotlib.pyplot as plt
 import numpy as np
 from fontTools.ttLib import TTCollection
+from PIL import Image, ImageDraw, ImageFont
 
 
 FIG_DIR = Path(__file__).resolve().parent
@@ -23,11 +25,16 @@ TIMING_ROOT = REPO_ROOT / "logs" / "direct_runs" / "20260427_timing_instrumentat
 FULL_VAL_METRICS = REPO_ROOT / "logs" / "direct_runs" / "20260419_phase3_3_full_val_synced" / "iter_01" / "analysis" / "performance_summary.json"
 THRESHOLD_REPORT = REPO_ROOT / "doc" / "reports" / "2026-04-25_Thesis_Threshold_Sensitivity_Recompute.json"
 TRAINING_RESULTS_CSV = REPO_ROOT / "runs" / "detect" / "elevator_train_100epoch3" / "results.csv"
+TRAINING_VAL_PRED = REPO_ROOT / "runs" / "detect" / "elevator_train_100epoch3" / "val_batch0_pred.jpg"
 COCO_BASELINE_LOG = REPO_ROOT / "logs" / "daily" / "2026-01-16.md"
+FULL_VAL_ITER_ROOT = REPO_ROOT / "logs" / "direct_runs" / "20260419_phase3_3_full_val_synced" / "iter_01"
+VAL_IMAGE_DIR = REPO_ROOT / "datasets" / "PandE" / "personAndEbike" / "images" / "val"
 
 FONT_CACHE = FIG_DIR / ".cache" / "fonts"
 NOTO_CJK_REGULAR_TTC = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc")
 NOTO_CJK_BOLD_TTC = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc")
+DEJAVU_SANS = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
+DEJAVU_SANS_BOLD = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
 
 
 def _extract_noto_sc_face(ttc_path: Path, output_path: Path) -> Path | None:
@@ -91,9 +98,41 @@ def _save(fig: plt.Figure, stem: str) -> None:
     plt.close(fig)
 
 
+def _copy_generated_image(source: Path, stem: str, suffix: str = ".jpg") -> None:
+    if not source.exists():
+        raise FileNotFoundError(source)
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    PAPER_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    for out_dir in (FIG_DIR, PAPER_IMAGE_DIR):
+        shutil.copy2(source, out_dir / f"{stem}{suffix}")
+
+
+def _save_pil_image(image: Image.Image, stem: str) -> None:
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    PAPER_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    rgb = image.convert("RGB")
+    for out_dir in (FIG_DIR, PAPER_IMAGE_DIR):
+        rgb.save(out_dir / f"{stem}.jpg", quality=95, optimize=True)
+
+
+def _font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+    path = DEJAVU_SANS_BOLD if bold else DEJAVU_SANS
+    try:
+        if path.exists():
+            return ImageFont.truetype(str(path), size=size)
+    except OSError:
+        pass
+    return ImageFont.load_default()
+
+
 def _float(row: dict[str, str], key: str) -> float:
     value = row.get(key, "")
     return float(value) if value not in ("", None) else 0.0
+
+
+def _int(row: dict[str, str], key: str) -> int:
+    value = row.get(key, "")
+    return int(float(value)) if value not in ("", None) else 0
 
 
 def _load_batch_rows() -> list[dict[str, str]]:
@@ -217,6 +256,149 @@ def _load_summary_from_campaign(campaign_id: str) -> dict | None:
             continue
         return summary
     return None
+
+
+def _load_full_val_qualitative_candidates() -> list[dict]:
+    candidates: list[dict] = []
+    artifact_root = FULL_VAL_ITER_ROOT / "artifacts"
+    per_image_paths = sorted(
+        artifact_root.glob("val_*/pulled/per_image.csv"),
+        key=lambda path: path.parent.parent.name,
+    )
+    for per_image_path in per_image_paths:
+        detections_path = per_image_path.with_name("detections.jsonl")
+        if not detections_path.exists():
+            continue
+        detection_by_image = {}
+        for line in detections_path.read_text().splitlines():
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            detection_by_image[record["image_name"]] = record
+        with per_image_path.open(newline="") as fp:
+            for row in csv.DictReader(fp):
+                if row.get("success") != "1":
+                    continue
+                if _int(row, "gt_person") <= 0 or _int(row, "gt_ebike") <= 0:
+                    continue
+                if _int(row, "tp_person") <= 0 or _int(row, "tp_ebike") <= 0:
+                    continue
+                if any(_int(row, key) != 0 for key in ("fp_person", "fp_ebike", "fn_person", "fn_ebike")):
+                    continue
+                image_path = VAL_IMAGE_DIR / row["image_name"]
+                detection_record = detection_by_image.get(row["image_name"])
+                if image_path.exists() and detection_record and detection_record.get("detections"):
+                    candidates.append({
+                        "image_name": row["image_name"],
+                        "image_path": image_path,
+                        "detections": detection_record["detections"],
+                    })
+    if len(candidates) < 6:
+        raise ValueError(f"Need at least 6 qualitative board examples, found {len(candidates)}")
+    return candidates
+
+
+def _select_evenly(items: list[dict], count: int) -> list[dict]:
+    if len(items) <= count:
+        return items
+    selected: list[dict] = []
+    used: set[int] = set()
+    for idx in [round(i * (len(items) - 1) / (count - 1)) for i in range(count)]:
+        probe = idx
+        while probe in used and probe + 1 < len(items):
+            probe += 1
+        while probe in used and probe > 0:
+            probe -= 1
+        used.add(probe)
+        selected.append(items[probe])
+    return selected
+
+
+def _draw_detection_label(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[int, int],
+    text: str,
+    color: str,
+    font: ImageFont.ImageFont,
+    max_width: int,
+    max_height: int,
+    occupied: list[tuple[int, int, int, int]],
+) -> None:
+    x, y = xy
+    left, top, right, bottom = draw.textbbox((x, y), text, font=font)
+    label_h = bottom - top + 8
+    label_w = right - left + 10
+    x = max(0, min(x, max_width - label_w))
+    label_y = max(0, y - label_h)
+    bbox = (x, label_y, x + label_w, label_y + label_h)
+    while any(not (bbox[2] <= other[0] or bbox[0] >= other[2] or bbox[3] <= other[1] or bbox[1] >= other[3]) for other in occupied):
+        label_y = min(max_height - label_h, label_y + label_h + 2)
+        bbox = (x, label_y, x + label_w, label_y + label_h)
+        if label_y + label_h >= max_height:
+            break
+    draw.rectangle(bbox, fill=color)
+    draw.text((bbox[0] + 5, bbox[1] + 3), text, fill="white", font=font)
+    occupied.append(bbox)
+
+
+def _render_board_panel(record: dict, size: tuple[int, int]) -> Image.Image:
+    class_names = {0: "person", 1: "ebike"}
+    class_colors = {0: "#0057D9", 1: "#00AFC7"}
+    image = Image.open(record["image_path"]).convert("RGB")
+    original_w, original_h = image.size
+    panel_w, panel_h = size
+    image = image.resize((panel_w, panel_h), Image.Resampling.LANCZOS)
+    scale_x = panel_w / original_w
+    scale_y = panel_h / original_h
+    draw = ImageDraw.Draw(image)
+    box_font = _font(22, bold=True)
+    line_width = 5
+    occupied_labels: list[tuple[int, int, int, int]] = []
+    for det in record["detections"]:
+        class_id = int(det.get("class_id", -1))
+        color = class_colors.get(class_id, "#E76F51")
+        x1 = max(0, min(panel_w - 1, int(round(float(det["x1"]) * scale_x))))
+        y1 = max(0, min(panel_h - 1, int(round(float(det["y1"]) * scale_y))))
+        x2 = max(0, min(panel_w - 1, int(round(float(det["x2"]) * scale_x))))
+        y2 = max(0, min(panel_h - 1, int(round(float(det["y2"]) * scale_y))))
+        draw.rectangle([x1, y1, x2, y2], outline=color, width=line_width)
+        score = float(det.get("score", 0.0))
+        label = f"{class_names.get(class_id, 'cls')} {score:.2f}"
+        _draw_detection_label(draw, (x1, y1), label, color, box_font, panel_w, panel_h, occupied_labels)
+    return image
+
+
+def fig_training_val_predictions() -> None:
+    _copy_generated_image(
+        TRAINING_VAL_PRED,
+        "fig_chap03_training_val_predictions",
+        TRAINING_VAL_PRED.suffix,
+    )
+
+
+def fig_board_val_examples() -> None:
+    records = _select_evenly(_load_full_val_qualitative_candidates(), 6)
+    panel_size = (720, 405)
+    caption_h = 42
+    gutter = 18
+    cols = 3
+    rows = 2
+    width = cols * panel_size[0] + (cols + 1) * gutter
+    height = rows * (panel_size[1] + caption_h) + (rows + 1) * gutter
+    sheet = Image.new("RGB", (width, height), "#F7F7F5")
+    caption_font = _font(22, bold=True)
+    for idx, record in enumerate(records):
+        row = idx // cols
+        col = idx % cols
+        x = gutter + col * (panel_size[0] + gutter)
+        y = gutter + row * (panel_size[1] + caption_h + gutter)
+        panel = _render_board_panel(record, panel_size)
+        sheet.paste(panel, (x, y))
+        draw = ImageDraw.Draw(sheet)
+        caption = f"({chr(ord('a') + idx)}) {record['image_name']}"
+        draw.rectangle([x, y + panel_size[1], x + panel_size[0], y + panel_size[1] + caption_h], fill="white")
+        draw.text((x + 12, y + panel_size[1] + 8), caption, fill="#264653", font=caption_font)
+    _save_pil_image(sheet, "fig_chap05_board_val_examples")
 
 
 def _load_video_metric_summary(campaign_id: str) -> dict | None:
@@ -699,8 +881,10 @@ def fig_video_stability() -> bool:
 
 
 def main() -> None:
+    fig_training_val_predictions()
     fig_stage_comparison()
     fig_detection_metrics()
+    fig_board_val_examples()
     fig_threshold_sensitivity()
     fig_nms_sensitivity()
     fig_postprocess_ablation()

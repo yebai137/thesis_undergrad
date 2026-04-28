@@ -66,6 +66,25 @@
 
 说明：视频实验缺少逐帧人工标注，因此上述“检测保持率”和“连续无输出段”只描述连续输出稳定性，不作为视频级 precision、recall 或 mAP。
 
+## 定性示例图
+
+训练端示例来源：
+
+- 原始文件：`/home/ywj/elevator_ai/runs/detect/elevator_train_100epoch3/val_batch0_pred.jpg`
+- 生成产物：`fig_chap03_training_val_predictions.jpg`
+- 用途：展示 YOLOv8n 自训练模型在验证集上的预测输出形态，不替代 `results.csv` 中的训练端定量指标。
+
+板端示例来源：
+
+- campaign：`20260419_phase3_3_full_val_synced`
+- 原始图像：`/home/ywj/elevator_ai/datasets/PandE/personAndEbike/images/val/`
+- 检测输出：`iter_01/artifacts/val_*/pulled/detections.jsonl`
+- 筛选统计：`iter_01/artifacts/val_*/pulled/per_image.csv`
+- 选图规则：成功样本、同时包含 `person` 与 `ebike`、两类均有 TP、无 FP/FN；在候选样本中按验证集顺序分位抽取 6 张。
+- 采用样本：`1 (1002).jpg`、`1 (1554).jpg`、`1 (2186).jpg`、`1 (291).jpg`、`1 (4087).jpg`、`1 (998).jpg`
+- 生成产物：`fig_chap05_board_val_examples.jpg`
+- 用途：展示 Hi3516DV500 板端检测输出形态，定量结论仍以 720 张完整验证集统计为准。
+
 ## 图表生成
 
 图表脚本：`figures/gen_fig_chap05_results.py`
@@ -83,4 +102,3 @@ cd /home/ywj/elevator_ai/thesis_undergrad
 ```
 
 运行结果：成功生成所有第五章图表，未出现 `skip fig_chap05_nms_sensitivity`、`skip fig_chap05_postprocess_ablation` 或 `skip fig_chap05_video_stability`。
-

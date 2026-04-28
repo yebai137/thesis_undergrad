@@ -33,6 +33,15 @@
 
 训练端核心指标以原始训练记录 \texttt{results.csv} 为准。第 100 个 epoch 的验证集 precision 为 0.9756，recall 为 0.96469，mAP@0.5 为 0.98832，mAP@0.5:0.95 为 0.82203。上述结果说明，场景化训练后的 YOLOv8n 模型已经在服务器 FP32 口径下具备较强的双目标检测能力。第五章进一步将该训练端结果与 Hi3516DV500 板端 FP16/OM 结果对照，用于解释部署后指标的保留程度和回退幅度。
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{image/generated/fig_chap03_training_val_predictions.jpg}
+    \caption{YOLOv8n 自训练模型验证集预测示例}
+    \label{fig:chap03_training_val_predictions}
+\end{figure}
+
+图 \ref{fig:chap03_training_val_predictions} 展示了训练端模型在验证集上的预测输出。该图来自 YOLOv8n 训练流程保存的验证预测网格，用于直观说明模型已经能够在电梯视角下同时输出 \textit{person} 与 \textit{ebike} 检测框；训练端能力的定量判断仍以 \texttt{results.csv} 中的 precision、recall 和 mAP 指标为依据。
+
 \section{迁移接口契约}
 
 为避免把部署问题简化为模型加载成功，本文将迁移链路抽象为接口契约。接口契约不是额外算法模块，而是贯穿训练、导出、编译和板端运行的约束集合，用于把容易隐含在代码和配置中的输入、类别、输出、后处理和运行时假设显式化。只有这些约束在各阶段保持一致，板端 precision、recall、F1 和 mAP@0.5 才具有可解释性。
