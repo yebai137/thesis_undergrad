@@ -1,0 +1,214 @@
+{
+  "redboxes": [
+    {
+      "id": "stage1_network_arch",
+      "anchor_id": "stage1_network_arch",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "YOLO simplified network structure blocks and output scales",
+      "bbox": [
+        28,
+        228,
+        222,
+        78
+      ],
+      "anchor_slot": [
+        28,
+        228,
+        222,
+        78
+      ],
+      "source_crop": "reference_crops/stage1_network_arch.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage1_weight_tensors",
+      "anchor_id": "stage1_weight_tensors",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "Backbone Neck Head weight tensor grids",
+      "bbox": [
+        30,
+        374,
+        220,
+        111
+      ],
+      "anchor_slot": [
+        30,
+        374,
+        220,
+        111
+      ],
+      "source_crop": "reference_crops/stage1_weight_tensors.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage1_class_matrices",
+      "anchor_id": "stage1_class_matrices",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "Person and ebike class matrix examples",
+      "bbox": [
+        31,
+        548,
+        218,
+        87
+      ],
+      "anchor_slot": [
+        31,
+        548,
+        218,
+        87
+      ],
+      "source_crop": "reference_crops/stage1_class_matrices.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage4_om_package",
+      "anchor_id": "stage4_om_package",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "OM package graph weights metadata container",
+      "bbox": [
+        907,
+        228,
+        151,
+        517
+      ],
+      "anchor_slot": [
+        907,
+        228,
+        151,
+        517
+      ],
+      "source_crop": "reference_crops/stage4_om_package.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage5_npu_execution",
+      "anchor_id": "stage5_npu_execution",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "NPU buffers compute array and SRAM execution structure",
+      "bbox": [
+        1137,
+        247,
+        197,
+        420
+      ],
+      "anchor_slot": [
+        1137,
+        247,
+        197,
+        420
+      ],
+      "source_crop": "reference_crops/stage5_npu_execution.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage6_tensor_strip",
+      "anchor_id": "stage6_tensor_strip",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "Raw model output tensor strip",
+      "bbox": [
+        1417,
+        224,
+        224,
+        36
+      ],
+      "anchor_slot": [
+        1417,
+        224,
+        224,
+        36
+      ],
+      "source_crop": "reference_crops/stage6_tensor_strip.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage6_bbox_decode",
+      "anchor_id": "stage6_bbox_decode",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "Bounding box decode formula and center diagram",
+      "bbox": [
+        1426,
+        309,
+        207,
+        101
+      ],
+      "anchor_slot": [
+        1426,
+        309,
+        207,
+        101
+      ],
+      "source_crop": "reference_crops/stage6_bbox_decode.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage6_class_scores",
+      "anchor_id": "stage6_class_scores",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "Person and ebike category score bars",
+      "bbox": [
+        1464,
+        451,
+        164,
+        42
+      ],
+      "anchor_slot": [
+        1464,
+        466,
+        164,
+        42
+      ],
+      "source_crop": "reference_crops/stage6_class_scores.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage6_detection_result",
+      "anchor_id": "stage6_detection_result",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "Elevator detection result with retained boxes",
+      "bbox": [
+        1417,
+        526,
+        224,
+        142
+      ],
+      "anchor_slot": [
+        1417,
+        526,
+        224,
+        142
+      ],
+      "source_crop": "reference_crops/stage6_detection_result.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    },
+    {
+      "id": "stage6_result_table",
+      "anchor_id": "stage6_result_table",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "NMS result table",
+      "bbox": [
+        1416,
+        679,
+        224,
+        92
+      ],
+      "anchor_slot": [
+        1416,
+        679,
+        224,
+        92
+      ],
+      "source_crop": "reference_crops/stage6_result_table.png",
+      "notes": "Minimum selectable semantic unit stored as an independent image asset."
+    }
+  ]
+}

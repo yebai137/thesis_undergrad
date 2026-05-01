@@ -1,0 +1,82 @@
+{
+  "layout": {
+    "type": "横向六步流程图",
+    "groups": [
+      {
+        "title": "训练阶段（离线）",
+        "steps": [
+          1,
+          2
+        ]
+      },
+      {
+        "title": "模型转换与编译（离线）",
+        "steps": [
+          3,
+          4
+        ]
+      },
+      {
+        "title": "板端推理与后处理（在线）",
+        "steps": [
+          5,
+          6
+        ]
+      }
+    ],
+    "flow": "左到右"
+  },
+  "stages": [
+    {
+      "id": 1,
+      "visual_categories": [
+        "神经网络结构分层图",
+        "检测后处理算子链",
+        "类别索引映射表"
+      ]
+    },
+    {
+      "id": 2,
+      "visual_categories": [
+        "模型文件容器",
+        "输入张量公式框",
+        "输出张量公式框"
+      ]
+    },
+    {
+      "id": 3,
+      "visual_categories": [
+        "纵向流水线步骤",
+        "五个功能图标",
+        "彩色模块卡片"
+      ]
+    },
+    {
+      "id": 4,
+      "visual_categories": [
+        "模型文件容器",
+        "计算图节点连线",
+        "权重矩阵",
+        "元数据列表"
+      ]
+    },
+    {
+      "id": 5,
+      "visual_categories": [
+        "输入输出张量框",
+        "NPU 核心阵列",
+        "片上缓存"
+      ]
+    },
+    {
+      "id": 6,
+      "visual_categories": [
+        "后处理流水线",
+        "阈值筛选",
+        "NMS",
+        "最终类别结果图标"
+      ]
+    }
+  ],
+  "source": "OpenAI Responses API assisted inventory; secrets omitted."
+}

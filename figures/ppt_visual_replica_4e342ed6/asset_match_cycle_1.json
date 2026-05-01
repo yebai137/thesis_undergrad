@@ -1,0 +1,124 @@
+{
+  "matches": [
+    {
+      "anchor_id": "stage1_network_arch",
+      "semantic_unit_id": "stage1_network_arch",
+      "bbox": [
+        28,
+        228,
+        222,
+        78
+      ],
+      "asset_path": "assets/stage1_network_arch.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage1_weight_tensors",
+      "semantic_unit_id": "stage1_weight_tensors",
+      "bbox": [
+        30,
+        374,
+        220,
+        111
+      ],
+      "asset_path": "assets/stage1_weight_tensors.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage1_class_matrices",
+      "semantic_unit_id": "stage1_class_matrices",
+      "bbox": [
+        31,
+        548,
+        218,
+        87
+      ],
+      "asset_path": "assets/stage1_class_matrices.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage4_om_package",
+      "semantic_unit_id": "stage4_om_package",
+      "bbox": [
+        907,
+        228,
+        151,
+        517
+      ],
+      "asset_path": "assets/stage4_om_package.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage5_npu_execution",
+      "semantic_unit_id": "stage5_npu_execution",
+      "bbox": [
+        1137,
+        247,
+        197,
+        420
+      ],
+      "asset_path": "assets/stage5_npu_execution.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_tensor_strip",
+      "semantic_unit_id": "stage6_tensor_strip",
+      "bbox": [
+        1417,
+        224,
+        224,
+        36
+      ],
+      "asset_path": "assets/stage6_tensor_strip.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_bbox_decode",
+      "semantic_unit_id": "stage6_bbox_decode",
+      "bbox": [
+        1426,
+        309,
+        207,
+        101
+      ],
+      "asset_path": "assets/stage6_bbox_decode.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_class_scores",
+      "semantic_unit_id": "stage6_class_scores",
+      "bbox": [
+        1464,
+        451,
+        164,
+        42
+      ],
+      "asset_path": "assets/stage6_class_scores.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_detection_result",
+      "semantic_unit_id": "stage6_detection_result",
+      "bbox": [
+        1417,
+        526,
+        224,
+        142
+      ],
+      "asset_path": "assets/stage6_detection_result.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_result_table",
+      "semantic_unit_id": "stage6_result_table",
+      "bbox": [
+        1416,
+        679,
+        224,
+        92
+      ],
+      "asset_path": "assets/stage6_result_table.png",
+      "source_type": "user_asset"
+    }
+  ]
+}

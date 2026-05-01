@@ -1,0 +1,55 @@
+{
+  "alignment_rules": [
+    {
+      "type": "edge_top",
+      "element_ids": [
+        "stage1_badge",
+        "stage2_badge",
+        "stage3_badge",
+        "stage4_badge",
+        "stage5_badge",
+        "stage6_badge"
+      ],
+      "tolerance_px": 2
+    },
+    {
+      "type": "edge_top",
+      "element_ids": [
+        "stage1_card",
+        "stage2_card"
+      ],
+      "tolerance_px": 2
+    },
+    {
+      "type": "edge_top",
+      "element_ids": [
+        "stage3_card",
+        "stage4_card",
+        "stage5_card",
+        "stage6_card"
+      ],
+      "tolerance_px": 2
+    }
+  ],
+  "text_groups": [
+    {
+      "font_size": 16.5,
+      "element_ids": [
+        "training_group_text",
+        "compile_group_text",
+        "board_group_text"
+      ]
+    },
+    {
+      "font_size": 13,
+      "element_ids": [
+        "stage1_title",
+        "stage2_title",
+        "stage3_title",
+        "stage4_title",
+        "stage5_title",
+        "stage6_title"
+      ]
+    }
+  ]
+}

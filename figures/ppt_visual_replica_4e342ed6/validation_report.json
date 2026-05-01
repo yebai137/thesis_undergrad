@@ -1,0 +1,37 @@
+{
+  "reference": "/home/ywj/elevator_ai/thesis_undergrad/figures/4e342ed6aee263e10242b419cdc8ce8.png",
+  "pptx": "/home/ywj/elevator_ai/thesis_undergrad/figures/ppt_visual_replica_4e342ed6/ppt_visual_replica_4e342ed6.pptx",
+  "checks": [
+    {
+      "name": "output_root_created",
+      "status": "pass"
+    },
+    {
+      "name": "reference_copied",
+      "status": "pass"
+    },
+    {
+      "name": "semantic_assets_are_independent_files",
+      "status": "pass",
+      "count": 10
+    },
+    {
+      "name": "major_text_is_editable_ppt_text",
+      "status": "pass"
+    },
+    {
+      "name": "layout_is_ppt_native",
+      "status": "pass"
+    },
+    {
+      "name": "api_generated_final_assets",
+      "status": "partial",
+      "notes": "OpenAI API was used for visual inventory/probe. Final replica uses independent user-reference crops for fidelity."
+    },
+    {
+      "name": "minimum_semantic_unit_split",
+      "status": "partial",
+      "notes": "Dense internal tensor grids and result tables are grouped as selectable image units."
+    }
+  ]
+}

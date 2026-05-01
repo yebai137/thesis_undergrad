@@ -1,0 +1,37 @@
+{
+  "reference": "/home/ywj/elevator_ai/thesis_undergrad/figures/30c47bf78ccdd52db776a7dda275d0b.jpg",
+  "pptx": "/home/ywj/elevator_ai/thesis_undergrad/figures/ppt_visual_replica_30c47bf7/ppt_visual_replica_30c47bf7.pptx",
+  "checks": [
+    {
+      "name": "output_root_created",
+      "status": "pass"
+    },
+    {
+      "name": "reference_copied_as_png",
+      "status": "pass"
+    },
+    {
+      "name": "semantic_assets_are_independent_files",
+      "status": "pass",
+      "count": 10
+    },
+    {
+      "name": "major_text_is_editable_ppt_text",
+      "status": "pass"
+    },
+    {
+      "name": "layout_panels_and_arrows_are_ppt_native",
+      "status": "pass"
+    },
+    {
+      "name": "preview_exported",
+      "status": "pass",
+      "notes": "LibreOffice PDF and PNG preview exported during verification."
+    },
+    {
+      "name": "strict_imagegen_asset_generation",
+      "status": "partial",
+      "notes": "OpenAI was used for layout inventory. Final semantic assets are independent crops from the user-provided reference for fidelity."
+    }
+  ]
+}

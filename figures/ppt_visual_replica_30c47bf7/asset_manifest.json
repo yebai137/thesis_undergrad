@@ -1,0 +1,264 @@
+{
+  "assets": [
+    {
+      "id": "stage3_icon_ir",
+      "semantic_unit_id": "stage3_icon_ir",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage3_icon_ir.png",
+      "path": "assets/stage3_icon_ir.png",
+      "bbox": [
+        578,
+        165,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        166,
+        31,
+        31
+      ],
+      "size": [
+        35,
+        35
+      ],
+      "label": "database icon for graph conversion"
+    },
+    {
+      "id": "stage3_icon_mapping",
+      "semantic_unit_id": "stage3_icon_mapping",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage3_icon_mapping.png",
+      "path": "assets/stage3_icon_mapping.png",
+      "bbox": [
+        577,
+        261,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        263,
+        31,
+        31
+      ],
+      "size": [
+        35,
+        35
+      ],
+      "label": "cube icon for custom operator mapping"
+    },
+    {
+      "id": "stage3_icon_aipp",
+      "semantic_unit_id": "stage3_icon_aipp",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage3_icon_aipp.png",
+      "path": "assets/stage3_icon_aipp.png",
+      "bbox": [
+        577,
+        356,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        358,
+        31,
+        31
+      ],
+      "size": [
+        35,
+        35
+      ],
+      "label": "gear icon for AIPP graph optimization"
+    },
+    {
+      "id": "stage3_icon_device",
+      "semantic_unit_id": "stage3_icon_device",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage3_icon_device.png",
+      "path": "assets/stage3_icon_device.png",
+      "bbox": [
+        577,
+        454,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        456,
+        31,
+        31
+      ],
+      "size": [
+        35,
+        35
+      ],
+      "label": "chip icon for device adaptation"
+    },
+    {
+      "id": "stage3_icon_resource",
+      "semantic_unit_id": "stage3_icon_resource",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage3_icon_resource.png",
+      "path": "assets/stage3_icon_resource.png",
+      "bbox": [
+        578,
+        552,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        554,
+        31,
+        31
+      ],
+      "size": [
+        35,
+        35
+      ],
+      "label": "node network icon for resource optimization"
+    },
+    {
+      "id": "stage4_graph_visual",
+      "semantic_unit_id": "stage4_graph_visual",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage4_graph_visual.png",
+      "path": "assets/stage4_graph_visual.png",
+      "bbox": [
+        922,
+        246,
+        160,
+        74
+      ],
+      "anchor_slot": [
+        922,
+        246,
+        160,
+        74
+      ],
+      "size": [
+        160,
+        74
+      ],
+      "label": "OM model graph nodes and links"
+    },
+    {
+      "id": "stage4_weights_visual",
+      "semantic_unit_id": "stage4_weights_visual",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage4_weights_visual.png",
+      "path": "assets/stage4_weights_visual.png",
+      "bbox": [
+        922,
+        389,
+        160,
+        54
+      ],
+      "anchor_slot": [
+        922,
+        389,
+        160,
+        54
+      ],
+      "size": [
+        160,
+        54
+      ],
+      "label": "OM model weight matrix grids"
+    },
+    {
+      "id": "stage5_npu_array",
+      "semantic_unit_id": "stage5_npu_array",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage5_npu_array.png",
+      "path": "assets/stage5_npu_array.png",
+      "bbox": [
+        1195,
+        285,
+        159,
+        193
+      ],
+      "anchor_slot": [
+        1195,
+        285,
+        159,
+        193
+      ],
+      "size": [
+        159,
+        193
+      ],
+      "label": "NPU core array and SRAM schematic"
+    },
+    {
+      "id": "stage6_person_icon",
+      "semantic_unit_id": "stage6_person_icon",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage6_person_icon.png",
+      "path": "assets/stage6_person_icon.png",
+      "bbox": [
+        1495,
+        514,
+        27,
+        37
+      ],
+      "anchor_slot": [
+        1495,
+        514,
+        24,
+        34
+      ],
+      "size": [
+        15,
+        29
+      ],
+      "label": "person class icon"
+    },
+    {
+      "id": "stage6_ebike_icon",
+      "semantic_unit_id": "stage6_ebike_icon",
+      "semantic_unit_count": 1,
+      "source_type": "user_asset",
+      "source_reference": "reference.png",
+      "source_crop": "reference_crops/stage6_ebike_icon.png",
+      "path": "assets/stage6_ebike_icon.png",
+      "bbox": [
+        1493,
+        557,
+        36,
+        28
+      ],
+      "anchor_slot": [
+        1492,
+        558,
+        34,
+        26
+      ],
+      "size": [
+        27,
+        19
+      ],
+      "label": "e-bike class icon"
+    }
+  ]
+}

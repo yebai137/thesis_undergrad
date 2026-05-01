@@ -1,0 +1,302 @@
+{
+  "reference": "reference.png",
+  "canvas": {
+    "width": 1719,
+    "height": 658
+  },
+  "items": [
+    {
+      "id": "text_blocks",
+      "classification": "text",
+      "label": "stage labels, module labels, formulas, notes, device labels"
+    },
+    {
+      "id": "native_flow_shapes",
+      "classification": "layout_native",
+      "label": "cards, module boxes, connectors, arrows, process rows"
+    },
+    {
+      "id": "stage3_icon_ir",
+      "anchor_id": "stage3_icon_ir",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "database icon for graph conversion",
+      "bbox": [
+        578,
+        165,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        166,
+        31,
+        31
+      ],
+      "source_crop": "reference_crops/stage3_icon_ir.png"
+    },
+    {
+      "id": "stage3_icon_mapping",
+      "anchor_id": "stage3_icon_mapping",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "cube icon for custom operator mapping",
+      "bbox": [
+        577,
+        261,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        263,
+        31,
+        31
+      ],
+      "source_crop": "reference_crops/stage3_icon_mapping.png"
+    },
+    {
+      "id": "stage3_icon_aipp",
+      "anchor_id": "stage3_icon_aipp",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "gear icon for AIPP graph optimization",
+      "bbox": [
+        577,
+        356,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        358,
+        31,
+        31
+      ],
+      "source_crop": "reference_crops/stage3_icon_aipp.png"
+    },
+    {
+      "id": "stage3_icon_device",
+      "anchor_id": "stage3_icon_device",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "chip icon for device adaptation",
+      "bbox": [
+        577,
+        454,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        456,
+        31,
+        31
+      ],
+      "source_crop": "reference_crops/stage3_icon_device.png"
+    },
+    {
+      "id": "stage3_icon_resource",
+      "anchor_id": "stage3_icon_resource",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "node network icon for resource optimization",
+      "bbox": [
+        578,
+        552,
+        35,
+        35
+      ],
+      "anchor_slot": [
+        581,
+        554,
+        31,
+        31
+      ],
+      "source_crop": "reference_crops/stage3_icon_resource.png"
+    },
+    {
+      "id": "stage4_graph_visual",
+      "anchor_id": "stage4_graph_visual",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "OM model graph nodes and links",
+      "bbox": [
+        922,
+        246,
+        160,
+        74
+      ],
+      "anchor_slot": [
+        922,
+        246,
+        160,
+        74
+      ],
+      "source_crop": "reference_crops/stage4_graph_visual.png"
+    },
+    {
+      "id": "stage4_weights_visual",
+      "anchor_id": "stage4_weights_visual",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "OM model weight matrix grids",
+      "bbox": [
+        922,
+        389,
+        160,
+        54
+      ],
+      "anchor_slot": [
+        922,
+        389,
+        160,
+        54
+      ],
+      "source_crop": "reference_crops/stage4_weights_visual.png"
+    },
+    {
+      "id": "stage5_npu_array",
+      "anchor_id": "stage5_npu_array",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "NPU core array and SRAM schematic",
+      "bbox": [
+        1195,
+        285,
+        159,
+        193
+      ],
+      "anchor_slot": [
+        1195,
+        285,
+        159,
+        193
+      ],
+      "source_crop": "reference_crops/stage5_npu_array.png"
+    },
+    {
+      "id": "stage6_person_icon",
+      "anchor_id": "stage6_person_icon",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "person class icon",
+      "bbox": [
+        1495,
+        514,
+        27,
+        37
+      ],
+      "anchor_slot": [
+        1495,
+        514,
+        24,
+        34
+      ],
+      "source_crop": "reference_crops/stage6_person_icon.png"
+    },
+    {
+      "id": "stage6_ebike_icon",
+      "anchor_id": "stage6_ebike_icon",
+      "classification": "imagegen_asset",
+      "final_source_type": "user_asset",
+      "label": "e-bike class icon",
+      "bbox": [
+        1493,
+        557,
+        36,
+        28
+      ],
+      "anchor_slot": [
+        1492,
+        558,
+        34,
+        26
+      ],
+      "source_crop": "reference_crops/stage6_ebike_icon.png"
+    }
+  ],
+  "openai_assisted_inventory": true,
+  "openai_inventory": {
+    "layout": {
+      "type": "横向六步流程图",
+      "groups": [
+        {
+          "title": "训练阶段（离线）",
+          "steps": [
+            1,
+            2
+          ]
+        },
+        {
+          "title": "模型转换与编译（离线）",
+          "steps": [
+            3,
+            4
+          ]
+        },
+        {
+          "title": "板端推理与后处理（在线）",
+          "steps": [
+            5,
+            6
+          ]
+        }
+      ],
+      "flow": "左到右"
+    },
+    "stages": [
+      {
+        "id": 1,
+        "visual_categories": [
+          "神经网络结构分层图",
+          "检测后处理算子链",
+          "类别索引映射表"
+        ]
+      },
+      {
+        "id": 2,
+        "visual_categories": [
+          "模型文件容器",
+          "输入张量公式框",
+          "输出张量公式框"
+        ]
+      },
+      {
+        "id": 3,
+        "visual_categories": [
+          "纵向流水线步骤",
+          "五个功能图标",
+          "彩色模块卡片"
+        ]
+      },
+      {
+        "id": 4,
+        "visual_categories": [
+          "模型文件容器",
+          "计算图节点连线",
+          "权重矩阵",
+          "元数据列表"
+        ]
+      },
+      {
+        "id": 5,
+        "visual_categories": [
+          "输入输出张量框",
+          "NPU 核心阵列",
+          "片上缓存"
+        ]
+      },
+      {
+        "id": 6,
+        "visual_categories": [
+          "后处理流水线",
+          "阈值筛选",
+          "NMS",
+          "最终类别结果图标"
+        ]
+      }
+    ],
+    "source": "OpenAI Responses API assisted inventory; secrets omitted."
+  }
+}

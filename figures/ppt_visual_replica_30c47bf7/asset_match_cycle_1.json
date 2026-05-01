@@ -1,0 +1,124 @@
+{
+  "matches": [
+    {
+      "anchor_id": "stage3_icon_ir",
+      "semantic_unit_id": "stage3_icon_ir",
+      "bbox": [
+        578,
+        165,
+        35,
+        35
+      ],
+      "asset_path": "assets/stage3_icon_ir.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage3_icon_mapping",
+      "semantic_unit_id": "stage3_icon_mapping",
+      "bbox": [
+        577,
+        261,
+        35,
+        35
+      ],
+      "asset_path": "assets/stage3_icon_mapping.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage3_icon_aipp",
+      "semantic_unit_id": "stage3_icon_aipp",
+      "bbox": [
+        577,
+        356,
+        35,
+        35
+      ],
+      "asset_path": "assets/stage3_icon_aipp.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage3_icon_device",
+      "semantic_unit_id": "stage3_icon_device",
+      "bbox": [
+        577,
+        454,
+        35,
+        35
+      ],
+      "asset_path": "assets/stage3_icon_device.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage3_icon_resource",
+      "semantic_unit_id": "stage3_icon_resource",
+      "bbox": [
+        578,
+        552,
+        35,
+        35
+      ],
+      "asset_path": "assets/stage3_icon_resource.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage4_graph_visual",
+      "semantic_unit_id": "stage4_graph_visual",
+      "bbox": [
+        922,
+        246,
+        160,
+        74
+      ],
+      "asset_path": "assets/stage4_graph_visual.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage4_weights_visual",
+      "semantic_unit_id": "stage4_weights_visual",
+      "bbox": [
+        922,
+        389,
+        160,
+        54
+      ],
+      "asset_path": "assets/stage4_weights_visual.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage5_npu_array",
+      "semantic_unit_id": "stage5_npu_array",
+      "bbox": [
+        1195,
+        285,
+        159,
+        193
+      ],
+      "asset_path": "assets/stage5_npu_array.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_person_icon",
+      "semantic_unit_id": "stage6_person_icon",
+      "bbox": [
+        1495,
+        514,
+        27,
+        37
+      ],
+      "asset_path": "assets/stage6_person_icon.png",
+      "source_type": "user_asset"
+    },
+    {
+      "anchor_id": "stage6_ebike_icon",
+      "semantic_unit_id": "stage6_ebike_icon",
+      "bbox": [
+        1493,
+        557,
+        36,
+        28
+      ],
+      "asset_path": "assets/stage6_ebike_icon.png",
+      "source_type": "user_asset"
+    }
+  ]
+}

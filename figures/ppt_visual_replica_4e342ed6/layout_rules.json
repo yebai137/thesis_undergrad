@@ -1,0 +1,49 @@
+{
+  "alignment_rules": [
+    {
+      "type": "edge_top",
+      "element_ids": [
+        "stage1_card",
+        "stage2_card",
+        "stage3_card",
+        "stage4_card",
+        "stage5_card",
+        "stage6_card"
+      ],
+      "tolerance_px": 2
+    },
+    {
+      "type": "edge_top",
+      "element_ids": [
+        "stage1_header",
+        "stage2_header",
+        "stage3_header",
+        "stage4_header",
+        "stage5_header",
+        "stage6_header"
+      ],
+      "tolerance_px": 2
+    }
+  ],
+  "text_groups": [
+    {
+      "font_size": 16,
+      "element_ids": [
+        "stage1_header_text",
+        "stage2_header_text",
+        "stage3_header_text",
+        "stage4_header_text",
+        "stage5_header_text",
+        "stage6_header_text"
+      ]
+    },
+    {
+      "font_size": 9.5,
+      "element_ids": [
+        "stage6_tensor_title",
+        "stage6_bbox_title",
+        "stage6_nms_title"
+      ]
+    }
+  ]
+}
