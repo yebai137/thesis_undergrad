@@ -1,0 +1,67 @@
+# OS and editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*.orig
+*.rej
+
+# Python cache and local envs
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Training data and experiment outputs
+/datasets/
+/runs/
+/models/**/*.pt
+!/models/README.md
+/*.pt
+
+# Board build outputs
+/board/elevator_yolo
+/board/mapper_debug.log
+/board/out/
+/board/src/*.o
+/board/tests/test_host
+
+# Deployment-generated analysis and logs
+/deployment/02_sample/
+/deployment/yolov8_export/
+/deployment/__pycache__/
+/deployment/*.log
+/deployment/*.csv
+/deployment/*.dot
+/deployment/atc_check_report*.json
+/deployment/debug*.txt
+/deployment/forcheck.txt
+/deployment/calibration_data.pt
+/deployment/yolov8n.pt
+/deployment/yolov8n_state_dict.pt
+
+# Runtime logs and local debugging records
+/logs/board_runtime/*
+!/logs/board_runtime/.gitkeep
+/logs/deploy/*
+!/logs/deploy/.gitkeep
+/logs/direct_runs/*
+!/logs/direct_runs/.gitkeep
+/logs/serial/*
+!/logs/serial/.gitkeep
+/logs/sessions/*
+!/logs/sessions/.gitkeep
+
+# Generated media and board video artifacts
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.h264
+*.h265
