@@ -1,0 +1,86 @@
+\documentclass{ctexbook}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{amsmath}
+\usepackage{natbib}
+\title{基于深度学习的电梯边缘AI安全视觉关键技术研究与实现}
+\author{叶伟键}
+\date{}
+\begin{document}
+\maketitle
+\begin{center}
+Research and Implementation of Key Technologies for Elevator Edge AI Safety Vision Based on Deep Learning\\
+学院：计算机科学与工程学院\\
+专业：计算机科学与技术全英创新班\\
+学生姓名：叶伟键\\
+学生学号：202230430217\\
+指导教师：钟竞辉
+\end{center}
+
+\chapter*{摘要}
+电梯轿厢空间封闭、使用频繁，镜面反光、近距离遮挡和目标尺度突变经常同时出现。安全视觉系统既要识别轿厢内人员，也要判断电动车入梯风险；训练阶段得到的检测精度，迁移到边缘设备后未必能够原样保持。围绕这一问题，本文以 YOLOv8n 为检测模型，以搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板为部署平台，研究电梯轿厢中行人与电动车的双目标检测、模型迁移和部署一致性评价。
+
+研究中将电梯安全视觉界定为 person 与 ebike 双目标检测任务，并结合轿厢成像特点讨论其安全需求。在模型迁移部分，训练权重、ONNX 导出、OM 编译和板端推理被放入同一条检查链路，输入、类别、输出、后处理和运行状态分别作为需要核对的约束。评价部分则不只看平均精度，还引入分类别指标、阈值敏感性、NMS 参数影响、后处理策略消融、分段计时和代表性视频片段，用来观察部署后的模型行为。
+
+在 720 张验证图像上，板端总体 mAP@0.5 为 0.910，其中行人类别为 0.869，电动车类别为 0.952；相较训练阶段的 0.988，板端结果下降约 0.078，但主要检测能力仍被保留下来。置信度阈值在 0.20--0.40 范围内变化时，总体 F1 保持在 0.915--0.922 区间。分段计时中，单帧模型执行阶段耗时约 8.2 ms，能够支撑边缘侧实时处理。
+
+\noindent\textbf{关键词：}电梯安全视觉；边缘智能；双目标检测；部署一致性；轿厢人车识别
+
+\chapter*{Abstract}
+Elevator cabins are enclosed and frequently used spaces, where mirror reflections, close-range occlusions, and rapid scale changes often occur together. A safety vision system in this setting has to detect passengers while also recognizing e-bikes entering the cabin. Accuracy measured during training, however, does not automatically carry over to an edge device. This thesis studies that gap with YOLOv8n as the detector and the HongOU PI board, based on the Huawei HiSilicon Hi3516DV500 vision SoC, as the deployment platform.
+
+The task is formulated as dual-target detection for person and ebike, with the imaging conditions of elevator cabins used to explain the safety requirements. For migration, the trained weights, ONNX export, OM compilation, and board-side inference are treated as one inspection chain. Input, category, output, post-processing, and runtime constraints are checked separately. The evaluation then combines per-class metrics, threshold sensitivity, NMS parameter changes, post-processing ablation, segmented timing, and representative video clips, so that deployment behavior can be examined beyond a single average accuracy number.
+
+On the 720-image validation set, the board-side system obtains 0.910 overall mAP@0.5, with 0.869 for person and 0.952 for ebike. The result is about 0.078 lower than the training-stage mAP@0.5 of 0.988, but the main detection capability is still retained after deployment. When the confidence threshold varies from 0.20 to 0.40, the overall F1 stays within 0.915--0.922. Segmented timing gives a per-frame model execution time of about 8.2 ms, which is compatible with edge-side real-time processing.
+
+\noindent\textbf{Keywords: }Elevator safety vision; Edge intelligence; Dual-target detection; Deployment consistency; Cabin person-vehicle recognition
+
+\chapter*{目录}
+\begin{longtable}{p{0.82\textwidth}r}
+摘 要 & I\\
+Abstract & II\\
+第一章 绪论 & 1\\
+\quad 1.1 研究背景与问题挑战 & 1\\
+\quad 1.2 国内外研究现状 & 2\\
+\quad 1.3 研究目标与主要工作 & 4\\
+\quad 1.4 研究内容组织逻辑与论文结构 & 7\\
+第二章 技术基础与相关工作 & 8\\
+\quad 2.1 目标检测基础 & 8\\
+\quad 2.2 边缘部署技术基础 & 12\\
+\quad 2.3 相邻视觉任务与本文重点 & 14\\
+\quad 2.4 相关工作小结 & 15\\
+第三章 YOLO 类双目标检测模型的边缘兼容迁移方法 & 17\\
+\quad 3.1 总体技术路线 & 17\\
+\quad 3.2 YOLOv8n 场景化训练与验证性能 & 18\\
+\quad 3.3 迁移约束与一致性检查 & 19\\
+\quad 3.4 一致性评价方法 & 22\\
+\quad 3.5 本章小结 & 23\\
+第四章 数据集、场景复杂性与评测协议 & 24\\
+\quad 4.1 数据集与任务定义 & 24\\
+\quad 4.2 评测协议设计 & 25\\
+\quad 4.3 数据可追溯性与实验设计 & 26\\
+\quad 4.4 本章小结 & 27\\
+第五章 实验结果与分析 & 28\\
+\quad 5.1 实验设置与评价范围 & 28\\
+\quad 5.2 板端检测能力验证 & 29\\
+\quad 5.3 部署参数敏感性分析 & 33\\
+\quad 5.4 运行时评价 & 36\\
+\quad 5.5 综合讨论 & 38\\
+\quad 5.6 本章小结 & 40\\
+结论 & 42\\
+参考文献 & 43\\
+致谢 & 49\\
+\end{longtable}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/chap01.tex}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/chap02.tex}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/chap03.tex}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/chap04.tex}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/chap05.tex}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/conclusion.tex}
+\bibliographystyle{gbt7714-numerical}
+\bibliography{main.bib}
+\input{/home/ywj/elevator_ai/thesis_undergrad/paper/docs/ack.tex}
+\end{document}

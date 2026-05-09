@@ -1,19 +1,19 @@
 \cabstract{
-电梯轿厢是封闭式高频公共微空间，具有反光强、遮挡多、视角近和目标尺度变化快等特点。电梯安全视觉需要同时完成轿厢人员检测与电动车识别，但模型在训练环境中取得的检测精度并不一定能在边缘设备端保持一致。本文围绕 YOLOv8n 模型，以搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板为部署平台，研究电梯轿厢中行人与电动车的双目标检测、模型迁移和部署一致性评价。
+电梯轿厢空间封闭、使用频繁，镜面反光、近距离遮挡和目标尺度突变经常同时出现。安全视觉系统既要识别轿厢内人员，也要判断电动车入梯风险；训练阶段得到的检测精度，迁移到边缘设备后未必能够原样保持。围绕这一问题，本文以 YOLOv8n 为检测模型，以搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板为部署平台，研究电梯轿厢中行人与电动车的双目标检测、模型迁移和部署一致性评价。
 
-本文首先将电梯安全视觉建模为 \textit{person} 与 \textit{ebike} 双目标检测任务，分析轿厢场景的成像特点与安全需求。其次，将模型从训练权重经 ONNX 导出、OM 编译到板端推理的迁移过程，按输入、类别、输出、后处理和运行五类约束组织为分阶段检查框架。最后，从分类别指标、阈值敏感性、NMS 参数影响、后处理策略消融、分段计时和代表性视频片段等角度，构建部署一致性评价方法。
+研究中将电梯安全视觉界定为 \textit{person} 与 \textit{ebike} 双目标检测任务，并结合轿厢成像特点讨论其安全需求。在模型迁移部分，训练权重、ONNX 导出、OM 编译和板端推理被放入同一条检查链路，输入、类别、输出、后处理和运行状态分别作为需要核对的约束。评价部分则不只看平均精度，还引入分类别指标、阈值敏感性、NMS 参数影响、后处理策略消融、分段计时和代表性视频片段，用来观察部署后的模型行为。
 
-实验结果表明，在 720 张验证图像上，板端总体 mAP@0.5 为 0.910，其中行人类别为 0.869，电动车类别为 0.952；相比训练阶段的 0.988 下降约 0.078，但仍保持较强检测能力。阈值敏感性分析显示，总体 F1 在 0.20--0.40 置信度范围内保持在 0.915--0.922 区间。分段计时表明单帧模型执行阶段耗时约 8.2 ms，满足边缘实时处理需求。
+在 720 张验证图像上，板端总体 mAP@0.5 为 0.910，其中行人类别为 0.869，电动车类别为 0.952；相较训练阶段的 0.988，板端结果下降约 0.078，但主要检测能力仍被保留下来。置信度阈值在 0.20--0.40 范围内变化时，总体 F1 保持在 0.915--0.922 区间。分段计时中，单帧模型执行阶段耗时约 8.2 ms，能够支撑边缘侧实时处理。
 }
 
 \ckeywords{电梯安全视觉；边缘智能；双目标检测；部署一致性；轿厢人车识别}
 
 \eabstract{
-Elevator cabins are enclosed, high-frequency public micro-spaces characterized by strong reflections, frequent occlusions, close viewpoints, and rapid target scale variation. Elevator safety vision requires both pedestrian detection and e-bike recognition, yet the detection accuracy achieved in training environments is not guaranteed to be preserved on edge devices. This thesis focuses on the YOLOv8n model and uses the HongOU PI board, powered by the Huawei HiSilicon Hi3516DV500 vision SoC, as the deployment platform to study dual-target detection of pedestrians and e-bikes in elevator cabins, model migration, and deployment consistency evaluation.
+Elevator cabins are enclosed and frequently used spaces, where mirror reflections, close-range occlusions, and rapid scale changes often occur together. A safety vision system in this setting has to detect passengers while also recognizing e-bikes entering the cabin. Accuracy measured during training, however, does not automatically carry over to an edge device. This thesis studies that gap with YOLOv8n as the detector and the HongOU PI board, based on the Huawei HiSilicon Hi3516DV500 vision SoC, as the deployment platform.
 
-The thesis first formulates elevator safety vision as a \textit{person} and \textit{ebike} dual-target detection task and analyzes the imaging characteristics and safety requirements of cabin scenes. It then organizes the model migration process---from trained weights through ONNX export and OM compilation to board-side inference---into a staged inspection framework covering five constraint categories: input, category, output, post-processing, and runtime. Finally, a deployment consistency evaluation method is constructed from per-class metrics, threshold sensitivity analysis, NMS parameter effects, post-processing ablation, segmented timing, and representative video clips.
+The task is formulated as dual-target detection for \textit{person} and \textit{ebike}, with the imaging conditions of elevator cabins used to explain the safety requirements. For migration, the trained weights, ONNX export, OM compilation, and board-side inference are treated as one inspection chain. Input, category, output, post-processing, and runtime constraints are checked separately. The evaluation then combines per-class metrics, threshold sensitivity, NMS parameter changes, post-processing ablation, segmented timing, and representative video clips, so that deployment behavior can be examined beyond a single average accuracy number.
 
-On a 720-image validation set, the board-side system achieves 0.910 overall mAP@0.5, with per-class values of 0.869 for person and 0.952 for ebike. Compared with the training-stage mAP@0.5 of 0.988, the board-side result decreases by approximately 0.078 while retaining strong detection capability. Threshold sensitivity analysis shows that the overall F1 remains within 0.915--0.922 across confidence thresholds from 0.20 to 0.40. Segmented timing indicates a per-frame model execution time of approximately 8.2\,ms, meeting edge real-time processing requirements.
+On the 720-image validation set, the board-side system obtains 0.910 overall mAP@0.5, with 0.869 for person and 0.952 for ebike. The result is about 0.078 lower than the training-stage mAP@0.5 of 0.988, but the main detection capability is still retained after deployment. When the confidence threshold varies from 0.20 to 0.40, the overall F1 stays within 0.915--0.922. Segmented timing gives a per-frame model execution time of about 8.2\,ms, which is compatible with edge-side real-time processing.
 }
 
 \ekeywords{Elevator safety vision; Edge intelligence; Dual-target detection; Deployment consistency; Cabin person-vehicle recognition}
