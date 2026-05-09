@@ -1,0 +1,2474 @@
+{
+  "source_report": "finish/aigc_report_segments.json",
+  "current_source_glob": "paper/docs/*.tex",
+  "summary": {
+    "v1_aigc_percent": 47.6,
+    "v1_human_percent": 52.4,
+    "v1_paper_chars": 47375,
+    "v1_paper_pages": 57,
+    "segment_count": 39,
+    "judgment_counts": {
+      "部分改写": 7,
+      "基本保留": 31,
+      "已明显改写": 1
+    },
+    "risk_flag_distribution": {
+      "ordered_three_part": 15,
+      "generic_conclusion": 5,
+      "ai_high_freq": 28,
+      "passive_formula": 10,
+      "template_problem": 1
+    },
+    "attention_by_file": {
+      "paper/docs/abstract.tex": {
+        "部分改写": 2
+      },
+      "paper/docs/chap01.tex": {
+        "部分改写": 3,
+        "基本保留": 3
+      },
+      "paper/docs/chap02.tex": {
+        "基本保留": 10,
+        "部分改写": 1
+      },
+      "paper/docs/chap03.tex": {
+        "基本保留": 7
+      },
+      "paper/docs/chap04.tex": {
+        "基本保留": 5,
+        "部分改写": 1
+      },
+      "paper/docs/chap05.tex": {
+        "基本保留": 5
+      },
+      "paper/docs/conclusion.tex": {
+        "基本保留": 1
+      }
+    },
+    "v2_overlap_summary": {
+      "v2_aigc_percent": 43.7,
+      "v2_human_percent": 56.3,
+      "v2_segment_count": 324,
+      "v2_non_noise_segment_count": 289,
+      "double_hit_basic_retained_count": 28,
+      "double_hit_v2_segment_count": 87,
+      "high_priority_count": 17,
+      "file_distribution": {
+        "paper/docs/chap04.tex": 5,
+        "paper/docs/chap05.tex": 5,
+        "paper/docs/chap03.tex": 7,
+        "paper/docs/chap02.tex": 7,
+        "paper/docs/conclusion.tex": 1,
+        "paper/docs/chap01.tex": 3
+      }
+    }
+  },
+  "v2_overlap_basic_retained_records": [
+    {
+      "v1_index": 31,
+      "file": "paper/docs/chap04.tex",
+      "current_location": "paragraphs 10-11",
+      "line": 36,
+      "v1_match_score": 0.959,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 7,
+      "v2_flagged_hit_count": 3,
+      "priority": "高",
+      "priority_reason": "v2 仍有 3 条命中风险标签；v2 同一区域命中 7 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.959)",
+      "top_v2_hits": [
+        {
+          "v2_id": 175,
+          "text": "轿厢边界和门框结构主要影响边框回归和 NMS，容易在边框解释评价中表现为 IoU 下降；",
+          "chars": 44,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 评价"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 179,
+          "text": "这样处理后，场景复杂性服务于部署一致性分析，而不是另起一条难例创新主线。",
+          "chars": 36,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 部署一致性"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.853
+        },
+        {
+          "v2_id": 173,
+          "text": "场景复杂性与部署一致性之间存在直接联系。",
+          "chars": 20,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 部署一致性"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 176,
+          "text": "近距离重叠则同时影响类别排序和候选框抑制，可能造成不同阶段输出数量不一致。",
+          "chars": 37,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 174,
+          "text": "高亮区域和暗部区域主要影响类别置信度，容易在阈值扫描中表现为召回率波动；",
+          "chars": 36,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 178,
+          "text": "若视频片段出现闪烁，需要结合阈值敏感性判断是否存在置信度边界问题。",
+          "chars": 33,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 177,
+          "text": "5 下降，需要进一步判断下降来自类别分数变化还是边框定位变化；",
+          "chars": 31,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "场景复杂性与部署一致性之间存在直接联系。高亮区域和暗部区域主要影响类别置信度，容易在阈值扫描中表现为召回率波动；轿厢边界和门框结构主要影响边框回归和 NMS，容易在边框解释评价中表现为 IoU 下降；近距离重叠则同时影响类别排序和候选框抑制，可能造成不同阶段输出数量不一致。 本文在分析实验结果时采用“指标 + 场景解释”的方式。若 mAP@0.5 下降，需要进一步判断下降来自类别分数变化还是边框定位变化；若视频片段出现闪烁，需要结合阈值敏感性判断是否存在置信度边界问题。这样处理后，场景复杂性服务于部署一致性分析，而不是另起一条难例创新主线。"
+    },
+    {
+      "v1_index": 37,
+      "file": "paper/docs/chap05.tex",
+      "current_location": "paragraphs 62-64",
+      "line": 296,
+      "v1_match_score": 0.942,
+      "v1_risk_summary": "整齐编号/三段式(第四)；泛化总结句(由此可见)；AI高频词堆叠(稳定、完整)",
+      "v2_hit_count": 8,
+      "v2_flagged_hit_count": 2,
+      "priority": "高",
+      "priority_reason": "v2 仍有 2 条命中风险标签；v2 同一区域命中 8 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.942)",
+      "top_v2_hits": [
+        {
+          "v2_id": 296,
+          "text": "本文通过板端完整验证、阈值重算、NMS 敏感性、后处理消融、视频稳定性观察和分段计时建立了后续跨阶段分析的基础。",
+          "chars": 56,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 完整,稳定"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 294,
+          "text": "从部署一致性角度看，场景复杂性分析的价值在于帮助判断误差是否来自模型能力不足，还是来自迁移和后处理过程。",
+          "chars": 52,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 部署一致性"
+          ],
+          "current_coverage": 0.88,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 291,
+          "text": "电动车类别虽然整体召回率较高，但局部可见样本仍然是主要困难来源，尤其是只出现车把、车轮或车身边缘时，置信度更容易接近阈值边界。",
+          "chars": 63,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 295,
+          "text": "如果同一复杂样本在训练阶段结果正确而板端异常，则需要优先检查输入契约、输出契约或后处理契约。",
+          "chars": 46,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 293,
+          "text": "行人召回率随阈值升高持续下降，说明行人类别存在更多低置信度但可能正确的候选框。",
+          "chars": 39,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 290,
+          "text": "当多人重叠时，NMS 可能抑制部分候选框，造成漏检或定位偏差。",
+          "chars": 31,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 289,
+          "text": "行人类别的误差主要来自近景截断、多人重叠和门口区域干扰。",
+          "chars": 28,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 240,
+          "text": "阈值选择不能只依据总体 F1，还需要考虑不同类别在安全任务中的风险权重。",
+          "chars": 36,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 0.882,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "第四章提出的场景复杂性因素，可以用来解释实验结果中的分类别差异。行人类别的误差主要来自近景截断、多人重叠和门口区域干扰。当人体靠近摄像头或只出现局部身体结构时，边框可能与真实框重合不足；当多人重叠时，NMS 可能抑制部分候选框，造成漏检或定位偏差。电动车类别虽然整体召回率较高，但局部可见样本仍然是主要困难来源，尤其是只出现车把、车轮或车身边缘时，置信度更容易接近阈值边界。 阈值敏感性结果也支持这一解释。电动车召回率在 0.20–0.35 阈值区间内变化较小，说明大部分电动车候选框分数较稳定；行人召回率随阈值升高持续下降，说明行人类别存在更多低置信度但可能正确的候选框。阈值选择因此不能只依据总体 F1，还需要考虑不同类别在安全任务中的风险权重。 从迁移行为对照的角度看，场景复杂性分析的价值在于帮助判断误差是否来自……"
+    },
+    {
+      "v1_index": 36,
+      "file": "paper/docs/chap05.tex",
+      "current_location": "paragraphs 54-58",
+      "line": 278,
+      "v1_match_score": 0.816,
+      "v1_risk_summary": "整齐编号/三段式(第四)；AI高频词堆叠(显著、稳定、完整、可解释)；被动分析套话(该结果说明)",
+      "v2_hit_count": 8,
+      "v2_flagged_hit_count": 2,
+      "priority": "高",
+      "priority_reason": "v2 仍有 2 条命中风险标签；v2 同一区域命中 8 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.816)",
+      "top_v2_hits": [
+        {
+          "v2_id": 282,
+          "text": "该差异与第四章的场景复杂性分析一致，也说明场景复杂性因素可以用于解释部署后的指标变化。",
+          "chars": 43,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ordered: 第四"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 281,
+          "text": "35 阈值区间内变化较小，说明电动车检测结果在当前验证集上具有一定阈值稳定性。",
+          "chars": 39,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 稳定"
+          ],
+          "current_coverage": 0.73,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 284,
+          "text": "NMS 阈值提高后，电动车候选框数量和 FP 略有增加，FN 略有下降，说明 NMS 参数主要影响电动车相邻候选框的保留关系。",
+          "chars": 63,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 285,
+          "text": "相反，safe 与 off 都保持较高电动车召回率，其中 safe 相比 off 少产生 8 个电动车 FP。",
+          "chars": 55,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 279,
+          "text": "本文的板端指标既不是孤立数值，也不是训练阶段指标的简单复制，而是部署链路实际执行后的实测结果。",
+          "chars": 47,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 283,
+          "text": "55 三组设置均能完成 720 张图像验证，且总体指标变化较小。",
+          "chars": 32,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 277,
+          "text": "板端 FP16/OM 结果相比训练阶段验证结果存在约 0.",
+          "chars": 29,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 302,
+          "text": "YOLOv8n 场景化训练模型达到 0.",
+          "chars": 20,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 0.667,
+          "v1_coverage": 0.667
+        }
+      ],
+      "current_excerpt": "从训练阶段和板端对比看，官方 COCO-person 基线不足以直接支撑电梯俯视场景检测，YOLOv8n 场景化训练提高了同集检测能力；板端 FP16/OM 结果相比训练阶段验证结果存在约 0.078 的 mAP@0.5 回退，但仍保持 0.910 的 mAP@0.5。本文的板端指标既不是孤立数值，也不是训练阶段指标的简单复制，而是部署链路实际执行后的实测结果。 完整验证集结果显示，板端模型能够成功处理全部 720 张图像，并给出与双目标任务一致的分类别输出。这支持输入契约、类别契约、输出契约和运行契约在当前板端验证范围内未出现明显失配。特别是 person 与 ebike 两类均能给出含义清楚的 TP、FP、FN 统计，表明板端后处理没有出现类别顺序错位或输出张量无法解读的问题。 从阈值敏感性结果看，电动车召……"
+    },
+    {
+      "v1_index": 25,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 28-32",
+      "line": 93,
+      "v1_match_score": 0.923,
+      "v1_risk_summary": "整齐编号/三段式(最后)；AI高频词堆叠(稳定、完整)",
+      "v2_hit_count": 6,
+      "v2_flagged_hit_count": 2,
+      "priority": "高",
+      "priority_reason": "v2 仍有 2 条命中风险标签；v2 同一区域命中 6 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.923)",
+      "top_v2_hits": [
+        {
+          "v2_id": 150,
+          "text": "运行时可靠性则通过成功样本数、失败样本数、端到端耗时和分段计时判断板端验证是否完整执行，并区分 batch 外围链路与模型执行阶段。",
+          "chars": 66,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 完整"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.885
+        },
+        {
+          "v2_id": 148,
+          "text": "本文从类别语义、边框解释、阈值行为和运行时状态四个角度评价部署一致性。",
+          "chars": 35,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 评价,部署一致性"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.697
+        },
+        {
+          "v2_id": 151,
+          "text": "PyTorch、ONNX、OM 和板端四阶段的逐样本匹配可用于进一步精细分析类别、坐标和分数在迁移链路中的变化。",
+          "chars": 56,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 152,
+          "text": "当结果出现异常时，本文先判断异常表现属于类别、边框、阈值还是运行状态，再回到对应契约检查。",
+          "chars": 45,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 149,
+          "text": "运行时状态则记录成功样本数、失败样本数、端到端处理耗时和分段计时。",
+          "chars": 33,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.742
+        },
+        {
+          "v2_id": 153,
+          "text": "若检测数量突变，优先检查 conf、NMS 和类别清理策略；",
+          "chars": 30,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文从类别语义、边框解释、阈值行为和运行时状态四个角度评价部署一致性。类别语义检查不同阶段是否输出相同类别含义；边框解释关注坐标还原、IoU 评价和定位漂移的评价设计；阈值行为用于观察置信度阈值变化对 precision、recall 和 F1 的影响；运行时状态则记录成功样本数、失败样本数、端到端处理耗时和分段计时。这些内容共同构成本文的评价框架。 具体到评价方法，类别一致性依靠类别顺序和分类别 TP/FP/FN 判断 person 与 ebike 语义是否稳定；边框解释借助 IoU、边框漂移设计和 NMS 后数量判断定位变化是否影响检测结果；阈值稳定性通过多阈值 P/R/F1 与 ebike recall 判断安全输出是否依赖单一阈值；运行时可靠性则通过成功样本数、失败样本数、端到端耗时和分段计时判断板端验……"
+    },
+    {
+      "v1_index": 19,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 38-40",
+      "line": 121,
+      "v1_match_score": 0.818,
+      "v1_risk_summary": "整齐编号/三段式(第一、第二、第三、第四)；AI高频词堆叠(稳定)",
+      "v2_hit_count": 4,
+      "v2_flagged_hit_count": 2,
+      "priority": "高",
+      "priority_reason": "v2 仍有 2 条命中风险标签；v2 同一区域命中 4 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.818)",
+      "top_v2_hits": [
+        {
+          "v2_id": 102,
+          "text": "模型还需要在边缘设备上稳定执行，并记录成功样本数、失败样本数、batch 端到端耗时和分段计时等运行状态。",
+          "chars": 53,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 稳定"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.898
+        },
+        {
+          "v2_id": 103,
+          "text": "阈值稳定性决定安全输出是否依赖偶然参数；",
+          "chars": 20,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 稳定"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 105,
+          "text": "例如，反光和门口结构可能使候选框分数接近阈值，局部可见电动车可能使边框定位更敏感，拥挤重叠则可能改变 NMS 结果。",
+          "chars": 58,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 104,
+          "text": "在电梯安全视觉中，这类风险会进一步受到场景因素放大。",
+          "chars": 26,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文将一致性问题落到四个方面：类别顺序在训练、ONNX 导出、OM 编译和板端部署阶段应保持一致；坐标归一化、缩放和裁剪方式应在评价设计上可比较；置信度阈值和 NMS 参数在不同阶段应具有相同含义；模型还需要在边缘设备上稳定执行，并记录成功样本数、失败样本数、batch 端到端耗时和分段计时等运行状态。 这四类一致性之间存在依赖关系。类别一致性是结果解释的前提，若类别顺序错误，后续 precision 和 recall 都失去意义；边框解释一致性是 mAP 和 IoU 评价的前提，若坐标还原错误，模型可能被误判为定位能力不足；阈值稳定性决定安全输出是否依赖偶然参数；运行时可靠性则决定一次实验是否能够代表真实设备行为。因此，本文将一致性评价放在方法章和实验章之间，作为连接模型迁移与实验结论的关键桥梁。 已有部署研……"
+    },
+    {
+      "v1_index": 29,
+      "file": "paper/docs/chap04.tex",
+      "current_location": "paragraphs 6-7",
+      "line": 24,
+      "v1_match_score": 0.994,
+      "v1_risk_summary": "AI高频词堆叠(稳定、完整)",
+      "v2_hit_count": 3,
+      "v2_flagged_hit_count": 2,
+      "priority": "高",
+      "priority_reason": "v2 仍有 2 条命中风险标签；v2 同一区域命中 3 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.994)",
+      "top_v2_hits": [
+        {
+          "v2_id": 163,
+          "text": "部署一致性主要通过分类别统计、阈值敏感性、NMS 敏感性、后处理消融、视频稳定性和运行状态进行分析；",
+          "chars": 50,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 部署一致性,稳定"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 167,
+          "text": "跨阶段 IoU 漂移作为扩展一致性评价方式保留在方法设计中。",
+          "chars": 30,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 评价"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 166,
+          "text": "类别语义由 person 与 ebike 的 TP、FP、FN、recall 和 mAP@0.",
+          "chars": 47,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文评测指标分为检测精度、部署一致性和运行时性能三类。检测精度包括 precision、recall、F1 和 mAP@0.5，用于描述模型在验证集上的基础识别能力。部署一致性主要通过分类别统计、阈值敏感性、NMS 敏感性、后处理消融、视频稳定性和运行状态进行分析；跨阶段逐样本边框漂移可作为更细粒度的扩展评价设计。运行时性能包括 batch 图像验证链路端到端单图处理耗时、成功处理样本数和分段计时，用于判断系统运行结果是否完整。 具体指标围绕三个层次组织。检测能力由 precision、recall、F1 和 mAP@0.5 描述；类别语义由 person 与 ebike 的 TP、FP、FN、recall 和 mAP@0.5 检查；部署行为由多阈值 F1、类别召回、NMS 参数下的 FP/FN 变化、后处理策……"
+    },
+    {
+      "v1_index": 39,
+      "file": "paper/docs/conclusion.tex",
+      "current_location": "paragraphs 1-4",
+      "line": 7,
+      "v1_match_score": 0.717,
+      "v1_risk_summary": "AI高频词堆叠(稳定、完整)",
+      "v2_hit_count": 3,
+      "v2_flagged_hit_count": 2,
+      "priority": "高",
+      "priority_reason": "v2 仍有 2 条命中风险标签；v2 同一区域命中 3 个非噪声片段",
+      "top_v2_hits": [
+        {
+          "v2_id": 308,
+          "text": "评价上，本文没有只依赖离线 mAP，而是结合分类别指标、阈值敏感性、NMS 参数影响、后处理消融、分段计时和视频连续输出，交叉观察板端行为。",
+          "chars": 70,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 评价"
+          ],
+          "current_coverage": 0.951,
+          "v1_coverage": 0.541
+        },
+        {
+          "v2_id": 314,
+          "text": "这说明，部署一致性评价需要把后处理模块从模型权重效果中单独分离出来。",
+          "chars": 34,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 部署一致性,评价"
+          ],
+          "current_coverage": 0.697,
+          "v1_coverage": 0.394
+        },
+        {
+          "v2_id": 305,
+          "text": "本文围绕电梯轿厢中行人与电动车的双目标检测，讨论了 YOLO 类模型从训练环境迁移到边缘设备后的行为变化。",
+          "chars": 53,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.54
+        }
+      ],
+      "current_excerpt": "本文围绕电梯轿厢中行人与电动车的双目标检测，讨论了 YOLO 类模型从训练环境迁移到边缘设备后的行为变化。研究的出发点很明确：离线训练精度不能直接等同于板端实际表现，模型格式转换、输出解释和后处理策略都会带来额外不确定性。 针对这一问题，本文做了三方面工作。任务上，将电梯安全视觉中的人员感知与电动车识别统一为双目标检测框架，并梳理了轿厢场景中影响检测精度的遮挡、反光和近距离透视等因素。迁移上，将训练权重到板端推理的转换过程组织为五类约束检查，使输入尺寸、类别顺序、坐标编码和阈值语义能够逐项核实。在检查部署行为时，本文没有只依赖离线 mAP，而是结合分类别指标、阈值敏感性、NMS 参数影响、后处理消融、分段计时和视频连续输出，交叉观察板端行为。 实验中有几处现象值得关注。板端 mAP@0.5 相比训练阶段回退约……"
+    },
+    {
+      "v1_index": 32,
+      "file": "paper/docs/chap04.tex",
+      "current_location": "paragraphs 12-14",
+      "line": 44,
+      "v1_match_score": 0.74,
+      "v1_risk_summary": "整齐编号/三段式(第一、第二、第三)；AI高频词堆叠(稳定、完整、可追溯)",
+      "v2_hit_count": 3,
+      "v2_flagged_hit_count": 1,
+      "priority": "高",
+      "priority_reason": "v2 仍有 1 条命中风险标签；v2 同一区域命中 3 个非噪声片段",
+      "top_v2_hits": [
+        {
+          "v2_id": 181,
+          "text": "本文使用的图像验证集固定为 720 张图像，用于报告板端总体指标和分类别指标。",
+          "chars": 39,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "passive: 本文使用"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 182,
+          "text": "正文只描述该验证集的规模、类别和用途，不展开本地文件组织细节。",
+          "chars": 31,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.655
+        },
+        {
+          "v2_id": 180,
+          "text": "实验结果要能够被复查，数据划分需要先保持清晰。",
+          "chars": 23,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.5
+        }
+      ],
+      "current_excerpt": "实验结果要能够被复查，数据划分需要先保持清晰。本文使用的图像验证集固定为 720 张图像，用于报告板端总体指标和分类别指标。正文只描述该验证集的规模、类别和用途，不展开本地文件组织细节。 数据可追溯性体现在三个方面：实验表格中的样本数应与指标来源一致；person 与 ebike 的真实目标数、预测数、TP、FP、FN 应能够对应到评测结果；成功样本数、失败样本数和端到端耗时应能够说明板端验证是否完整执行。 对于视频片段，本文采用检测保持率、闪烁窗口、连续无输出片段和分段计时等机器侧统计描述输出稳定性。这样可以保证评价指标与实验材料相匹配。"
+    },
+    {
+      "v1_index": 30,
+      "file": "paper/docs/chap04.tex",
+      "current_location": "paragraphs 8-9",
+      "line": 30,
+      "v1_match_score": 0.872,
+      "v1_risk_summary": "整齐编号/三段式(首先、其次、最后、再次)；AI高频词堆叠(稳定)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 1,
+      "priority": "高",
+      "priority_reason": "v2 仍有 1 条命中风险标签；当前表述与 v1 高光连续相似度较高(0.872)",
+      "top_v2_hits": [
+        {
+          "v2_id": 170,
+          "text": "视频场景分析采用连续场景片段的机器侧稳定性指标，正文表述聚焦片段规模、输出保持率、闪烁窗口和连续无输出段等可量化统计。",
+          "chars": 59,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 稳定"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 168,
+          "text": "所有图像级指标均在同一验证集上统计，并统一保留三位小数；",
+          "chars": 28,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "为保证实验结果可比较，本文采用统一协议。所有图像级指标均在同一验证集上统计，并统一保留三位小数；阈值敏感性实验只改变置信度阈值，其余参数保持不变；分段计时实验需要明确运行模式，区分 batch 图像验证链路和连续视频链路；视频场景分析采用连续场景片段的机器侧稳定性指标，正文表述聚焦片段规模、输出保持率、闪烁窗口和连续无输出段等可量化统计。 各实验只改变一个主要变量。基线验证固定验证集、类别顺序和输入尺寸；阈值敏感性只改变置信度阈值；NMS 敏感性只改变 IoU 阈值；后处理消融只改变电动车清理策略；视频稳定性只改变平滑窗口；分段计时则固定模型、二进制和阈值设置，只比较 batch 端到端、单帧核心处理和模型执行阶段。本文并不追求实验数量堆叠，而是围绕 YOLO 模型的边缘部署一致性建立可复查的评价流程。"
+    },
+    {
+      "v1_index": 13,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 19-21",
+      "line": 68,
+      "v1_match_score": 0.71,
+      "v1_risk_summary": "泛化总结句(由此可见)；AI高频词堆叠(显著)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 1,
+      "priority": "高",
+      "priority_reason": "v2 仍有 1 条命中风险标签",
+      "top_v2_hits": [
+        {
+          "v2_id": 91,
+          "text": "门口区域的垂直边缘可能被误识别为目标边界，镜面反光可能生成重复候选框，电动车只露出车把或车轮时又容易形成低置信度候选。",
+          "chars": 59,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 形成"
+          ],
+          "current_coverage": 0.842,
+          "v1_coverage": 0.789
+        },
+        {
+          "v2_id": 90,
+          "text": "在本文任务中，YOLO 失效通常不是随机出现的，而是与轿厢空间结构有关。",
+          "chars": 36,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "轻量化模型选择需要在精度和设备约束之间取舍。MobileNet、EfficientNet、EfficientDet 等研究讨论了特征提取效率、模型缩放和检测性能之间的关系[howard2019mobilenetv3,tan2019efficientnet,tan2020efficientdet]。电梯场景类别数少，但这并不意味着模型表达能力可以降低要求；遮挡和局部可见目标仍然需要多尺度特征支持。另一方面，边缘开发板的算力和算子支持又限制了模型复杂度。本文采用轻量 YOLO 模型，正是出于检测能力和可部署性的折中。 轻量骨干网络研究为这一选择提供了背景。Inception 结构通过多分支卷积提升表达效率[szegedy2015inception]，ResNet 用残差连接缓解深层网络训练退化[he2016resn……"
+    },
+    {
+      "v1_index": 20,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 6-6",
+      "line": 23,
+      "v1_match_score": 1.0,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 1,
+      "v2_flagged_hit_count": 1,
+      "priority": "高",
+      "priority_reason": "v2 仍有 1 条命中风险标签；当前表述与 v1 高光连续相似度较高(1.000)",
+      "top_v2_hits": [
+        {
+          "v2_id": 115,
+          "text": "在进入板端部署前，本文采用 Ultralytics YOLOv8n 框架完成双目标检测模型的场景化训练。",
+          "chars": 52,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "passive: 本文采用"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "在进入板端部署前，本文采用 Ultralytics YOLOv8n 框架完成双目标检测模型的场景化训练。训练环境为 x86_64 工作站，主要硬件包括 Intel Xeon Gold 6226R CPU、约 125 GiB 系统内存和 4 张 NVIDIA GeForce RTX 3090 GPU；本次训练使用第 0 号 GPU。训练任务使用 person 与 ebike 两类标注，输入尺寸为 $640 640$，batch size 为 16，训练 100 个 epoch，并以 COCO 预训练 YOLOv8n 权重作为初始化。该 YOLOv8n 模型对应后续 ONNX 导出、ATC 编译和 OM 板端部署的源权重，因此训练阶段验证结果构成本文分析板端部署损失和检测能力保留情况的参照。"
+    },
+    {
+      "v1_index": 12,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 16-17",
+      "line": 62,
+      "v1_match_score": 0.881,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 1,
+      "v2_flagged_hit_count": 1,
+      "priority": "高",
+      "priority_reason": "v2 仍有 1 条命中风险标签；当前表述与 v1 高光连续相似度较高(0.881)",
+      "top_v2_hits": [
+        {
+          "v2_id": 89,
+          "text": "板端程序必须明确张量维度、类别数、分数含义和坐标尺度，才能得到与训练阶段评价结果可比较的检测框。",
+          "chars": 48,
+          "aigc_percent": 100.0,
+          "risk_flags": [
+            "ai_freq: 评价"
+          ],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "近年来，DETR 等端到端检测框架将目标检测建模为集合预测问题，减少了手工设计候选框和部分后处理步骤[carion2020detr]。这类方法展示了目标检测结构的另一条发展路线，但在本文的边缘开发板场景中，模型部署成熟度、算子支持和实时处理成本同样重要。相比之下，YOLO 系列在工程链路中具有更成熟的导出、编译和板端适配经验，更适合作为本文可复查的边缘安全视觉实现基础。 从部署角度看，YOLOv8 的优势在于主干、特征融合和检测头之间边界清晰，便于检查导出模型的输入输出。但这种清晰结构并不意味着部署可以自动正确完成。训练框架中的预测结果通常已经完成坐标还原、类别筛选和 NMS，而导出模型可能只给出未经封装的张量。板端程序必须明确张量维度、类别数、分数含义和坐标尺度，才能得到与训练阶段评价结果可比较的检测框。"
+    },
+    {
+      "v1_index": 9,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 2-4",
+      "line": 8,
+      "v1_match_score": 0.812,
+      "v1_risk_summary": "AI高频词堆叠(综合、显著)",
+      "v2_hit_count": 6,
+      "v2_flagged_hit_count": 0,
+      "priority": "高",
+      "priority_reason": "v2 同一区域命中 6 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.812)",
+      "top_v2_hits": [
+        {
+          "v2_id": 77,
+          "text": "precision 表示预测为目标的结果中有多少是真实目标，recall 表示真实目标中有多少被成功检测，F1 则综合二者。",
+          "chars": 62,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 76,
+          "text": "狭小空间中的遮挡、反光和近距离透视会使同一目标在不同帧中呈现不同尺度和形态，进而影响边框回归和类别置信度。",
+          "chars": 53,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 75,
+          "text": "对于电梯轿厢场景，本文只关注 person 与 ebike 两类目标，但检测任务并未因此变得简单。",
+          "chars": 49,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 74,
+          "text": "与图像分类只输出整幅图像类别不同，目标检测需要输出一组边界框、类别标签和置信度分数。",
+          "chars": 42,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 78,
+          "text": "当预测框与真实框的交并比达到阈值且类别一致时，该预测通常被视为正确检测。",
+          "chars": 36,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 73,
+          "text": "目标检测需要同时定位目标位置并判定目标类别。",
+          "chars": 22,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "目标检测需要同时定位目标位置并判定目标类别。与图像分类只输出整幅图像类别不同，目标检测需要输出一组边界框、类别标签和置信度分数。对于电梯轿厢场景，本文只关注 person 与 ebike 两类目标，但检测任务并未因此变得简单。狭小空间中的遮挡、反光和近距离透视会使同一目标在不同帧中呈现不同尺度和形态，进而影响边框回归和类别置信度。 从深度学习目标检测的发展看，早期方法通常采用“候选区域生成 + 分类回归”的两阶段框架。R-CNN 借助卷积特征和候选区域分类提高了检测精度[girshick2014rcnn]，Fast R-CNN 将特征共享和端到端训练结合起来[girshick2015fast]，Faster R-CNN 则通过区域建议网络减少外部候选框依赖[ren2017faster]。这一路线定位和分类较稳，……"
+    },
+    {
+      "v1_index": 35,
+      "file": "paper/docs/chap05.tex",
+      "current_location": "paragraphs 33-35",
+      "line": 192,
+      "v1_match_score": 0.883,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 5,
+      "v2_flagged_hit_count": 0,
+      "priority": "高",
+      "priority_reason": "v2 同一区域命中 5 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.883)",
+      "top_v2_hits": [
+        {
+          "v2_id": 248,
+          "text": "55 时，预测框总数从 1526 增加到 1542，FP 从 146 增加到 160，FN 从 116 降至 114。",
+          "chars": 59,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 245,
+          "text": "高 NMS 阈值会保留更多相邻框，可能提高局部目标召回但增加误报和重复框。",
+          "chars": 37,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 244,
+          "text": "低 NMS 阈值会更强地抑制重叠框，可能减少重复框但增加遮挡区域漏检；",
+          "chars": 35,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 249,
+          "text": "878，说明行人结果在该区间内几乎不受 NMS 参数影响；",
+          "chars": 29,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 246,
+          "text": "相关产物路径和指标来源记录于实验产物索引。",
+          "chars": 21,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "NMS 参数敏感性实验用于观察重叠候选框的保留关系是否依赖单一 IoU 阈值。本文设计的实验固定模型、验证集、置信度阈值和后处理策略，只改变 NMS 阈值，取值为 0.35、0.45 和 0.55。低 NMS 阈值会更强地抑制重叠框，可能减少重复框但增加遮挡区域漏检；高 NMS 阈值会保留更多相邻框，可能提高局部目标召回但增加误报和重复框。 该实验与阈值后验重算不同，需要重新运行板端推理，因为 NMS 在板端应用层已经影响最终输出。三组实验使用同一 OM 模型、同一板端二进制和同一验证集切分，均完成 720 张图像处理，失败样本数为 0；相关产物路径和指标来源记录于实验产物索引。 结果显示，NMS 从 0.35 提高到 0.55 时，预测框总数从 1526 增加到 1542，FP 从 146 增加到 160，F……"
+    },
+    {
+      "v1_index": 24,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 21-22",
+      "line": 71,
+      "v1_match_score": 1.0,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 3,
+      "v2_flagged_hit_count": 0,
+      "priority": "高",
+      "priority_reason": "v2 同一区域命中 3 个非噪声片段；当前表述与 v1 高光连续相似度较高(1.000)",
+      "top_v2_hits": [
+        {
+          "v2_id": 135,
+          "text": "若板端程序把类别维度读取错误，person 与 ebike 的预测数量、召回率和 mAP@0.",
+          "chars": 47,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 137,
+          "text": "因此，分类别指标不仅衡量检测性能，也用于判断迁移后的语义解释是否成立。",
+          "chars": 35,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 134,
+          "text": "否则，即使检测框位置正确，最终报警语义也可能被反转。",
+          "chars": 26,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "类别语义对齐是双目标任务迁移中最基础的契约。本文包含 person 与 ebike 两个类别，类别数较少反而要求类别解释更加清晰。训练配置、导出模型、板端标签表和后处理代码必须使用相同类别顺序；否则，即使检测框位置正确，最终报警语义也可能被反转。 在实验解释中，分类别 TP、FP、FN 统计也被用作类别契约的外部检查。若板端程序把类别维度读取错误，person 与 ebike 的预测数量、召回率和 mAP@0.5 会出现与场景经验明显不符的异常。因此，分类别指标不仅衡量检测性能，也用于判断迁移后的语义解释是否成立。"
+    },
+    {
+      "v1_index": 21,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 12-13",
+      "line": 47,
+      "v1_match_score": 0.933,
+      "v1_risk_summary": "AI高频词堆叠(可解释)",
+      "v2_hit_count": 3,
+      "v2_flagged_hit_count": 0,
+      "priority": "高",
+      "priority_reason": "v2 同一区域命中 3 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.933)",
+      "top_v2_hits": [
+        {
+          "v2_id": 121,
+          "text": "这里的契约不是额外算法模块，而是贯穿训练、导出、编译和板端运行的一组约束，用来把容易隐含在代码和配置中的输入、类别、输出、后处理和运行时假设显式化。",
+          "chars": 74,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.388
+        },
+        {
+          "v2_id": 122,
+          "text": "对于 YOLO 类检测器而言，这些契约分别落在输入图像语义、类别维度、检测头张量、候选框解码、置信度阈值、NMS 策略和板端运行状态等环节。",
+          "chars": 70,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.623
+        },
+        {
+          "v2_id": 124,
+          "text": "输入契约约束输入尺寸、颜色通道、归一化、缩放与填充方式。",
+          "chars": 28,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文将迁移链路抽象为接口契约。这里的契约不是额外算法模块，而是贯穿训练、导出、编译和板端运行的一组约束，用来把容易隐含在代码和配置中的输入、类别、输出、后处理和运行时假设显式化。对于 YOLO 类检测器而言，这些契约分别落在输入图像语义、类别维度、检测头张量、候选框解码、置信度阈值、NMS 策略和板端运行状态等环节。只有这些约束在各阶段保持一致，板端 precision、recall、F1 和 mAP@0.5 才具有可解释性。 输入契约约束输入尺寸、颜色通道、归一化、缩放与填充方式。电梯图像常包含强反光和大面积背景结构，若训练阶段和板端的缩放、填充或颜色通道处理不一致，模型对局部电动车结构的响应会发生变化，进而表现为分数漂移或小目标漏检。因此，输入契约要求训练配置、ONNX 输入形状、OM 模型输入和板端预处理……"
+    },
+    {
+      "v1_index": 22,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 15-16",
+      "line": 53,
+      "v1_match_score": 0.904,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 3,
+      "v2_flagged_hit_count": 0,
+      "priority": "高",
+      "priority_reason": "v2 同一区域命中 3 个非噪声片段；当前表述与 v1 高光连续相似度较高(0.904)",
+      "top_v2_hits": [
+        {
+          "v2_id": 129,
+          "text": "电梯场景中的反光、门框和局部可见电动车会生成接近阈值的候选框，阈值和 NMS 的小幅变化可能改变最终安全输出。",
+          "chars": 55,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 128,
+          "text": "训练框架通常自动完成坐标解码和结果封装，而板端程序需要显式读取输出张量并解释其维度。",
+          "chars": 42,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 127,
+          "text": "输出契约约束检测头张量维度、坐标格式和置信度含义。",
+          "chars": 25,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "输出契约约束检测头张量维度、坐标格式和置信度含义。训练框架通常自动完成坐标解码和结果封装，而板端程序需要显式读取输出张量并解释其维度。如果坐标中心点、宽高、左上右下角或置信度分数组合方式被错误理解，最终结果会表现为边框漂移、类别分数异常或检测数量变化。 后处理契约约束置信度阈值、NMS 阈值和类别处理方式。电梯场景中的反光、门框和局部可见电动车会生成接近阈值的候选框，阈值和 NMS 的小幅变化可能改变最终安全输出。因此，后处理契约要求训练阶段评价脚本和板端应用层在阈值含义、NMS 输入、类别过滤和电动车清理策略上保持可比较。"
+    },
+    {
+      "v1_index": 10,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 6-8",
+      "line": 16,
+      "v1_match_score": 0.753,
+      "v1_risk_summary": "AI高频词堆叠(稳定)；被动分析套话(上述)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 86,
+          "text": "目标检测结果还受到阈值和非极大值抑制的影响。",
+          "chars": 22,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 84,
+          "text": "这三个指标在安全视觉中的含义并不完全相同。",
+          "chars": 21,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.952
+        }
+      ],
+      "current_excerpt": "设某一类别的真正例、假正例和假负例分别为 TP、FP 和 FN，则 precision、recall 与 F1 可以写为 equation P=TPTP+FP, R=TPTP+FN, F1=2PRP+R. equation 这三个指标在安全视觉中的含义并不完全相同。precision 偏低意味着误报较多，可能造成无效提醒；recall 偏低意味着漏检较多，可能造成风险未被发现；F1 则适合观察二者的折中关系。对于电梯安全视觉场景，行人漏检可能影响人员计数准确性，电动车漏检则可能造成安全风险未被发现，两类召回率均需要关注。 目标检测结果还受到阈值和非极大值抑制的影响。置信度阈值决定低分候选框是否保留，NMS 阈值决定重叠候选框是否被抑制。阈值过高时，系统可能漏掉局部可见的电动车；阈值过低时，门框、反光或大面积背景……"
+    },
+    {
+      "v1_index": 34,
+      "file": "paper/docs/chap05.tex",
+      "current_location": "paragraphs 12-13",
+      "line": 75,
+      "v1_match_score": 0.733,
+      "v1_risk_summary": "AI高频词堆叠(完整)；被动分析套话(该结果说明)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 204,
+          "text": "该数值对应验证链路的整体处理成本，与 OM 模型执行阶段耗时、连续视频链路帧间耗时属于不同运行口径。",
+          "chars": 50,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 302,
+          "text": "YOLOv8n 场景化训练模型达到 0.",
+          "chars": 20,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 0.778,
+          "v1_coverage": 0.778
+        }
+      ],
+      "current_excerpt": "该组数据表明，YOLOv8n 场景化训练模型经过 ONNX 导出、ATC 编译和 OM 模型部署后，可以在边缘设备上完成全量验证集处理。对本文而言，它不仅给出了检测精度，也说明迁移链路能够跑通全部样本，为后续分类别分析、阈值敏感性分析和运行时口径拆解打下基础。 表 tab:board_overall_results 中的 1119.510 ms 是 batch 图像验证链路端到端单图处理耗时，包含图像输入、媒体链路、预处理、模型执行、后处理、结果写出等环节。该数值对应验证链路的整体处理成本，与 OM 模型执行阶段耗时、连续视频链路帧间耗时属于不同运行口径。本文后续通过分段计时实验进一步拆解这一差异。"
+    },
+    {
+      "v1_index": 17,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 31-33",
+      "line": 103,
+      "v1_match_score": 0.729,
+      "v1_risk_summary": "整齐编号/三段式(第五)；AI高频词堆叠(稳定、可解释)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 97,
+          "text": "应用层如果增加类别特定清理规则，某些看似模型误差的问题可能实际来自后处理策略。",
+          "chars": 39,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.868
+        },
+        {
+          "v2_id": 98,
+          "text": "能够运行表示模型可以被编译、加载并完成推理；",
+          "chars": 22,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文把阈值、NMS 和后处理策略纳入部署一致性，而不是简单把它们视为“调参”。训练阶段和板端若使用不同置信度阈值，precision、recall 和预测框数量会同步变化；NMS 阈值不同，拥挤重叠区域的候选框保留关系也会变化；应用层如果增加类别特定清理规则，某些看似模型误差的问题可能实际来自后处理策略。第五章中的阈值敏感性、NMS 敏感性和后处理消融正是围绕这一逻辑设计。 将后处理作为部署模块分析，有助于界定模型前向结果与应用层规则之间的关系。本文关注的是安全视觉落地过程中模型权重、阈值、NMS 和应用层清理如何共同决定板端输出，因此先给出端到端基准，再通过参数敏感性和消融实验解释关键设计选择。 边缘部署还需要区分“能够运行”和“适合应用”。能够运行表示模型可以被编译、加载并完成推理；适合应用则要求输出可靠、……"
+    },
+    {
+      "v1_index": 38,
+      "file": "paper/docs/chap05.tex",
+      "current_location": "paragraphs 67-67",
+      "line": 310,
+      "v1_match_score": 0.725,
+      "v1_risk_summary": "AI高频词堆叠(显著、稳定、完整)；被动分析套话(上述)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 304,
+          "text": "视频实验则补充说明连续输出状态和分段耗时。",
+          "chars": 21,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.762
+        },
+        {
+          "v2_id": 302,
+          "text": "YOLOv8n 场景化训练模型达到 0.",
+          "chars": 20,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本章报告了 YOLO 双目标检测模型的训练阶段与板端同集对比、边缘设备端完整验证结果、分类别结果、阈值敏感性后验重算、NMS 敏感性、后处理消融、视频稳定性和分段计时结果。YOLOv8n 场景化训练模型达到 0.988 的 mAP@0.5，板端 FP16/OM 在 720 张验证图像上取得 0.910 的 mAP@0.5，其中行人类别为 0.869、电动车类别为 0.952。两类目标在多个置信度阈值和 NMS 设置下均保持较稳定的召回率。后处理消融显示，完整清理策略会明显牺牲电动车召回率，safe 策略更适合作为图像验证链路默认口径；视频实验则补充说明连续输出状态和分段耗时。结合这些结果，本文关于兼容迁移和部署一致性评价的主要结论可以得到支撑。"
+    },
+    {
+      "v1_index": 7,
+      "file": "paper/docs/chap01.tex",
+      "current_location": "paragraphs 19-22",
+      "line": 67,
+      "v1_match_score": 0.71,
+      "v1_risk_summary": "整齐编号/三段式(首先、其次、最后、第一、第二、第三)；AI高频词堆叠(稳定、完整)；被动分析套话(上述)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 53,
+          "text": "HongOU PI（Hi3516DV500）开发板采用海思视觉 SoC、专用 NPU 和 OM 离线模型格式，部署链路涉及 ONNX 导出、ATC 编译、板端运行时调用和应用层后处理等环节，能够反映同类目标平台中的典型迁移约束。",
+          "chars": 114,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.459
+        },
+        {
+          "v2_id": 52,
+          "text": "电梯安全视觉对漏检和误检都敏感，迁移过程中的小幅数值变化可能被放大为报警行为差异。",
+          "chars": 41,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.375
+        }
+      ],
+      "current_excerpt": "围绕这一问题，全文按“问题链—技术缺口—核心处理方式”的组织思路。电梯安全视觉任务要面对人车共现、遮挡反光和局部可见等轿厢因素，因而安全管理需求被落到 person + ebike 双目标检测问题。模型边缘迁移也不能只被当作环境配置，输入、类别、输出和后处理约束都需要显式检查，本文据此把 PyTorch、ONNX、OM 和板端后处理抽象为迁移接口契约。至于结果解释，离线 mAP 或单一平均耗时远远不够——全量验证集、分类别指标、阈值重算、NMS 敏感性、后处理消融、分段计时和视频片段观察需要放在一起，才能说清部署后模型到底表现如何。 本文的核心思路是：对于电梯轿厢这类封闭式安全场景，模型的应用价值不只取决于离线检测精度，还取决于任务定义是否贴合风险、迁移接口是否保持语义一致、实验指标是否能够解释板端真实运行口径……"
+    },
+    {
+      "v1_index": 23,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 18-19",
+      "line": 59,
+      "v1_match_score": 0.684,
+      "v1_risk_summary": "无显式标签",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 132,
+          "text": "ONNX 导出后检查输入尺寸和输出张量形状是否符合双目标检测设置；",
+          "chars": 33,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.774
+        },
+        {
+          "v2_id": 131,
+          "text": "为了让契约不只停留在概念层面，本文在迁移链路中采用逐项检查方式。",
+          "chars": 32,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.548
+        }
+      ],
+      "current_excerpt": "为了让契约不只停留在概念层面，本文在迁移链路中采用逐项检查方式。ONNX 导出后检查输入尺寸和输出张量形状是否符合双目标检测设置；OM 编译后检查板端程序读取的输出数量和张量维度是否与导出阶段一致；运行验证集时，再看成功样本数、分类别预测数和分类别 TP/FP/FN 是否处于合理范围。若某一项出现异常，优先回到对应契约定位问题，而不是直接调整阈值掩盖错误。 分阶段验证策略强调每一阶段只解决少数关键问题。训练阶段主要看模型是否具备基础检测能力，并保留权重文件与验证集指标；导出阶段检查输入输出形状和类别维度是否保留；编译阶段关注 OM 模型能否生成以及算子是否兼容；板端阶段再检查推理成功率、后处理结果、检测框、分类别指标和运行时信息。这样做可以降低排错复杂度，使板端结果异常时能够回溯问题来源。"
+    },
+    {
+      "v1_index": 15,
+      "file": "paper/docs/chap02.tex",
+      "current_location": "paragraphs 25-26",
+      "line": 89,
+      "v1_match_score": 0.659,
+      "v1_risk_summary": "整齐编号/三段式(第一、第二、第三、第四、第五)；被动分析套话(该链路)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 93,
+          "text": "例如，预处理方式不同会改变输入分布，张量读取顺序错误会改变类别语义，后处理阈值不同会改变最终检测数量。",
+          "chars": 51,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 94,
+          "text": "若预处理在应用层完成，则应用层需要保证输入张量与模型期望一致。",
+          "chars": 31,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "这条链路从训练阶段的 YOLO 权重开始，经过 ONNX 导出、ATC 编译与优化，形成 OM 离线模型后，再由板端 NPU 执行推理，并在应用层完成输出解码、阈值筛选和 NMS 后处理。每个环节都可能改变输出行为。例如，预处理方式不同会改变输入分布，张量读取顺序错误会改变类别语义，后处理阈值不同会改变最终检测数量。 在 Hi3516DV500 板端部署链路中，AIPP、输入尺寸、算子支持和内存布局都会影响模型执行。AIPP 若承担颜色空间转换或归一化操作，则训练阶段预处理必须与板端配置对应；若预处理在应用层完成，则应用层需要保证输入张量与模型期望一致。OM 模型编译完成后，其输入输出名称、形状和数据类型也需要被记录，否则后续调试很难判断错误来自模型本身还是应用层解释。对电梯安全视觉而言，这些约束会直接影响类别……"
+    },
+    {
+      "v1_index": 4,
+      "file": "paper/docs/chap01.tex",
+      "current_location": "paragraphs 9-10",
+      "line": 37,
+      "v1_match_score": 0.634,
+      "v1_risk_summary": "AI高频词堆叠(系统性、有效)",
+      "v2_hit_count": 2,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 40,
+          "text": "然而，边缘部署研究在实际落地时还面临一个常被忽视的问题，即兼容迁移与行为一致性。",
+          "chars": 40,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        },
+        {
+          "v2_id": 41,
+          "text": "但在安全场景中，它可能被放大为连续视频中的误报、闪烁和漏检。",
+          "chars": 30,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "边缘计算研究普遍强调，计算与服务越靠近数据源，时延、带宽和隐私压力越容易被控制[shi2016edge,chen2024edgeai]。电梯视频流敏感且实时性强，若完全依赖云端处理，网络波动和隐私风险都会被放大。为了让视觉模型适应端侧设备，已有研究从量化、剪枝、蒸馏等方向降低模型成本。Jacob 等提出的整数推理友好量化框架表明，神经网络可以在低位宽下保持较好的性能[jacob2018quantization]；Han 等提出的 Deep Compression 从剪枝、量化和编码三方面给出了经典压缩思路[han2016deep]；知识蒸馏则为大模型向轻量模型迁移判别能力提供了常用工具[hinton2015distilling]。 然而，边缘部署研究在实际落地时还面临一个常被忽视的问题，即兼容迁移与行为一致性。……"
+    },
+    {
+      "v1_index": 26,
+      "file": "paper/docs/chap03.tex",
+      "current_location": "paragraphs 33-33",
+      "line": 105,
+      "v1_match_score": 0.729,
+      "v1_risk_summary": "AI高频词堆叠(可追溯、可解释)；被动分析套话(该流程)",
+      "v2_hit_count": 1,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 154,
+          "text": "流程围绕迁移约束展开，把输入预处理、类别配置、输出张量、后处理参数和运行状态纳入同一检查框架。",
+          "chars": 47,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 0.744
+        }
+      ],
+      "current_excerpt": "本章整理了面向目标平台约束的 YOLO 类双目标检测模型兼容迁移流程。流程围绕迁移约束展开，把输入预处理、类别配置、输出张量、后处理参数和运行状态纳入同一检查框架。相较于单纯报告模型精度，本文更关注模型进入板端后的行为是否能够解释、结果是否能够追溯。"
+    },
+    {
+      "v1_index": 27,
+      "file": "paper/docs/chap04.tex",
+      "current_location": "paragraphs 1-2",
+      "line": 8,
+      "v1_match_score": 0.686,
+      "v1_risk_summary": "整齐编号/三段式(第一、第二、第三、第四、第五)；AI高频词堆叠(显著、稳定、完整)",
+      "v2_hit_count": 1,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 156,
+          "text": "训练集包含约 3600 张标注图像，验证集固定为 720 张图像；",
+          "chars": 33,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文实验围绕电梯轿厢内 person + ebike 双目标检测展开。数据来源于实际电梯轿厢的监控视频录像，经抽帧后由人工使用 LabelImg 工具按 YOLO 格式进行标注，标注类别为 person 和 ebike。训练集包含约 3600 张标注图像，验证集固定为 720 张图像；标注过程中对遮挡目标和局部可见目标采用可见区域外接矩形标注。图像验证集用于评价检测精度，代表性视频片段用于观察连续场景稳定性，板端运行输出用于分析模型迁移后的阈值行为、运行状态和分段耗时。 为了使实验结论服务于第一章提出的问题链，本文将评价目标拆成若干可复查问题：模型迁移到板端后能否完整处理验证集并保持双目标检测能力；person 与 ebike 的分类别指标是否符合任务语义；置信度阈值变化、NMS 参数和应用层后处理会不会改变安……"
+    },
+    {
+      "v1_index": 8,
+      "file": "paper/docs/chap01.tex",
+      "current_location": "paragraphs 23-24",
+      "line": 77,
+      "v1_match_score": 0.676,
+      "v1_risk_summary": "AI高频词堆叠(构建、稳定、可追溯)；被动分析套话(本文主要开展以下工作)",
+      "v2_hit_count": 1,
+      "v2_flagged_hit_count": 0,
+      "priority": "中",
+      "priority_reason": "v1 与 v2 均命中，但 v2 命中数量或显式标签较少，建议作为第二批处理。",
+      "top_v2_hits": [
+        {
+          "v2_id": 56,
+          "text": "分析 YOLO 类检测器在双目标任务中的结构适配方式，明确输入尺寸、类别顺序、检测头输出和 NMS 后处理对部署结果的影响。",
+          "chars": 62,
+          "aigc_percent": 100.0,
+          "risk_flags": [],
+          "current_coverage": 1.0,
+          "v1_coverage": 1.0
+        }
+      ],
+      "current_excerpt": "本文的研究目标是：面向电梯轿厢行人与电动车双目标检测任务，整理一套面向目标平台的 YOLO 类检测模型兼容迁移流程，并通过统一实验协议验证模型在 HongOU PI（Hi3516DV500）开发板上的检测精度、阈值行为和运行时口径。场景复杂性因素用于解释检测误差和部署稳定性，评价主线集中在双目标检测与板端一致性。围绕这一目标，本文主要开展以下工作。 enumerate 建立电梯轿厢双目标检测任务定义，明确行人与电动车两个核心类别，其中行人检测服务于人员计数与异常感知，电动车检测服务于入梯风险识别。 总结电梯场景中的典型困难因素，用于解释遮挡、局部可见和光照变化对检测输出的影响。 分析 YOLO 类检测器在双目标任务中的结构适配方式，明确输入尺寸、类别顺序、检测头输出和 NMS 后处理对部署结果的影响。 整理从……"
+    }
+  ],
+  "records": [
+    {
+      "index": 1,
+      "file": "paper/docs/abstract.tex",
+      "v1_aigc_chars": 438,
+      "v1_aigc_share": "1.3%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "首先",
+          "其次",
+          "最后"
+        ],
+        "generic_conclusion": [
+          "结果表明",
+          "实验结果表明"
+        ],
+        "ai_high_freq": [
+          "构建"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(首先、其次、最后)；泛化总结句(结果表明、实验结果表明)；AI高频词堆叠(构建)",
+      "v1_highlight_text": "本文围绕YOLOv8n模型，以搭载华为海思Hi3516DV500视觉SoC的HongOU PI开发板为部署平台，研究电梯轿厢中行人与电动车的双目标检测、模型迁移和部署一致性评价。 本文首先将电梯安全视觉建模为person与ebike双目标检测任务，分析轿厢场景的成像特点与安全需求。其次，将模型从训练权重经ONNX导出、OM编译到板端推理的迁移过程，按输入、类别、输出、后处理和运行五类约束组织为分阶段检查框架。最后，从分类别指标、阈值敏感性、NMS参数影响、后处理策略消融、分段计时和代表性视频片段等角度，构建部署一致性评价方法。 实验结果表明，在720张验证图像上，板端总体mAP@0.5为0.910，其中行人类别为0.869，电动车类别为0.952；相比训练阶段的0.988下降约0.078，但仍保持较强检测能力。阈值敏感性分析显示，总体F1在0.20–0.40置信度范围内保持在0.915–0.922区间。分段计时表明单帧模型执行阶段耗时约8.2 ms，满足边缘实时处理需求。",
+      "current_text": "电梯轿厢空间封闭、使用频繁，镜面反光、近距离遮挡和目标尺度突变常常同时出现，给视觉检测带来持续干扰。在这样的场景下，安全视觉系统不仅要同时识别行人与电动车，还要在迁移到边缘设备后继续保持训练阶段的检测能力——而后者往往更难保证。本文以 YOLOv8n 为检测模型、搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板为部署平台，从双目标检测、边缘兼容迁移和部署行为检查三个层面展开研究。\n\n研究中将电梯安全视觉界定为 person 与 ebike 双目标检测任务，并结合轿厢成像特点讨论其安全需求。模型迁移方面，训练权重经由 ONNX 导出和 OM 编译到达板端，输入、类别、输出、后处理和运行状态作为逐项核对的约束。实验不只看平均精度，还从分类别指标、阈值与 NMS 敏感性、后处理消融等角度展开，并辅以分段计时和视频片段观察，交叉检查部署后的模型行为。\n\n在 720 张验证图像上，板端总体 mAP@0.5 为 0.910，其中行人类别 0.869，电动车类别 0.952。相较训练阶段的 0.988，板端回退约 0.078，行人类别下降更多。置信度阈值在 0.20–0.40 范围内变化时，总体 F1 保持在 0.915–0.922 区间；单帧模型执行耗时约 8.2 ms，满足边缘侧实时处理要求。上述结果表明，该类 YOLO 双目标检测模型迁移到国产边缘平台后仍具备可用的检测能力，本文整理的迁移检查流程和多维度实验方法可为同类封闭空间的安全视觉部署提供参考。",
+      "match": {
+        "file": "paper/docs/abstract.tex",
+        "source": "\\cabstract{...}",
+        "line": 1,
+        "match_score": 0.482,
+        "sequence_score": 0.538,
+        "key_coverage": 0.489,
+        "start_para": null,
+        "end_para": null
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。 仍保留：结果表明。"
+    },
+    {
+      "index": 2,
+      "file": "paper/docs/abstract.tex",
+      "v1_aigc_chars": 258,
+      "v1_aigc_share": "0.77%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "Elevator cabins are enclosed, high-frequency public micro-spaces characterized by strong reflections, frequent occlusions, close viewpoints, and rapid target scale variation. Elevator safety vision requires both pedestrian detection and e-bike recognition, yet the detection accu-racy achieved in training environments is not guaranteed to be preserved on edge devices. This thesis focuses on the YOLOv8n model and uses the HongOU PI board, powered by the Huawei HiSilicon Hi3516DV500 vision SoC, as the deployment platform to study dual-target detection of pedestrians and e-bikes in elevator cabins, model migration, and deployment consistency evaluation. The thesis first formulates elevator safety vision as a person and ebike dual-target detec-tion task and analyzes the imaging characteristics and safety requirements of cabin scenes. It then organizes the model migration process—from trained weights through ONNX export and OM compilation to board-side inference—into a staged inspection framework covering five con-straint categories: input, category, output, post-processing, and runtime. Finally, a deployment consistency evaluation method is constructed from per-class metrics, threshold sensitivity anal-ysis, NMS parameter effects, post-processing ablation, segmented timing, and representative video clips. On a 720-image validation set, the board-side system achieves 0.910 overall mAP@0.5,with per-class values of 0.869 for person and 0.952 for ebike. Compared with the training-stage mAP@0.5 of 0.988, the board-side result decreases by approximately 0.078 while retaining strong detection capability. Threshold sensitivity analysis shows that the overall F1 remains within0.915–0.922 across confidence thresholds from0.20 to 0.40. Segmented timing indicates a per-frame model execution time of approximately 8.2ms, meeting edge real-time processing requirements.",
+      "current_text": "Elevator cabins are enclosed and frequently used spaces where mirror reflections, close-range occlusions, and rapid scale changes often co-occur, posing persistent challenges for visual detection. In such an environment, a safety vision system must not only detect both passengers and e-bikes, but also retain its training-stage accuracy after migration to an edge device—and the latter is often harder to guarantee. This thesis addresses the problem from three angles—dual-target detection, edge-compatible migration, and post-deployment behavior inspection—using YOLOv8n as the detector and the HongOU PI board (Huawei HiSilicon Hi3516DV500 vision SoC) as the deployment platform.\n\nThe task is formulated as dual-target detection for person and ebike, with cabin imaging conditions used to explain the safety requirements. During migration, trained weights pass through ONNX export and OM compilation before reaching the board; input, category, output, post-processing, and runtime constraints are checked at each stage. Experiments go beyond average precision: per-class metrics, threshold and NMS sensitivity, and post-processing ablation form the main analysis dimensions, supplemented by segmented timing and video-clip observation.\n\nOn the 720-image validation set, the board-side system obtains 0.910 overall mAP@0.5, with 0.869 for person and 0.952 for ebike. Person accuracy drops more. Compared with the training-stage mAP@0.5 of 0.988, the board-side result is about 0.078 lower, yet the main detection capability is retained. Overall F1 stays within 0.915–0.922 when the confidence threshold varies from 0.20 to 0.40; per-frame model execution takes about 8.2\\,ms, meeting edge-side real-time requirements. These results indicate that YOLO-based dual-target models remain viable after migration to this class of domestic edge platform, and the inspection workflow and multi-dimensional experiments presented here may serve as a reference for safety-vision deployment in similar enclosed spaces.",
+      "match": {
+        "file": "paper/docs/abstract.tex",
+        "source": "\\eabstract{...}",
+        "line": 1,
+        "match_score": 0.449,
+        "sequence_score": 0.214,
+        "key_coverage": 0.583,
+        "start_para": null,
+        "end_para": null
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。"
+    },
+    {
+      "index": 3,
+      "file": "paper/docs/chap01.tex",
+      "v1_aigc_chars": 756,
+      "v1_aigc_share": "2.24%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第一",
+          "第二",
+          "第三"
+        ],
+        "ai_high_freq": [
+          "重要趋势",
+          "稳定"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第一、第二、第三)；AI高频词堆叠(重要趋势、稳定)",
+      "v1_highlight_text": "电梯轿厢是城市建筑中最典型的高频公共微空间之一，其空间尺度小、人员流动快、目标遮挡强、光照变化复杂，并且往往伴随镜面反光、金属门框高亮和近距离透视畸变等问题。对于通用视觉模型而言，这类成像环境与开阔道路、固定走廊或通用开放数据集存在明显差异。与此同时，电梯属于安全敏感场景，系统需要同时满足目标可检出性、检测准确性、预警稳定性与端侧可执行性。一旦模型在真实部署中出现持续漏检、误检或跨端行为漂移，就可能直接影响风险治理效果。 在现实应用层面，电梯安全视觉需要同时关注两类目标：行人和电动车。行人检测服务于轿厢人员计数、拥挤度感知和异常行为识别；电动车检测服务于入梯风险治理和安全预警。与普通静态物体检测任务不同，电梯场景中人与车常常同时出现、局部遮挡、仅露出车头或车把、人员身体压住车身、门口区域边框干扰等复杂情况。围绕行人与电动车建立统一的双目标边缘视觉方案，是比单类检测更贴近真实部署需求的技术路径。 随着边缘计算理论和端侧智能硬件的发展，在数据源附近完成推理与初步决策已经成为安全视觉系统的重要趋势[1]。将模型部署在边缘侧有三个直接优势：第一，原始视频不必持续上传到云端，可以降低带宽与隐私压力；第二，事件响应链路更短，更适合时延敏感的电梯预警；第三，设备运行与模型行为可以在本地形成更加稳定的评价记录。然而，边缘部署并非简单的模型格式转换，而是需要同时解决模型轻量化、量化与编译、后处理阈值稳定性、跨格式一致性等问题。 在此背景下，本文以电梯轿厢行人与电动车双目标检测为中心，研究基于YOLO类检测器的场景化训练模型如何在华为海思/昇腾边缘AI平台及工具链约束下完成兼容迁移，并以搭载华为海思Hi3516DV500视觉SoC的HongOU PI开发板为实验平台，验证设备端类别、边框、阈值和运行时行为的一致性。",
+      "current_text": "电梯轿厢是城市建筑中使用频率很高的公共微空间。它的空间尺度小，人员进出快，摄像机视角又常被固定在顶部或角落，因此同一画面里容易同时出现近距离遮挡、镜面反光、金属门框高亮和透视畸变。通用视觉模型在道路、走廊或开放数据集上形成的经验，放到这类轿厢画面中并不总是适用。更麻烦的是，电梯本身属于安全敏感场景，系统既要看得见目标，也要在端侧稳定运行；持续漏检、误检或迁移后的行为漂移，都会削弱风险治理效果。\n\n在现实应用层面，电梯安全视觉需要同时关注两类目标：行人和电动车。行人检测服务于轿厢人员计数、拥挤度感知和异常行为识别；电动车检测服务于入梯风险治理和安全预警。与普通静态物体检测任务不同，电梯场景中人与车常常同时出现、局部遮挡、仅露出车头或车把、人员身体压住车身、门口区域边框干扰等复杂情况。围绕行人与电动车建立统一的双目标边缘视觉方案，是比单类检测更贴近真实部署需求的技术路径。\n\n边缘计算把推理过程尽量放到数据源附近，这一点与电梯安全视觉的需求较为契合[shi2016edge]。原始视频不必长期上传云端，隐私和带宽压力会小一些；预警链路也更短，更适合电梯这种对时延敏感的场景。与此同时，设备端可以留下本地运行记录，便于回看模型行为。不过，边缘部署不是把模型格式换一下就结束了。模型轻量化、量化与编译、后处理阈值、跨格式输出解释，都会影响最终结果。\n\n基于上述背景，本文聚焦电梯轿厢中的行人与电动车双目标检测，讨论场景化训练后的 YOLO 类模型如何在华为海思/昇腾边缘 AI 平台及工具链约束下完成兼容迁移。实验平台选用搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板，重点检查类别、边框、阈值和运行时行为在设备端是否仍能保持一致。",
+      "match": {
+        "file": "paper/docs/chap01.tex",
+        "source": "paragraphs 1-4",
+        "line": 6,
+        "match_score": 0.533,
+        "adjusted_score": 0.53,
+        "sequence_score": 0.647,
+        "key_coverage": 0.397,
+        "start_para": 1,
+        "end_para": 4
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。 仍保留：稳定。"
+    },
+    {
+      "index": 4,
+      "file": "paper/docs/chap01.tex",
+      "v1_aigc_chars": 478,
+      "v1_aigc_share": "1.42%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "系统性",
+          "有效"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(系统性、有效)",
+      "v1_highlight_text": "边缘计算研究已经系统性指出，在靠近数据源的位置完成计算与服务提供，是降低时延、缓解带宽压力和提升隐私保护能力的有效方式[1-2]。这一思想为电梯场景提供了天然契合点：视频流敏感且实时性强，如果完全依赖云端处理，不仅会产生隐私问题，也会带来额外的网络波动风险。为了让视觉模型真正适应边缘设备，研究者提出了量化、剪枝、蒸馏等模型压缩与加速方法。Jacob等提出的整数推理友好量化框架表明，神经网络可以在低位宽下保持较好的性能[3]；Han等提出的Deep Compression则从剪枝、量化和编码三方面给出了经典压缩思路[4]；知识蒸馏方法进一步提供了从大模型向轻量模型迁移判别能力的通用工具[5]。 然而，边缘部署研究在实际落地时还面临一个常被忽视的问题，即兼容迁移与行为一致性。训练阶段得到的浮点模型在导出、量化和编译后，可能在边框位置、类别分数排序和阈值敏感性上出现漂移。对于普通离线基准，这种问题可能只表现为小幅指标变化；但在安全场景中，它可能被放大为连续视频中的误报、闪烁和漏检。部署研究不能只停留在编译成功，还应关注跨格式链路的一致性分析[6-7]。",
+      "current_text": "边缘计算研究普遍强调，计算与服务越靠近数据源，时延、带宽和隐私压力越容易被控制[shi2016edge,chen2024edgeai]。电梯视频流敏感且实时性强，若完全依赖云端处理，网络波动和隐私风险都会被放大。为了让视觉模型适应端侧设备，已有研究从量化、剪枝、蒸馏等方向降低模型成本。Jacob 等提出的整数推理友好量化框架表明，神经网络可以在低位宽下保持较好的性能[jacob2018quantization]；Han 等提出的 Deep Compression 从剪枝、量化和编码三方面给出了经典压缩思路[han2016deep]；知识蒸馏则为大模型向轻量模型迁移判别能力提供了常用工具[hinton2015distilling]。\n\n然而，边缘部署研究在实际落地时还面临一个常被忽视的问题，即兼容迁移与行为一致性。训练阶段得到的浮点模型在导出、量化和编译后，可能在边框位置、类别分数排序和阈值敏感性上出现漂移。对于普通离线基准，这种问题可能只表现为小幅指标变化；但在安全场景中，它可能被放大为连续视频中的误报、闪烁和漏检。部署研究不能只停留在编译成功，还应关注跨格式链路的一致性分析[stacker2021deployment,chen2021aqd]。",
+      "match": {
+        "file": "paper/docs/chap01.tex",
+        "source": "paragraphs 9-10",
+        "line": 37,
+        "match_score": 0.634,
+        "adjusted_score": 0.625,
+        "sequence_score": 0.717,
+        "key_coverage": 0.545,
+        "start_para": 9,
+        "end_para": 10
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 5,
+      "file": "paper/docs/chap01.tex",
+      "v1_aigc_chars": 274,
+      "v1_aigc_share": "0.81%",
+      "risk_flags": {
+        "generic_conclusion": [
+          "重要参考"
+        ]
+      },
+      "risk_summary": "泛化总结句(重要参考)",
+      "v1_highlight_text": "实时目标检测是当前工业视觉中最成熟的方向之一。YOLO 系列以端到端、结构简洁和工程可用性强著称，在大量真实场景中获得了广泛应用 [8]。为了适配不同计算预算，研究者进一步提出了可伸缩的检测网络设计，例如EfficientDet通过跨尺度特征融合和复合缩放策略，在精度与计算量之间取得了较好的平衡[9]；MobileNetV3和EfficientNet则分别从移动端神经架构搜索和统一缩放规律角度，为轻量骨干网络设计提供了重要参考[10-11]。此外，EdgeYOLO等工作进一步把边缘实时检测作为设计目标，强调算子友好性、端侧吞吐和推理效率[12]。",
+      "current_text": "实时目标检测已经在工业视觉中形成较成熟的工程路线。YOLO 系列采用端到端预测，结构相对简洁，在不少真实场景中都能直接落地[redmon2017yolo9000]。不同计算预算下，检测网络通常需要在精度和计算量之间取舍：EfficientDet 通过跨尺度特征融合和复合缩放策略取得较好的折中[tan2020efficientdet]；MobileNetV3、EfficientNet 分别从移动端架构搜索和统一缩放规律角度提供了轻量骨干设计参考[howard2019mobilenetv3,tan2019efficientnet]。EdgeYOLO 等工作则把边缘实时检测作为目标，更关注算子友好性、端侧吞吐和推理效率[zhou2023edgeyolo]。",
+      "match": {
+        "file": "paper/docs/chap01.tex",
+        "source": "paragraphs 11-11",
+        "line": 43,
+        "match_score": 0.465,
+        "adjusted_score": 0.453,
+        "sequence_score": 0.599,
+        "key_coverage": 0.234,
+        "start_para": 11,
+        "end_para": 11
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。"
+    },
+    {
+      "index": 6,
+      "file": "paper/docs/chap01.tex",
+      "v1_aigc_chars": 264,
+      "v1_aigc_share": "0.78%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "有效",
+          "稳定"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(有效、稳定)",
+      "v1_highlight_text": "当目标检测任务受到长尾样本和困难样本主导时，仅靠扩大数据量并不能稳定提升系统表现。OHEM等在线难例挖掘方法强调，让模型更多关注当前最难的样本，可以提升训练效率并改善关键失败模式[15]。在目标检测场景中，定向数据增强也是提升泛化能力的重要手段。Scale-Aware Automatic Augmentation等研究证明，针对目标尺度、位置和场景结构设计增强策略，往往比无差别增强更有效[16]。 电梯轿厢中的困难样本具有明显场景规律：反光区域集中在门板和镜面结构，遮挡多发生在人车重叠区域，电动车局部可见常出现在门口或边缘位置。",
+      "current_text": "当目标检测任务主要受长尾样本和困难样本影响时，单纯扩大数据量并不一定带来稳定收益。OHEM 等在线难例挖掘方法的思路，是让模型把更多训练权重放在当前最容易出错的样本上，从而改善关键失败模式[shrivastava2016ohem]。目标检测中的定向数据增强也有类似作用。Scale-Aware Automatic Augmentation 等研究说明，围绕目标尺度、位置和场景结构设计增强策略，通常比无差别增强更贴近检测误差来源[chen2021scaleaware]。\n\n电梯轿厢中的困难样本具有明显场景规律：反光区域集中在门板和镜面结构，遮挡多发生在人车重叠区域，电动车局部可见常出现在门口或边缘位置。因此，本文将这些因素作为场景复杂性解释工具，用于说明指标变化与实际轿厢结构之间的关系，并将研究重点收束在双目标检测、板端兼容迁移和部署一致性评价上。",
+      "match": {
+        "file": "paper/docs/chap01.tex",
+        "source": "paragraphs 14-15",
+        "line": 51,
+        "match_score": 0.55,
+        "adjusted_score": 0.526,
+        "sequence_score": 0.659,
+        "key_coverage": 0.465,
+        "start_para": 14,
+        "end_para": 15
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。 仍保留：稳定。"
+    },
+    {
+      "index": 7,
+      "file": "paper/docs/chap01.tex",
+      "v1_aigc_chars": 741,
+      "v1_aigc_share": "2.2%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "首先",
+          "其次",
+          "最后",
+          "第一",
+          "第二",
+          "第三"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ],
+        "passive_formula": [
+          "上述"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(首先、其次、最后、第一、第二、第三)；AI高频词堆叠(稳定、完整)；被动分析套话(上述)",
+      "v1_highlight_text": "首先，电梯安全视觉任务需要刻画人车共现、遮挡反光和局部可见等轿厢因素，因此本文将电梯安全管理需求建模为person + ebike双目标检测问题。其次，模型边缘迁移不能只被视为环境配置，输入、类别、输出和后处理约束都需要显式检查，因此本文将PyTorch、ONNX、OM和板端后处理抽象为迁移接口契约。最后，实验结果解释不能只依赖离线mAP或单一平均耗时，而需要结合完整验证集、分类别指标、阈值重算、NMS敏感性、后处理消融、分段计时和视频片段观察来说明部署后的模型行为。 本文的核心思路是：对于电梯轿厢这类封闭式安全场景，模型的应用价值不只取决于离线检测精度，还取决于任务定义是否贴合风险、迁移接口是否保持语义一致、实验指标是否能够解释板端真实运行口径。换言之，本文把YOLO双目标检测、边缘兼容迁移和部署一致性评价作为同一条研究主线，而不是三个彼此割裂的工程步骤。 该问题具有三方面研究动机。第一，电梯安全视觉对漏检和误检都敏感，模型迁移过程中的小幅数值变化可能被放大为报警行为差异。第二，YOLO检测器虽然部署友好，但其输出张量、类别顺序和后处理参数必须被正确解释，否则板端结果会偏离训练阶段的预期输出。第三，HongOU PI（Hi3516DV500）开发板采用海思视觉SoC、专用NPU和OM离线模型格式，其部署链路涉及ONNX导出、ATC编译、板端运行时调用和应用层后处理等多个可能引入差异的环节，能够反映同类目标平台中的典型迁移约束。 基于上述动机，本文将“检测精度”和“部署一致性”同时作为评价目标。检测精度回答模型能否识别行人与电动车，部署一致性回答模型迁移到边缘设备后是否仍以相同语义、稳定阈值和清晰运行口径输出结果。二者结合，才能较完整地评价电梯边缘安全视觉系统的可用性。",
+      "current_text": "围绕这一问题，全文按“问题链—技术缺口—核心处理方式”的组织思路。电梯安全视觉任务要面对人车共现、遮挡反光和局部可见等轿厢因素，因而安全管理需求被落到 person + ebike 双目标检测问题。模型边缘迁移也不能只被当作环境配置，输入、类别、输出和后处理约束都需要显式检查，本文据此把 PyTorch、ONNX、OM 和板端后处理抽象为迁移接口契约。至于结果解释，离线 mAP 或单一平均耗时远远不够——全量验证集、分类别指标、阈值重算、NMS 敏感性、后处理消融、分段计时和视频片段观察需要放在一起，才能说清部署后模型到底表现如何。\n\n本文的核心思路是：对于电梯轿厢这类封闭式安全场景，模型的应用价值不只取决于离线检测精度，还取决于任务定义是否贴合风险、迁移接口是否保持语义一致、实验指标是否能够解释板端真实运行口径。换言之，本文把 YOLO 双目标检测、边缘兼容迁移和部署一致性评价作为同一条研究主线，而不是三个彼此割裂的工程步骤。\n\n这一问题的研究动机主要来自部署现场本身。电梯安全视觉对漏检和误检都敏感，迁移过程中的小幅数值变化可能被放大为报警行为差异。YOLO 检测器虽然部署友好，但输出张量、类别顺序和后处理参数一旦解释错误，板端结果就会偏离训练阶段预期。HongOU PI（Hi3516DV500）开发板采用海思视觉 SoC、专用 NPU 和 OM 离线模型格式，部署链路涉及 ONNX 导出、ATC 编译、板端运行时调用和应用层后处理等环节，能够反映同类目标平台中的典型迁移约束。\n\n基于上述动机，本文同时关注检测精度和部署一致性。前者回答模型能否识别行人与电动车，后者回答模型迁移到边缘设备后，类别语义、阈值行为和运行口径是否仍然对得上训练阶段的预期。两方面放在一起，才能比较充分地判断电梯边缘安全视觉系统是否真正可用。",
+      "match": {
+        "file": "paper/docs/chap01.tex",
+        "source": "paragraphs 19-22",
+        "line": 67,
+        "match_score": 0.71,
+        "adjusted_score": 0.71,
+        "sequence_score": 0.818,
+        "key_coverage": 0.577,
+        "start_para": 19,
+        "end_para": 22
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：上述、评价、部署一致性。"
+    },
+    {
+      "index": 8,
+      "file": "paper/docs/chap01.tex",
+      "v1_aigc_chars": 294,
+      "v1_aigc_share": "0.87%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "构建",
+          "稳定",
+          "可追溯"
+        ],
+        "passive_formula": [
+          "本文主要开展以下工作"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(构建、稳定、可追溯)；被动分析套话(本文主要开展以下工作)",
+      "v1_highlight_text": "场景复杂性因素用于解释检测误差和部署稳定性，评价主线集中在双目标检测与板端一致性。围绕这一目标，本文主要开展以下工作。 1) 建立电梯轿厢双目标检测任务定义，明确行人与电动车两个核心类别，其中行人检测服务于人员计数与异常感知，电动车检测服务于入梯风险识别。 2) 总结电梯场景中的典型困难因素，用于解释遮挡、局部可见和光照变化对检测输出的影响。 3) 分析YOLO类检测器在双目标任务中的结构适配方式，明确输入尺寸、类别顺序、检测头输出和NMS后处理对部署结果的影响。 4) 构建从YOLO类训练权重、ONNX、OM到边缘设备执行的兼容迁移链路，重点关注类别一致、边框解释一致、阈值稳定和运行状态可追溯。",
+      "current_text": "本文的研究目标是：面向电梯轿厢行人与电动车双目标检测任务，整理一套面向目标平台的 YOLO 类检测模型兼容迁移流程，并通过统一实验协议验证模型在 HongOU PI（Hi3516DV500）开发板上的检测精度、阈值行为和运行时口径。场景复杂性因素用于解释检测误差和部署稳定性，评价主线集中在双目标检测与板端一致性。围绕这一目标，本文主要开展以下工作。\n\nenumerate\n 建立电梯轿厢双目标检测任务定义，明确行人与电动车两个核心类别，其中行人检测服务于人员计数与异常感知，电动车检测服务于入梯风险识别。\n 总结电梯场景中的典型困难因素，用于解释遮挡、局部可见和光照变化对检测输出的影响。\n 分析 YOLO 类检测器在双目标任务中的结构适配方式，明确输入尺寸、类别顺序、检测头输出和 NMS 后处理对部署结果的影响。\n 整理从 YOLO 类训练权重、ONNX、OM 到边缘设备执行的兼容迁移链路，逐项检查类别是否一致、边框解释是否对齐、阈值行为是否保持以及运行状态能否追溯。\n 在统一验证集、参数敏感性、后处理消融、代表性片段和分段计时实验上进行分析，给出总体指标、分类别指标、部署参数影响和边缘设备运行表现。\nenumerate",
+      "match": {
+        "file": "paper/docs/chap01.tex",
+        "source": "paragraphs 23-24",
+        "line": 77,
+        "match_score": 0.676,
+        "adjusted_score": 0.635,
+        "sequence_score": 0.7,
+        "key_coverage": 0.818,
+        "start_para": 23,
+        "end_para": 24
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：稳定、评价。"
+    },
+    {
+      "index": 9,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 571,
+      "v1_aigc_share": "1.69%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "综合",
+          "显著"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(综合、显著)",
+      "v1_highlight_text": "目标检测需要同时定位目标位置并判定目标类别。与图像分类只输出整幅图像类别不同，目标检测需要输出一组边界框、类别标签和置信度分数。对于电梯轿厢场景，本文只关注person与ebike两类目标，但检测任务并未因此变得简单。狭小空间中的遮挡、反光和近距离透视会使同一目标在不同帧中呈现不同尺度和形态，进而影响边框回归和类别置信度。 从深度学习目标检测的发展看，早期方法通常采用“候选区域生成+分类回归”的两阶段框架。R-CNN通过卷积特征和候选区域分类显著提升了检测精度[18]，Fast R-CNN将特征共享和端到端训练进一步结合[19]，Faster R-CNN则通过区域建议网络减少外部候选框依赖[20]。这一路线的优点是定位和分类较稳，但推理链路相对复杂，部署到资源受限的边缘设备时需要更多算子和内存支持。相比之下，SSD将多尺度默认框和单阶段预测结合起来[21]，YOLO则把检测问题统一为端到端回归问题[22]，为实时视觉和边缘部署提供了更直接的工程路径。 评价目标检测模型时，常用指标包括precision、recall、F1、IoU和mAP@0.5。precision表示预测为目标的结果中有多少是真实目标，recall表示真实目标中有多少被成功检测，F1则综合二者。当预测框与真实框的交并比达到阈值且类别一致时，该预测通常被视为正确检测。",
+      "current_text": "目标检测需要同时定位目标位置并判定目标类别。与图像分类只输出整幅图像类别不同，目标检测需要输出一组边界框、类别标签和置信度分数。对于电梯轿厢场景，本文只关注 person 与 ebike 两类目标，但检测任务并未因此变得简单。狭小空间中的遮挡、反光和近距离透视会使同一目标在不同帧中呈现不同尺度和形态，进而影响边框回归和类别置信度。\n\n从深度学习目标检测的发展看，早期方法通常采用“候选区域生成 + 分类回归”的两阶段框架。R-CNN 借助卷积特征和候选区域分类提高了检测精度[girshick2014rcnn]，Fast R-CNN 将特征共享和端到端训练结合起来[girshick2015fast]，Faster R-CNN 则通过区域建议网络减少外部候选框依赖[ren2017faster]。这一路线定位和分类较稳，但推理链路相对复杂，部署到资源受限的边缘设备时需要更多算子和内存支持。相比之下，SSD 将多尺度默认框和单阶段预测结合起来[liu2016ssd]，YOLO 把检测问题统一为端到端回归问题[redmon2016yolo]，工程路径更直接。\n\n评价目标检测模型时，常用指标包括 precision、recall、F1、IoU 和 mAP@0.5。precision 表示预测为目标的结果中有多少是真实目标，recall 表示真实目标中有多少被成功检测，F1 则综合二者。当预测框与真实框的交并比达到阈值且类别一致时，该预测通常被视为正确检测。本文采用 mAP@0.5 衡量图像级检测能力，并在安全视觉分析中同时关注分类别召回率，因为电动车漏检比普通背景误检更直接影响预警效果。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 2-4",
+        "line": 8,
+        "match_score": 0.812,
+        "adjusted_score": 0.793,
+        "sequence_score": 0.859,
+        "key_coverage": 0.796,
+        "start_para": 2,
+        "end_para": 4
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：评价。"
+    },
+    {
+      "index": 10,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 498,
+      "v1_aigc_share": "1.48%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "稳定"
+        ],
+        "passive_formula": [
+          "上述"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(稳定)；被动分析套话(上述)",
+      "v1_highlight_text": "上述三个指标在安全视觉中的含义并不完全相同。precision偏低意味着误报较多，可能造成无效提醒；recall偏低意味着漏检较多，可能造成风险未被发现；F1则适合观察二者的折中关系。对于电梯安全视觉场景，行人漏检可能影响人员计数准确性，电动车漏检则可能造成安全风险未被发现，两类召回率均需要关注。 目标检测结果还受到阈值和非极大值抑制的影响。置信度阈值决定低分候选框是否保留，NMS阈值决定重叠候选框是否被抑制。若阈值设置过高，系统可能漏掉局部可见的电动车；若阈值设置过低，又可能引入门框、反光或大面积背景误检。可见，阈值并不是简单的工程参数，而是连接检测性能和安全输出稳定性的重要因素。 现代检测器还大量依赖多尺度特征和密集预测。FPN通过自顶向下路径和横向连接增强不同尺度目标的表达能力[23]，Focal Loss则针对密集检测中的正负样本不平衡问题提出了难例加权机制[24]。Mask R-CNN展示了检测框架向实例分割扩展的能力[25]，CenterNet等anchor-free方法把目标表示为关键点或中心点[26]。这些研究说明，检测器的结构选择会影响候选框数量、分类置信度和定位稳定性。",
+      "current_text": "设某一类别的真正例、假正例和假负例分别为 TP、FP 和 FN，则 precision、recall 与 F1 可以写为\nequation\n P=TPTP+FP, R=TPTP+FN, F1=2PRP+R.\nequation\n这三个指标在安全视觉中的含义并不完全相同。precision 偏低意味着误报较多，可能造成无效提醒；recall 偏低意味着漏检较多，可能造成风险未被发现；F1 则适合观察二者的折中关系。对于电梯安全视觉场景，行人漏检可能影响人员计数准确性，电动车漏检则可能造成安全风险未被发现，两类召回率均需要关注。\n\n目标检测结果还受到阈值和非极大值抑制的影响。置信度阈值决定低分候选框是否保留，NMS 阈值决定重叠候选框是否被抑制。阈值过高时，系统可能漏掉局部可见的电动车；阈值过低时，门框、反光或大面积背景又更容易引入误检。阈值因此不只是工程参数，它直接连接检测性能和安全输出稳定性。\n\n现代检测器还大量依赖多尺度特征和密集预测。FPN 通过自顶向下路径和横向连接增强不同尺度目标的表达能力[lin2017fpn]，Focal Loss 则针对密集检测中的正负样本不平衡问题提出了难例加权机制[lin2017focal]。Mask R-CNN 展示了检测框架向实例分割扩展的能力[he2017mask]，CenterNet 等 anchor-free 方法把目标表示为关键点或中心点[zhou2019centernet]。这些研究说明，检测器的结构选择会影响候选框数量、分类置信度和定位稳定性。本文不追求复杂检测范式的横向比较，而是选择 YOLO 作为可部署基础，并在部署端对阈值、NMS 和后处理行为做更细的解释。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 6-8",
+        "line": 16,
+        "match_score": 0.753,
+        "adjusted_score": 0.722,
+        "sequence_score": 0.79,
+        "key_coverage": 0.8,
+        "start_para": 6,
+        "end_para": 8
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：稳定。"
+    },
+    {
+      "index": 11,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 268,
+      "v1_aigc_share": "0.8%",
+      "risk_flags": {
+        "generic_conclusion": [
+          "具有重要意义"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "泛化总结句(具有重要意义)；AI高频词堆叠(稳定、完整)",
+      "v1_highlight_text": "近期，YOLOv9引入可编程梯度信息机制[32]，YOLOv10探索端到端无NMS检测[33]，后续还出现了YOLOv11、YOLO12等更多变体。不过，各版本在同类任务上的精度差异往往较小，YOLO系列的核心价值更多体现在其可训练、可导出、可部署的完整工程生态上。 从结构上看，YOLO检测器通常包含Backbone、Neck和Head三部分。Backbone负责提取视觉特征，Neck 负责融合不同尺度的特征，Head负责输出检测框与类别分数。电梯场景中既存在近景人体，也存在局部可见的电动车结构，多尺度特征融合对稳定检测具有重要意义。",
+      "current_text": "从结构上看，YOLO 检测器通常包含 Backbone、Neck 和 Head 三部分。Backbone 负责提取视觉特征，Neck 负责融合不同尺度的特征，Head 负责输出检测框与类别分数。电梯场景中既有近景人体，也有局部可见的电动车结构，多尺度特征融合会直接影响检测稳定性。图 fig:yolo_pipeline 给出了本文采用的 YOLO 双目标检测流程。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 13-13",
+        "line": 51,
+        "match_score": 0.456,
+        "adjusted_score": 0.432,
+        "sequence_score": 0.571,
+        "key_coverage": 0.312,
+        "start_para": 13,
+        "end_para": 13
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。 仍保留：稳定。"
+    },
+    {
+      "index": 12,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 393,
+      "v1_aigc_share": "1.17%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "若板端仍按通用类别数或旧输出格式解释结果，即使模型权重本身正确，最终检测框也可能出现类别错位或坐标失真。 近年来，DETR等端到端检测框架将目标检测建模为集合预测问题，减少了手工设计候选框和部分后处理步骤[34]。这类方法展示了目标检测结构的另一条发展路线，但在本文的边缘开发板场景中，模型部署成熟度、算子支持和实时处理成本同样重要。相比之下，YOLO系列在工程链路中具有更成熟的导出、编译和板端适配经验，更适合作为本文可复查的边缘安全视觉实现基础。 从部署角度看，YOLOv8的优势在于主干、特征融合和检测头之间边界清晰，便于检查导出模型的输入输出。但这种清晰结构并不意味着部署可以自动正确完成。训练框架中的预测结果通常已经完成坐标还原、类别筛选和NMS，而导出模型可能只给出未经封装的张量。板端程序必须明确张量维度、类别数、分数含义和坐标尺度，才能得到与训练阶段评价结果可比较的检测框。",
+      "current_text": "近年来，DETR 等端到端检测框架将目标检测建模为集合预测问题，减少了手工设计候选框和部分后处理步骤[carion2020detr]。这类方法展示了目标检测结构的另一条发展路线，但在本文的边缘开发板场景中，模型部署成熟度、算子支持和实时处理成本同样重要。相比之下，YOLO 系列在工程链路中具有更成熟的导出、编译和板端适配经验，更适合作为本文可复查的边缘安全视觉实现基础。\n\n从部署角度看，YOLOv8 的优势在于主干、特征融合和检测头之间边界清晰，便于检查导出模型的输入输出。但这种清晰结构并不意味着部署可以自动正确完成。训练框架中的预测结果通常已经完成坐标还原、类别筛选和 NMS，而导出模型可能只给出未经封装的张量。板端程序必须明确张量维度、类别数、分数含义和坐标尺度，才能得到与训练阶段评价结果可比较的检测框。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 16-17",
+        "line": 62,
+        "match_score": 0.881,
+        "adjusted_score": 0.868,
+        "sequence_score": 0.907,
+        "key_coverage": 0.871,
+        "start_para": 16,
+        "end_para": 17
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：评价。"
+    },
+    {
+      "index": 13,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 681,
+      "v1_aigc_share": "2.02%",
+      "risk_flags": {
+        "generic_conclusion": [
+          "由此可见"
+        ],
+        "ai_high_freq": [
+          "显著"
+        ]
+      },
+      "risk_summary": "泛化总结句(由此可见)；AI高频词堆叠(显著)",
+      "v1_highlight_text": "轻量化模型选择需要兼顾精度和设备约束。MobileNet、EfficientNet、EfficientDet等研究说明了特征提取效率、模型缩放和检测性能之间的关系[9-11]。在电梯场景中，类别数少并不意味着可以忽略模型表达能力；遮挡和局部可见目标要求模型保留足够多尺度特征。同时，边缘开发板的算力和算子支持又要求模型结构不过度复杂。基于这一考虑，本文采用轻量YOLO模型作为检测基础，并把可部署性纳入模型选择依据。 轻量骨干网络研究为这一选择提供了背景。Inception 结构通过多分支卷积提升表达效率[37]，ResNet用残差连接缓解深层网络训练退化[38]；MobileNet系列通过深度可分离卷积和倒残差结构显著降低计算量[39][40]，SqueezeNet以极小参数量实现接近AlexNet的精度[41]，ShuffleNet V2总结了移动端网络设计的实际准则[42]。MnasNet和MobileNetV3进一步把硬件延迟纳入搜索目标[43][10]，Once-for-All则尝试通过一次训练适配多种部署约束[44]。这些研究共同说明，边缘检测不能只看理论FLOPs，还需要考虑算子、内存访问和目标硬件的真实执行特性。 在本文任务中，YOLO失效通常不是随机出现的，而是与轿厢空间结构有关。门口区域的垂直边缘可能被误识别为目标边界，镜面反光可能生成重复候选框，电动车只露出车把或车轮时可能造成低置信度候选。由此可见，模型结构、数据分布和后处理阈值共同决定最终效果。后续实验中对分类别召回率和阈值敏感性的关注，正是为了把这些失效现象转化为可分析指标。",
+      "current_text": "轻量化模型选择需要在精度和设备约束之间取舍。MobileNet、EfficientNet、EfficientDet 等研究讨论了特征提取效率、模型缩放和检测性能之间的关系[howard2019mobilenetv3,tan2019efficientnet,tan2020efficientdet]。电梯场景类别数少，但这并不意味着模型表达能力可以降低要求；遮挡和局部可见目标仍然需要多尺度特征支持。另一方面，边缘开发板的算力和算子支持又限制了模型复杂度。本文采用轻量 YOLO 模型，正是出于检测能力和可部署性的折中。\n\n轻量骨干网络研究为这一选择提供了背景。Inception 结构通过多分支卷积提升表达效率[szegedy2015inception]，ResNet 用残差连接缓解深层网络训练退化[he2016resnet]；MobileNet 系列通过深度可分离卷积和倒残差结构显著降低计算量[howard2017mobilenets][sandler2018mobilenetv2]，SqueezeNet 以极小参数量实现接近 AlexNet 的精度[iandola2016squeezenet]，ShuffleNet V2 总结了移动端网络设计的实际准则[ma2018shufflenetv2]。MnasNet 和 MobileNetV3 进一步把硬件延迟纳入搜索目标[tan2018mnasnet][howard2019mobilenetv3]，Once-for-All 则尝试通过一次训练适配多种部署约束[cai2019onceforall]。这些研究共同说明，边缘检测不能只看理论 FLOPs，还需要考虑算子、内存访问和目标硬件的真实执行特性。\n\n在本文任务中，YOLO 失效通常不是随机出现的，而是与轿厢空间结构有关。门口区域的垂直边缘可能被误识别为目标边界，镜面反光可能生成重复候选框，电动车只露出车把或车轮时又容易产生低置信度候选。模型结构、数据分布和后处理阈值会一起决定最终效果。后续实验关注分类别召回率和阈值敏感性，也是为了把这些失效现象转化为可分析指标。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 19-21",
+        "line": 68,
+        "match_score": 0.71,
+        "adjusted_score": 0.686,
+        "sequence_score": 0.756,
+        "key_coverage": 0.67,
+        "start_para": 19,
+        "end_para": 21
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：显著。"
+    },
+    {
+      "index": 14,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 323,
+      "v1_aigc_share": "0.96%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "边缘智能强调在靠近数据源的位置完成推理，以降低带宽、隐私和响应时延压力 [1]。本文使用的 HongOU PI（Hi3516DV500）并非仅作为通用开发板出现，而是作为面向电梯安全视觉的国产边缘 AI实验平台。该平台搭载华为海思Hi3516DV500 视觉SoC，集成双核ARM Cortex-A55 CPU、专用NPU、图像处理与媒体输入输出能力，产品规格中给出的典型配置包括2 GB DDR4、8 GB eMMC和2 TOPS INT8 NN算力。与桌面GPU或服务器推理不同，Hi3516DV500板端部署要求模型先从训练框架导出为中间表示，再通过CANN/ATC等工具编译为设备可执行的OM离线模型，并在板端应用中通过SVP_NPU相关运行接口完成推理与输出解释。",
+      "current_text": "边缘智能强调在靠近数据源的位置完成推理，以降低带宽、隐私和响应时延压力[shi2016edge]。本文使用的 HongOU PI（Hi3516DV500）并非仅作为通用开发板出现，而是作为面向电梯安全视觉的国产边缘 AI 实验平台。该平台搭载华为海思 Hi3516DV500 视觉 SoC，集成双核 ARM Cortex-A55 CPU、专用 NPU、图像处理与媒体输入输出能力，产品规格中给出的典型配置包括 2 GB DDR4、8 GB eMMC 和 2 TOPS INT8 NN 算力。与桌面 GPU 或服务器推理不同，Hi3516DV500 板端部署要求模型先从训练框架导出为中间表示，再通过 CANN/ATC 等工具编译为设备可执行的 OM 离线模型，并在板端应用中通过 SVP_NPU 相关运行接口完成推理与输出解释。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 22-22",
+        "line": 78,
+        "match_score": 0.976,
+        "adjusted_score": 0.971,
+        "sequence_score": 0.984,
+        "key_coverage": 0.985,
+        "start_para": 22,
+        "end_para": 22
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 15,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 296,
+      "v1_aigc_share": "0.88%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第一",
+          "第二",
+          "第三",
+          "第四",
+          "第五"
+        ],
+        "passive_formula": [
+          "该链路"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第一、第二、第三、第四、第五)；被动分析套话(该链路)",
+      "v1_highlight_text": "该链路通常包括六个环节。第一，训练阶段得到YOLO权重；第二，导出ONNX中间表示；第三，使用ATC进行编译与优化；第四，生成OM离线模型；第五，在板端通过NPU运行推理；第六，在应用层完成输出解码、阈值筛选和NMS后处理。每个环节都可能改变输出行为。例如，预处理方式不同会改变输入分布，张量读取顺序错误会改变类别语义，后处理阈值不同会改变最终检测数量。 在Hi3516DV500板端部署链路中，AIPP、输入尺寸、算子支持和内存布局都会影响模型执行。AIPP若承担颜色空间转换或归一化操作，则训练阶段预处理必须与板端配置对应；若预处理在应用层完成，则应用层需要保证输入张量与模型期望一致。OM",
+      "current_text": "这条链路从训练阶段的 YOLO 权重开始，经过 ONNX 导出、ATC 编译与优化，形成 OM 离线模型后，再由板端 NPU 执行推理，并在应用层完成输出解码、阈值筛选和 NMS 后处理。每个环节都可能改变输出行为。例如，预处理方式不同会改变输入分布，张量读取顺序错误会改变类别语义，后处理阈值不同会改变最终检测数量。\n\n在 Hi3516DV500 板端部署链路中，AIPP、输入尺寸、算子支持和内存布局都会影响模型执行。AIPP 若承担颜色空间转换或归一化操作，则训练阶段预处理必须与板端配置对应；若预处理在应用层完成，则应用层需要保证输入张量与模型期望一致。OM 模型编译完成后，其输入输出名称、形状和数据类型也需要被记录，否则后续调试很难判断错误来自模型本身还是应用层解释。对电梯安全视觉而言，这些约束会直接影响类别顺序、边框解码、候选框筛选和报警稳定性，本文因而把板端工具链和运行时接口作为部署一致性评价的一部分。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 25-26",
+        "line": 89,
+        "match_score": 0.659,
+        "adjusted_score": 0.634,
+        "sequence_score": 0.73,
+        "key_coverage": 0.683,
+        "start_para": 25,
+        "end_para": 26
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 16,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 284,
+      "v1_aigc_share": "0.84%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "完整"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(完整)",
+      "v1_highlight_text": "TPU的系统分析展示了专用加速器在数据中心推理和训练中的性能收益[45]，TVM则代表了通过端到端编译优化把模型映射到不同硬件后端的研究方向[46]。边缘场景与数据中心不同，设备功耗、内存和算子支持更受限制，本文重点关注模型在Hi3516DV500板端完整执行后的输出解释和运行口径，而不是把通用加速器吞吐作为主要评价指标。 模型压缩和量化是边缘部署中的常见方法。整数推理友好量化、剪枝和知识蒸馏分别从数值表示、结构冗余和知识迁移角度降低模型部署成本[3-5]。混合精度量化研究进一步表明，不同网络层对量化误差的敏感性并不相同，量化策略会影响最终精度和部署效率[47]。",
+      "current_text": "深度学习系统研究也表明，模型执行效率不仅由网络本身决定，还由编译器、运行时和硬件体系共同决定。TPU 的系统分析展示了专用加速器在数据中心推理和训练中的性能收益[jouppi2017tpu]，TVM 则代表了通过端到端编译优化把模型映射到不同硬件后端的研究方向[chen2018tvm]。边缘场景与数据中心不同，设备功耗、内存和算子支持更受限制，本文重点关注模型在 Hi3516DV500 板端完整执行后的输出解释和运行口径，而不是把通用加速器吞吐作为主要评价指标。\n\n模型压缩和量化是边缘部署中的常见方法。整数推理友好量化、剪枝和知识蒸馏分别从数值表示、结构冗余和知识迁移角度降低模型部署成本[jacob2018quantization,han2016deep,hinton2015distilling]。混合精度量化研究进一步表明，不同网络层对量化误差的敏感性并不相同，量化策略会影响最终精度和部署效率[dong2019hawq]。不过，本文并不把模型压缩作为主要创新，而是关注场景化训练后的 YOLOv8n 模型在既定边缘平台上的兼容迁移与行为一致性。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 27-28",
+        "line": 93,
+        "match_score": 0.724,
+        "adjusted_score": 0.68,
+        "sequence_score": 0.723,
+        "key_coverage": 0.904,
+        "start_para": 27,
+        "end_para": 28
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、评价。"
+    },
+    {
+      "index": 17,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 273,
+      "v1_aigc_share": "0.81%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第五"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "可解释"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第五)；AI高频词堆叠(稳定、可解释)",
+      "v1_highlight_text": "如果应用层增加类别特定清理规则，某些看似模型误差的问题可能实际来自后处理策略。第五章中的阈值敏感性、NMS敏感性和后处理消融正是围绕这一逻辑设计。 将后处理作为部署模块分析，有助于界定模型前向结果与应用层规则之间的关系。本文关注的是安全视觉落地过程中模型权重、阈值、NMS和应用层清理如何共同决定板端输出，因此先给出端到端基准，再通过参数敏感性和消融实验解释关键设计选择。 边缘部署还需要区分“能够运行”和“适合应用”。能够运行表示模型可以被编译、加载并完成推理；适合应用则要求输出稳定、运行口径清晰、失败样本可解释，并且后处理规则能够服务安全需求。",
+      "current_text": "本文把阈值、NMS 和后处理策略纳入部署一致性，而不是简单把它们视为“调参”。训练阶段和板端若使用不同置信度阈值，precision、recall 和预测框数量会同步变化；NMS 阈值不同，拥挤重叠区域的候选框保留关系也会变化；应用层如果增加类别特定清理规则，某些看似模型误差的问题可能实际来自后处理策略。第五章中的阈值敏感性、NMS 敏感性和后处理消融正是围绕这一逻辑设计。\n\n将后处理作为部署模块分析，有助于界定模型前向结果与应用层规则之间的关系。本文关注的是安全视觉落地过程中模型权重、阈值、NMS 和应用层清理如何共同决定板端输出，因此先给出端到端基准，再通过参数敏感性和消融实验解释关键设计选择。\n\n边缘部署还需要区分“能够运行”和“适合应用”。能够运行表示模型可以被编译、加载并完成推理；适合应用则要求输出可靠、运行口径清晰、失败样本有迹可循，并且后处理规则能够服务安全需求。本文实验结果中的成功样本数、batch 验证链路耗时、分段计时和阈值敏感性分析，将板端可运行性进一步拆解为检测输出、验证链路和分段耗时三个层面。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 31-33",
+        "line": 103,
+        "match_score": 0.729,
+        "adjusted_score": 0.685,
+        "sequence_score": 0.731,
+        "key_coverage": 0.935,
+        "start_para": 31,
+        "end_para": 33
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：第五。"
+    },
+    {
+      "index": 18,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 508,
+      "v1_aigc_share": "1.51%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "首先",
+          "第一"
+        ],
+        "ai_high_freq": [
+          "稳定"
+        ],
+        "passive_formula": [
+          "上述"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(首先、第一)；AI高频词堆叠(稳定)；被动分析套话(上述)",
+      "v1_highlight_text": "电梯安全视觉可以延伸出多种任务形态，包括人数统计、目标跟踪、姿态估计和视频行为理解等。人数统计研究能够反映轿厢拥挤程度，并已有基于边缘轻量检测器的电梯人数统计系统[17]；多目标跟踪方法如DeepSORT和ByteTrack则关注跨帧关联与轨迹保持[51-52]；姿态估计和视频识别方法可以进一步描述人体关键点或动作模式[53-54]。这些方向都与电梯安全有关，但它们需要额外标注、时序建模或行为定义。 在连续视频场景中，SORT使用卡尔曼滤波和匈牙利匹配完成简单在线关联[55]，DeepSORT 加入外观特征以增强跨帧关联[51]，ByteTrack则强调低分检测框在跟踪中的利用价值[52]。这些工作说明，视频稳定性往往需要检测器和时序逻辑共同保证。围绕本文的双目标检测主线，代表性视频片段主要用于观察连续输出保持、闪烁和分段耗时，为板端部署一致性提供连续场景证据。 上述任务为电梯安全视觉提供了后续拓展方向。本文将研究重点放在 person 与ebike双目标检测及其边缘迁移上，原因有二。第一，电梯安全管理首先需要稳定识别行人与电动车，行人检测支撑人员计数、电动车检测支撑入梯风险治理，这是后续跟踪和行为判断的基础。",
+      "current_text": "电梯安全视觉可以延伸出多种任务形态，包括人数统计、目标跟踪、姿态估计和视频行为理解等。人数统计研究能够反映轿厢拥挤程度，并已有基于边缘轻量检测器的电梯人数统计系统[lin2023elevatorcounting]；多目标跟踪方法如 DeepSORT 和 ByteTrack 则关注跨帧关联与轨迹保持[wojke2017deepsort,zhang2022bytetrack]；姿态估计和视频识别方法可以进一步描述人体关键点或动作模式[cao2017openpose,feichtenhofer2019slowfast]。这些方向都与电梯安全有关，但它们需要额外标注、时序建模或行为定义。\n\n在连续视频场景中，SORT 使用卡尔曼滤波和匈牙利匹配完成简单在线关联[bewley2016sort]，DeepSORT 加入外观特征以增强跨帧关联[wojke2017deepsort]，ByteTrack 则强调低分检测框在跟踪中的利用价值[zhang2022bytetrack]。这些工作说明，视频稳定性往往需要检测器和时序逻辑共同保证。围绕本文的双目标检测主线，代表性视频片段主要用于观察连续输出保持、闪烁和分段耗时，为板端部署一致性提供连续场景证据。\n\n这些任务为电梯安全视觉留下了后续拓展空间。本文把重点放在 person 与 ebike 双目标检测及其边缘迁移上，主要因为电梯安全管理需要先稳定识别行人与电动车：行人检测支撑人员计数，电动车检测支撑入梯风险治理，这是后续跟踪和行为判断的基础。跟踪或动作识别还需要视频级标注和时序评价协议，更适合作为独立扩展任务。本文使用代表性视频片段，是为了补充运行状态和输出稳定性观察，并与图像验证集指标共同支撑部署一致性分析。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 34-36",
+        "line": 111,
+        "match_score": 0.731,
+        "adjusted_score": 0.698,
+        "sequence_score": 0.765,
+        "key_coverage": 0.788,
+        "start_para": 34,
+        "end_para": 36
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：稳定、部署一致性。"
+    },
+    {
+      "index": 19,
+      "file": "paper/docs/chap02.tex",
+      "v1_aigc_chars": 557,
+      "v1_aigc_share": "1.65%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第一",
+          "第二",
+          "第三",
+          "第四"
+        ],
+        "ai_high_freq": [
+          "稳定"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第一、第二、第三、第四)；AI高频词堆叠(稳定)",
+      "v1_highlight_text": "第一是类别一致性，即训练阶段、ONNX导出阶段、OM编译阶段和板端部署阶段对person与ebike的类别顺序解释一致。第二是边框解释一致性，即坐标归一化、缩放和裁剪方式在评价设计上保持可比较。第三是阈值稳定性，即置信度阈值和NMS参数在不同阶段含义一致。第四是运行时可靠性，即模型能够在边缘设备上稳定执行，并记录成功样本数、失败样本数、batch端到端耗时和分段计时等运行状态。 这四类一致性之间存在依赖关系。类别一致性是结果解释的前提，若类别顺序错误，后续precision和recall都失去意义；边框解释一致性是mAP和IoU评价的前提，若坐标还原错误，模型可能被误判为定位能力不足；阈值稳定性决定安全输出是否依赖偶然参数；运行时可靠性则决定一次实验是否能够代表真实设备行为。因此，本文将一致性评价放在方法章和实验章之间，作为连接模型迁移与实验结论的关键桥梁。 已有部署研究已经指出，深度模型从训练框架迁移到生产环境时，格式转换、算子支持和运行时差异会引入额外风险[6-7]。在电梯安全视觉中，这类风险会进一步受到场景因素放大。例如，反光和门口结构可能使候选框分数接近阈值，局部可见电动车可能使边框定位更敏感，拥挤重叠则可能改变NMS结果。因此，本文后续方法章将围绕接口契约和分阶段验证建立部署一致性分析框架。",
+      "current_text": "本文将一致性问题落到四个方面：类别顺序在训练、ONNX 导出、OM 编译和板端部署阶段应保持一致；坐标归一化、缩放和裁剪方式应在评价设计上可比较；置信度阈值和 NMS 参数在不同阶段应具有相同含义；模型还需要在边缘设备上稳定执行，并记录成功样本数、失败样本数、batch 端到端耗时和分段计时等运行状态。\n\n这四类一致性之间存在依赖关系。类别一致性是结果解释的前提，若类别顺序错误，后续 precision 和 recall 都失去意义；边框解释一致性是 mAP 和 IoU 评价的前提，若坐标还原错误，模型可能被误判为定位能力不足；阈值稳定性决定安全输出是否依赖偶然参数；运行时可靠性则决定一次实验是否能够代表真实设备行为。因此，本文将一致性评价放在方法章和实验章之间，作为连接模型迁移与实验结论的关键桥梁。\n\n已有部署研究已经指出，深度模型从训练框架迁移到生产环境时，格式转换、算子支持和运行时差异会引入额外风险[stacker2021deployment,chen2021aqd]。在电梯安全视觉中，这类风险会进一步受到场景因素放大。例如，反光和门口结构可能使候选框分数接近阈值，局部可见电动车可能使边框定位更敏感，拥挤重叠则可能改变 NMS 结果。因此，本文后续方法章将围绕接口契约和分阶段验证建立部署一致性分析框架。",
+      "match": {
+        "file": "paper/docs/chap02.tex",
+        "source": "paragraphs 38-40",
+        "line": 121,
+        "match_score": 0.818,
+        "adjusted_score": 0.815,
+        "sequence_score": 0.866,
+        "key_coverage": 0.758,
+        "start_para": 38,
+        "end_para": 40
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：稳定、评价、部署一致性。"
+    },
+    {
+      "index": 20,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 301,
+      "v1_aigc_share": "0.89%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "在进入板端部署前，本文采用Ultralytics YOLOv8n框架完成双目标检测模型的场景化训练。训练环境为x86_64工作站，主要硬件包括Intel Xeon Gold 6226R CPU、约125 GiB系统内存和4张NVIDIA GeForce RTX 3090 GPU；本次训练使用第0号GPU。训练任务使用person与ebike两类标注，输入尺寸为640×640，batch size为16，训练100个epoch，并以COCO预训练YOLOv8n权重作为初始化。该YOLOv8n模型对应后续ONNX导出、ATC编译和OM板端部署的源权重，因此训练阶段验证结果构成本文分析板端部署损失和检测能力保留情况的参照。",
+      "current_text": "在进入板端部署前，本文采用 Ultralytics YOLOv8n 框架完成双目标检测模型的场景化训练。训练环境为 x86_64 工作站，主要硬件包括 Intel Xeon Gold 6226R CPU、约 125 GiB 系统内存和 4 张 NVIDIA GeForce RTX 3090 GPU；本次训练使用第 0 号 GPU。训练任务使用 person 与 ebike 两类标注，输入尺寸为 $640 640$，batch size 为 16，训练 100 个 epoch，并以 COCO 预训练 YOLOv8n 权重作为初始化。该 YOLOv8n 模型对应后续 ONNX 导出、ATC 编译和 OM 板端部署的源权重，因此训练阶段验证结果构成本文分析板端部署损失和检测能力保留情况的参照。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 6-6",
+        "line": 23,
+        "match_score": 1.0,
+        "adjusted_score": 1.0,
+        "sequence_score": 1.0,
+        "key_coverage": 1.0,
+        "start_para": 6,
+        "end_para": 6
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 21,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 361,
+      "v1_aigc_share": "1.07%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "可解释"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(可解释)",
+      "v1_highlight_text": "本文将迁移链路抽象为接口契约。接口契约不是额外算法模块，而是贯穿训练、导出、编译和板端运行的约束集合，用于把容易隐含在代码和配置中的输入、类别、输出、后处理和运行时假设显式化。对于YOLO类检测器而言，这些契约对应输入图像语义、类别维度、检测头张量、候选框解码、置信度阈值、NMS策略和板端运行状态等具体环节。只有这些约束在各阶段保持一致，板端precision、recall、F1和mAP@0.5才具有可解释性。 输入契约约束输入尺寸、颜色通道、归一化、缩放与填充方式。电梯图像常包含强反光和大面积背景结构，若训练阶段和板端的缩放、填充或颜色通道处理不一致，模型对局部电动车结构的响应会发生变化，进而表现为分数漂移或小目标漏检。因此，输入契约要求训练配置、ONNX输入形状、OM模型输入和板端预处理路径采用一致的图像语义。",
+      "current_text": "本文将迁移链路抽象为接口契约。这里的契约不是额外算法模块，而是贯穿训练、导出、编译和板端运行的一组约束，用来把容易隐含在代码和配置中的输入、类别、输出、后处理和运行时假设显式化。对于 YOLO 类检测器而言，这些契约分别落在输入图像语义、类别维度、检测头张量、候选框解码、置信度阈值、NMS 策略和板端运行状态等环节。只有这些约束在各阶段保持一致，板端 precision、recall、F1 和 mAP@0.5 才具有可解释性。\n\n输入契约约束输入尺寸、颜色通道、归一化、缩放与填充方式。电梯图像常包含强反光和大面积背景结构，若训练阶段和板端的缩放、填充或颜色通道处理不一致，模型对局部电动车结构的响应会发生变化，进而表现为分数漂移或小目标漏检。因此，输入契约要求训练配置、ONNX 输入形状、OM 模型输入和板端预处理路径采用一致的图像语义。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 12-13",
+        "line": 47,
+        "match_score": 0.933,
+        "adjusted_score": 0.933,
+        "sequence_score": 0.972,
+        "key_coverage": 0.882,
+        "start_para": 12,
+        "end_para": 13
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 22,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 296,
+      "v1_aigc_share": "0.88%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "若类别维度读取或标签顺序发生错位，检测框位置即使正确，报警语义也会失效。 输出契约约束检测头张量维度、坐标格式和置信度含义。训练框架通常自动完成坐标解码和结果封装，而板端程序需要显式读取输出张量并解释其维度。如果坐标中心点、宽高、左上右下角或置信度分数组合方式被错误理解，最终结果会表现为边框漂移、类别分数异常或检测数量变化。 后处理契约约束置信度阈值、NMS阈值和类别处理方式。电梯场景中的反光、门框和局部可见电动车会生成接近阈值的候选框，阈值和NMS的小幅变化可能改变最终安全输出。因此，后处理契约要求训练阶段评价脚本和板端应用层在阈值含义、NMS输入、类别过滤和电动车清理策略上保持可比较。",
+      "current_text": "输出契约约束检测头张量维度、坐标格式和置信度含义。训练框架通常自动完成坐标解码和结果封装，而板端程序需要显式读取输出张量并解释其维度。如果坐标中心点、宽高、左上右下角或置信度分数组合方式被错误理解，最终结果会表现为边框漂移、类别分数异常或检测数量变化。\n\n后处理契约约束置信度阈值、NMS 阈值和类别处理方式。电梯场景中的反光、门框和局部可见电动车会生成接近阈值的候选框，阈值和 NMS 的小幅变化可能改变最终安全输出。因此，后处理契约要求训练阶段评价脚本和板端应用层在阈值含义、NMS 输入、类别过滤和电动车清理策略上保持可比较。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 15-16",
+        "line": 53,
+        "match_score": 0.904,
+        "adjusted_score": 0.887,
+        "sequence_score": 0.936,
+        "key_coverage": 0.868,
+        "start_para": 15,
+        "end_para": 16
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：评价。"
+    },
+    {
+      "index": 23,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 383,
+      "v1_aigc_share": "1.14%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "为使契约可以被执行，本文在迁移链路中采用逐项检查方式。导出ONNX后，先检查输入尺寸和输出张量形状是否符合双目标检测设置；编译OM后，检查板端程序读取的输出数量和张量维度是否与导出阶段一致；运行验证集时，检查成功样本数、分类别预测数和分类别TP/FP/FN是否处于合理范围。若某一项出现异常，优先回到对应契约定位问题，而不是直接调整阈值掩盖错误。 分阶段验证策略强调每一阶段解决一个主要问题：训练阶段关注模型是否具备基础检测能力，输出权重文件与验证集指标；导出阶段关注输入输出形状和类别维度是否保留，输出中间表示与张量检查结果；编译阶段关注OM模型是否生成且算子是否兼容，输出离线模型与编译记录；板端关注推理成功率和后处理结果，输出检测框、分类别指标和运行时信息。分阶段验证可以降低排错复杂度，使板端结果异常时能够回溯问题来源。 下面对五类约束的关键一致性环节分别说明。",
+      "current_text": "为了让契约不只停留在概念层面，本文在迁移链路中采用逐项检查方式。ONNX 导出后检查输入尺寸和输出张量形状是否符合双目标检测设置；OM 编译后检查板端程序读取的输出数量和张量维度是否与导出阶段一致；运行验证集时，再看成功样本数、分类别预测数和分类别 TP/FP/FN 是否处于合理范围。若某一项出现异常，优先回到对应契约定位问题，而不是直接调整阈值掩盖错误。\n\n分阶段验证策略强调每一阶段只解决少数关键问题。训练阶段主要看模型是否具备基础检测能力，并保留权重文件与验证集指标；导出阶段检查输入输出形状和类别维度是否保留；编译阶段关注 OM 模型能否生成以及算子是否兼容；板端阶段再检查推理成功率、后处理结果、检测框、分类别指标和运行时信息。这样做可以降低排错复杂度，使板端结果异常时能够回溯问题来源。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 18-19",
+        "line": 59,
+        "match_score": 0.684,
+        "adjusted_score": 0.673,
+        "sequence_score": 0.812,
+        "key_coverage": 0.441,
+        "start_para": 18,
+        "end_para": 19
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 24,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 248,
+      "v1_aigc_share": "0.74%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "类别语义对齐是双目标任务迁移中最基础的契约。本文包含person与ebike两个类别，类别数较少反而要求类别解释更加清晰。训练配置、导出模型、板端标签表和后处理代码必须使用相同类别顺序；否则，即使检测框位置正确，最终报警语义也可能被反转。 在实验解释中，分类别TP、FP、FN统计也被用作类别契约的外部检查。若板端程序把类别维度读取错误，person与ebike的预测数量、召回率和mAP@0.5会出现与场景经验明显不符的异常。因此，分类别指标不仅衡量检测性能，也用于判断迁移后的语义解释是否成立。",
+      "current_text": "类别语义对齐是双目标任务迁移中最基础的契约。本文包含 person 与 ebike 两个类别，类别数较少反而要求类别解释更加清晰。训练配置、导出模型、板端标签表和后处理代码必须使用相同类别顺序；否则，即使检测框位置正确，最终报警语义也可能被反转。\n\n在实验解释中，分类别 TP、FP、FN 统计也被用作类别契约的外部检查。若板端程序把类别维度读取错误，person 与 ebike 的预测数量、召回率和 mAP@0.5 会出现与场景经验明显不符的异常。因此，分类别指标不仅衡量检测性能，也用于判断迁移后的语义解释是否成立。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 21-22",
+        "line": 71,
+        "match_score": 1.0,
+        "adjusted_score": 1.0,
+        "sequence_score": 1.0,
+        "key_coverage": 1.0,
+        "start_para": 21,
+        "end_para": 22
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 25,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 894,
+      "v1_aigc_share": "2.65%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "最后"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(最后)；AI高频词堆叠(稳定、完整)",
+      "v1_highlight_text": "本文从类别语义、边框解释、阈值行为和运行时状态四个维度评价部署一致性。类别语义关注不同阶段是否输出相同类别含义；边框解释关注坐标还原、IoU评价和定位漂移的评价设计；阈值行为关注置信度阈值变化对precision、recall和F1的影响；运行时状态关注成功样本数、失败样本数、端到端处理耗时和分段计时。四类维度共同构成本文的评价框架。 四类评价维度各有侧重：类别一致性通过类别顺序和分类别TP/FP/FN判断person与ebike语义是否稳定；边框解释通过IoU、边框漂移设计和NMS后数量判断定位变化是否影响检测结果；阈值稳定性通过多阈值P/R/F1与ebike recall判断安全输出是否依赖单一阈值；运行时可靠性通过成功样本数、失败样本数、端到端耗时和分段计时判断板端验证是否完整执行，并区分batch外围链路与模型执行阶段。 跨阶段逐样本匹配是部署一致性评价的扩展形式。本文实验章重点报告板端完整验证集结果、分类别结果、阈值敏感性后验重算、NMS敏感性、后处理消融、视频稳定性和分段计时结果；PyTorch、ONNX、OM和板端四阶段的逐样本匹配可用于进一步精细分析类别、坐标和分数在迁移链路中的变化。这样的处理使实验结论与证据范围保持对应。 样本级匹配的基本思路是：对于同一张输入图像，先按类别过滤候选框，再按IoU从高到低匹配同一目标，最后比较不同阶段的类别、坐标和分数差异。若类别一致但IoU明显下降，说明主要问题可能来自坐标还原或NMS；若IoU接近但类别不同，说明问题更可能来自类别顺序或输出维度解释；若同一阶段检测数量明显变化，则需要检查阈值和候选框抑制逻辑。该方法使跨阶段一致性从抽象概念转化为可执行的比较过程。 当结果出现异常时，本文先判断异常表现属于类别、边框、阈值还是运行状态，再回到对应契约检查。若类别大量错位，优先检查类别顺序和输出张量维度；若边框整体偏移，优先检查缩放、填充和坐标解释；若检测数量突变，优先检查conf、NMS和类别清理策略；若时延异常升高，优先检查板端执行路径、输入输出复制和资源状态。这种排查顺序把部署问题转化为可定位的技术项，便于复用。",
+      "current_text": "本文从类别语义、边框解释、阈值行为和运行时状态四个角度评价部署一致性。类别语义检查不同阶段是否输出相同类别含义；边框解释关注坐标还原、IoU 评价和定位漂移的评价设计；阈值行为用于观察置信度阈值变化对 precision、recall 和 F1 的影响；运行时状态则记录成功样本数、失败样本数、端到端处理耗时和分段计时。这些内容共同构成本文的评价框架。\n\n具体到评价方法，类别一致性依靠类别顺序和分类别 TP/FP/FN 判断 person 与 ebike 语义是否稳定；边框解释借助 IoU、边框漂移设计和 NMS 后数量判断定位变化是否影响检测结果；阈值稳定性通过多阈值 P/R/F1 与 ebike recall 判断安全输出是否依赖单一阈值；运行时可靠性则通过成功样本数、失败样本数、端到端耗时和分段计时判断板端验证是否完整执行，并区分 batch 外围链路与模型执行阶段。\n\n跨阶段逐样本匹配是部署一致性评价的扩展形式。本文实验章重点报告板端完整验证集结果、分类别结果、阈值敏感性后验重算、NMS 敏感性、后处理消融、视频稳定性和分段计时结果；PyTorch、ONNX、OM 和板端四阶段的逐样本匹配可用于进一步精细分析类别、坐标和分数在迁移链路中的变化。这样的处理使实验结论与证据范围保持对应。\n\n样本级匹配的基本思路是：对于同一张输入图像，先按类别过滤候选框，再按 IoU 从高到低匹配同一目标，并比较不同阶段的类别、坐标和分数差异。若类别一致但 IoU 明显下降，主要问题可能来自坐标还原或 NMS；若 IoU 接近但类别不同，问题更可能来自类别顺序或输出维度解释；若同一阶段检测数量明显变化，则需要检查阈值和候选框抑制逻辑。该方法使跨阶段一致性从抽象概念转化为可执行的比较过程。\n\n当结果出现异常时，本文先判断异常表现属于类别、边框、阈值还是运行状态，再回到对应契约检查。若类别大量错位，优先检查类别顺序和输出张量维度；若边框整体偏移，优先检查缩放、填充和坐标解释；若检测数量突变，优先检查 conf、NMS 和类别清理策略；若时延异常升高，优先检查板端执行路径、输入输出复制和资源状态。这种排查顺序把部署问题转化为可定位的技术项，便于复用。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 28-32",
+        "line": 93,
+        "match_score": 0.923,
+        "adjusted_score": 0.922,
+        "sequence_score": 0.968,
+        "key_coverage": 0.85,
+        "start_para": 28,
+        "end_para": 32
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、稳定、评价、部署一致性。"
+    },
+    {
+      "index": 26,
+      "file": "paper/docs/chap03.tex",
+      "v1_aigc_chars": 120,
+      "v1_aigc_share": "0.36%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "可追溯",
+          "可解释"
+        ],
+        "passive_formula": [
+          "该流程"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(可追溯、可解释)；被动分析套话(该流程)",
+      "v1_highlight_text": "本章整理了面向目标平台约束的YOLO类双目标检测模型兼容迁移流程。该流程以迁移约束为核心，将输入预处理、类别配置、输出张量、后处理参数和运行状态纳入同一检查框架。与单纯报告模型精度相比，本文更强调模型进入板端后的行为可解释性和结果可追溯性。",
+      "current_text": "本章整理了面向目标平台约束的 YOLO 类双目标检测模型兼容迁移流程。流程围绕迁移约束展开，把输入预处理、类别配置、输出张量、后处理参数和运行状态纳入同一检查框架。相较于单纯报告模型精度，本文更关注模型进入板端后的行为是否能够解释、结果是否能够追溯。",
+      "match": {
+        "file": "paper/docs/chap03.tex",
+        "source": "paragraphs 33-33",
+        "line": 105,
+        "match_score": 0.729,
+        "adjusted_score": 0.727,
+        "sequence_score": 0.853,
+        "key_coverage": 0.591,
+        "start_para": 33,
+        "end_para": 33
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 27,
+      "file": "paper/docs/chap04.tex",
+      "v1_aigc_chars": 372,
+      "v1_aigc_share": "1.1%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第一",
+          "第二",
+          "第三",
+          "第四",
+          "第五"
+        ],
+        "ai_high_freq": [
+          "显著",
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第一、第二、第三、第四、第五)；AI高频词堆叠(显著、稳定、完整)",
+      "v1_highlight_text": "训练集包含约3600张标注图像，验证集固定为720张图像；标注过程中对遮挡目标和局部可见目标采用可见区域外接矩形标注。图像验证集用于评价检测精度，代表性视频片段用于观察连续场景稳定性，板端运行输出用于分析模型迁移后的阈值行为、运行状态和分段耗时。 为了使实验结论服务于第一章提出的问题链，本文将评价目标拆分为七个评价维度：第一，模型迁移到板端后是否能完整处理验证集并保持双目标检测能力；第二，person与ebike的分类别指标是否符合任务语义；第三，置信度阈值变化是否会显著改变安全输出；第四，NMS参数是否影响重叠候选框保留关系；第五，应用层后处理是否影响两类目标的误报与召回；第六，代表性视频片段中输出是否保持连续稳定；第七，batch图像验证耗时、单帧核心处理耗时和模型执行阶段耗时是否能够被明确区分。第五章的结果组织即围绕这些维度展开。",
+      "current_text": "本文实验围绕电梯轿厢内 person + ebike 双目标检测展开。数据来源于实际电梯轿厢的监控视频录像，经抽帧后由人工使用 LabelImg 工具按 YOLO 格式进行标注，标注类别为 person 和 ebike。训练集包含约 3600 张标注图像，验证集固定为 720 张图像；标注过程中对遮挡目标和局部可见目标采用可见区域外接矩形标注。图像验证集用于评价检测精度，代表性视频片段用于观察连续场景稳定性，板端运行输出用于分析模型迁移后的阈值行为、运行状态和分段耗时。\n\n为了使实验结论服务于第一章提出的问题链，本文将评价目标拆成若干可复查问题：模型迁移到板端后能否完整处理验证集并保持双目标检测能力；person 与 ebike 的分类别指标是否符合任务语义；置信度阈值变化、NMS 参数和应用层后处理会不会改变安全输出；代表性视频片段中输出是否连续；batch 图像验证耗时、单帧核心处理耗时和模型执行阶段耗时是否能够被明确区分。第五章的结果组织即围绕这些问题展开。",
+      "match": {
+        "file": "paper/docs/chap04.tex",
+        "source": "paragraphs 1-2",
+        "line": 8,
+        "match_score": 0.686,
+        "adjusted_score": 0.673,
+        "sequence_score": 0.742,
+        "key_coverage": 0.662,
+        "start_para": 1,
+        "end_para": 2
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、稳定、第一、第五、评价。"
+    },
+    {
+      "index": 28,
+      "file": "paper/docs/chap04.tex",
+      "v1_aigc_chars": 299,
+      "v1_aigc_share": "0.89%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第二",
+          "第三",
+          "第四",
+          "第五"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "可解释"
+        ],
+        "template_problem": [
+          "核心问题"
+        ],
+        "passive_formula": [
+          "上述"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第二、第三、第四、第五)；AI高频词堆叠(稳定、可解释)；模板化问题陈述(核心问题)；被动分析套话(上述)",
+      "v1_highlight_text": "第二类是基于既有板端检测输出的阈值后验重算，用于观察同一批输出在不同安全阈值下的稳定性；第三类是NMS参数敏感性和应用层后处理消融，用于区分模型输出与部署规则对最终候选框的影响；第四类是batch图像复查和连续视频处理中的分段计时输出，用于区分batch端到端耗时、单帧核心处理和模型执行阶段；第五类是代表性视频片段，用于观察连续帧中的漏检、闪烁和边框抖动。上述证据共同回答本文核心问题：同一YOLO模型迁移到OM和板端运行后，是否仍保持可解释的检测行为。 上述场景因素保持为误差解释维度，与图像级检测指标和板端运行指标共同构成分析框架，既保持论文主线集中，也保留电梯场景相对于通用检测任务的特殊性。",
+      "current_text": "本文使用的证据主要来自 720 张图像验证集、既有板端检测输出、NMS 参数敏感性实验、后处理消融、batch 图像复查、连续视频分段计时和代表性视频片段。图像验证集用于统计总体精度、分类别精度和板端 batch 验证耗时；阈值后验重算用于观察同一批输出在不同安全阈值下的变化；NMS 和后处理实验用于区分模型输出与部署规则对候选框的影响；分段计时用于拆开 batch 端到端耗时、单帧核心处理和模型执行阶段；视频片段则用于观察连续帧中的漏检、闪烁和边框抖动。这些证据共同回答本文核心问题：同一 YOLO 模型迁移到 OM 和板端运行后，是否仍保持可解释的检测行为。\n\n上述场景因素保持为误差解释维度，与图像级检测指标和板端运行指标共同构成分析框架，既保持论文主线集中，也保留电梯场景相对于通用检测任务的特殊性。",
+      "match": {
+        "file": "paper/docs/chap04.tex",
+        "source": "paragraphs 4-5",
+        "line": 16,
+        "match_score": 0.657,
+        "adjusted_score": 0.645,
+        "sequence_score": 0.67,
+        "key_coverage": 0.63,
+        "start_para": 4,
+        "end_para": 5
+      },
+      "judgment": "部分改写",
+      "note": "核心论述对象和部分关键词保留，但句序或表达已有调整。 仍保留：上述。"
+    },
+    {
+      "index": 29,
+      "file": "paper/docs/chap04.tex",
+      "v1_aigc_chars": 399,
+      "v1_aigc_share": "1.18%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(稳定、完整)",
+      "v1_highlight_text": "本文评测指标分为检测精度、部署一致性和运行时性能三类。检测精度包括preci-sion、recall、F1和mAP@0.5，用于描述模型在验证集上的基础识别能力。部署一致性主要通过分类别统计、阈值敏感性、NMS敏感性、后处理消融、视频稳定性和运行状态进行分析；跨阶段逐样本边框漂移可作为更细粒度的扩展评价设计。运行时性能包括batch图像验证链路端到端单图处理耗时、成功处理样本数和分段计时，用于判断系统运行结果是否完整。 具体指标围绕三个层次组织。检测能力由precision、recall、F1和mAP@0.5描述；类别语义由person与ebike的TP、FP、FN、recall和mAP@0.5检查；部署行为由多阈值F1、类别召回、NMS参数下的FP/FN变化、后处理策略消融、视频输出稳定性、成功样本数、端到端耗时和分段计时共同说明。跨阶段IoU漂移作为扩展一致性评价方式保留在方法设计中。",
+      "current_text": "本文评测指标分为检测精度、部署一致性和运行时性能三类。检测精度包括 precision、recall、F1 和 mAP@0.5，用于描述模型在验证集上的基础识别能力。部署一致性主要通过分类别统计、阈值敏感性、NMS 敏感性、后处理消融、视频稳定性和运行状态进行分析；跨阶段逐样本边框漂移可作为更细粒度的扩展评价设计。运行时性能包括 batch 图像验证链路端到端单图处理耗时、成功处理样本数和分段计时，用于判断系统运行结果是否完整。\n\n具体指标围绕三个层次组织。检测能力由 precision、recall、F1 和 mAP@0.5 描述；类别语义由 person 与 ebike 的 TP、FP、FN、recall 和 mAP@0.5 检查；部署行为由多阈值 F1、类别召回、NMS 参数下的 FP/FN 变化、后处理策略消融、视频输出稳定性、成功样本数、端到端耗时和分段计时共同说明。跨阶段 IoU 漂移作为扩展一致性评价方式保留在方法设计中。",
+      "match": {
+        "file": "paper/docs/chap04.tex",
+        "source": "paragraphs 6-7",
+        "line": 24,
+        "match_score": 0.994,
+        "adjusted_score": 0.994,
+        "sequence_score": 0.999,
+        "key_coverage": 0.985,
+        "start_para": 6,
+        "end_para": 7
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、稳定、评价、部署一致性。"
+    },
+    {
+      "index": 30,
+      "file": "paper/docs/chap04.tex",
+      "v1_aigc_chars": 372,
+      "v1_aigc_share": "1.1%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "首先",
+          "其次",
+          "最后",
+          "再次"
+        ],
+        "ai_high_freq": [
+          "稳定"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(首先、其次、最后、再次)；AI高频词堆叠(稳定)",
+      "v1_highlight_text": "为保证实验结果可比较，本文采用统一协议。首先，所有图像级指标均在同一验证集上统计，并统一保留三位小数。其次，阈值敏感性实验以置信度阈值为唯一变量，其余参数保持不变。再次，分段计时实验必须明确运行模式，区分batch图像验证链路和连续视频链路。最后，视频场景分析采用连续场景片段的机器侧稳定性指标，正文表述聚焦片段规模、输出保持率、闪烁窗口和连续无输出段等可量化统计。 各实验只改变一个主要变量。基线验证固定验证集、类别顺序和输入尺寸；阈值敏感性只改变置信度阈值；NMS敏感性只改变IoU阈值；后处理消融只改变电动车清理策略；视频稳定性只改变平滑窗口；分段计时则固定模型、二进制和阈值设置，只比较batch端到端、单帧核心处理和模型执行阶段。该协议体现了本文的研究重点：实验不追求数量堆叠，而是围绕YOLO模型的边缘部署一致性建立系统化的评价流程。",
+      "current_text": "为保证实验结果可比较，本文采用统一协议。所有图像级指标均在同一验证集上统计，并统一保留三位小数；阈值敏感性实验只改变置信度阈值，其余参数保持不变；分段计时实验需要明确运行模式，区分 batch 图像验证链路和连续视频链路；视频场景分析采用连续场景片段的机器侧稳定性指标，正文表述聚焦片段规模、输出保持率、闪烁窗口和连续无输出段等可量化统计。\n\n各实验只改变一个主要变量。基线验证固定验证集、类别顺序和输入尺寸；阈值敏感性只改变置信度阈值；NMS 敏感性只改变 IoU 阈值；后处理消融只改变电动车清理策略；视频稳定性只改变平滑窗口；分段计时则固定模型、二进制和阈值设置，只比较 batch 端到端、单帧核心处理和模型执行阶段。本文并不追求实验数量堆叠，而是围绕 YOLO 模型的边缘部署一致性建立可复查的评价流程。",
+      "match": {
+        "file": "paper/docs/chap04.tex",
+        "source": "paragraphs 8-9",
+        "line": 30,
+        "match_score": 0.872,
+        "adjusted_score": 0.863,
+        "sequence_score": 0.932,
+        "key_coverage": 0.829,
+        "start_para": 8,
+        "end_para": 9
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：稳定、评价、部署一致性。"
+    },
+    {
+      "index": 31,
+      "file": "paper/docs/chap04.tex",
+      "v1_aigc_chars": 269,
+      "v1_aigc_share": "0.8%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "场景复杂性与部署一致性之间存在直接联系。高亮区域和暗部区域主要影响类别置信度，容易在阈值扫描中表现为召回率波动；轿厢边界和门框结构主要影响边框回归和NMS，容易在边框解释评价中表现为IoU下降；近距离重叠则同时影响类别排序和候选框抑制，可能造成不同阶段输出数量不一致。 因此，本文在分析实验结果时采用“指标+场景解释”的方式。若mAP@0.5下降，需要进一步判断下降来自类别分数变化还是边框定位变化；若视频片段出现闪烁，需要结合阈值敏感性判断是否存在置信度边界问题。通过这种方式，场景复杂性服务于部署一致性分析，而不是另起一条难例创新主线。",
+      "current_text": "场景复杂性与部署一致性之间存在直接联系。高亮区域和暗部区域主要影响类别置信度，容易在阈值扫描中表现为召回率波动；轿厢边界和门框结构主要影响边框回归和 NMS，容易在边框解释评价中表现为 IoU 下降；近距离重叠则同时影响类别排序和候选框抑制，可能造成不同阶段输出数量不一致。\n\n本文在分析实验结果时采用“指标 + 场景解释”的方式。若 mAP@0.5 下降，需要进一步判断下降来自类别分数变化还是边框定位变化；若视频片段出现闪烁，需要结合阈值敏感性判断是否存在置信度边界问题。这样处理后，场景复杂性服务于部署一致性分析，而不是另起一条难例创新主线。",
+      "match": {
+        "file": "paper/docs/chap04.tex",
+        "source": "paragraphs 10-11",
+        "line": 36,
+        "match_score": 0.959,
+        "adjusted_score": 0.958,
+        "sequence_score": 0.978,
+        "key_coverage": 0.958,
+        "start_para": 10,
+        "end_para": 11
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：评价、部署一致性。"
+    },
+    {
+      "index": 32,
+      "file": "paper/docs/chap04.tex",
+      "v1_aigc_chars": 281,
+      "v1_aigc_share": "0.83%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第一",
+          "第二",
+          "第三"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "完整",
+          "可追溯"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第一、第二、第三)；AI高频词堆叠(稳定、完整、可追溯)",
+      "v1_highlight_text": "为保证实验结果能够被复查，数据划分需要保持清晰。本文使用的图像验证集固定为720张图像，用于报告板端总体指标和分类别指标。该验证集在正文中只描述其规模、类别和用途，不展开本地文件组织细节。 数据可追溯性包括三层含义。第一，样本数量可核实，即实验表格中的样本数与指标来源一致。第二，类别统计可核实，即person与ebike的真实目标数、预测数、TP、FP、FN能够对应到评测结果。第三，运行状态可核实，即成功样本数、失败样本数和端到端耗时能够说明板端验证是否完整执行。 对于视频片段，本文采用检测保持率、闪烁窗口、连续无输出片段和分段计时等机器侧统计描述输出稳定性。",
+      "current_text": "实验结果要能够被复查，数据划分需要先保持清晰。本文使用的图像验证集固定为 720 张图像，用于报告板端总体指标和分类别指标。正文只描述该验证集的规模、类别和用途，不展开本地文件组织细节。\n\n数据可追溯性体现在三个方面：实验表格中的样本数应与指标来源一致；person 与 ebike 的真实目标数、预测数、TP、FP、FN 应能够对应到评测结果；成功样本数、失败样本数和端到端耗时应能够说明板端验证是否完整执行。\n\n对于视频片段，本文采用检测保持率、闪烁窗口、连续无输出片段和分段计时等机器侧统计描述输出稳定性。这样可以保证评价指标与实验材料相匹配。",
+      "match": {
+        "file": "paper/docs/chap04.tex",
+        "source": "paragraphs 12-14",
+        "line": 44,
+        "match_score": 0.74,
+        "adjusted_score": 0.735,
+        "sequence_score": 0.838,
+        "key_coverage": 0.58,
+        "start_para": 12,
+        "end_para": 14
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、稳定。"
+    },
+    {
+      "index": 33,
+      "file": "paper/docs/chap05.tex",
+      "v1_aigc_chars": 312,
+      "v1_aigc_share": "0.93%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第一",
+          "第二",
+          "第三",
+          "第四",
+          "第五"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第一、第二、第三、第四、第五)；AI高频词堆叠(稳定、完整)",
+      "v1_highlight_text": "本章围绕第四章定义的实验协议，对YOLO双目标检测模型在边缘设备端的表现进行分析。实验重点不是单纯报告一个离线精度数值，而是先通过官方基线、YOLOv8n场景化训练结果和板端FP16/OM结果建立参照系，再围绕七个评价维度展开：第一，模型迁移到板端后是否能在完整验证集上保持稳定检测能力；第二，分类别输出是否符合person + ebike双目标任务语义；第三，不同置信度阈值下安全输出是否稳定；第四，NMS参数变化是否会改变重叠候选框的保留关系；第五，应用层后处理策略是否影响两类目标的误报与召回；第六，代表性视频片段中连续输出是否稳定；第七，batch图像验证链路耗时、单帧核心处理耗时和模型执行阶段耗时是否能够被清楚区分。",
+      "current_text": "本章按照第四章定义的实验协议，分析 YOLO 双目标检测模型在边缘设备端的表现。实验并不只报告一个离线精度数值，而是先用官方基线、YOLOv8n 场景化训练结果和板端 FP16/OM 结果建立参照系，再分别考察全量验证集检测能力、分类别语义、置信度阈值、NMS 参数、应用层后处理、代表性视频片段和分段计时口径。这样安排后，板端结果可以和训练阶段能力、部署规则以及运行时状态放在同一证据链中解释。",
+      "match": {
+        "file": "paper/docs/chap05.tex",
+        "source": "paragraphs 1-1",
+        "line": 4,
+        "match_score": 0.413,
+        "adjusted_score": 0.389,
+        "sequence_score": 0.53,
+        "key_coverage": 0.283,
+        "start_para": 1,
+        "end_para": 1
+      },
+      "judgment": "已明显改写",
+      "note": "同一论述位置仍可定位，但句式、衔接方式或段落组织已经明显变化。 当前候选仍出现：第四，建议人工查看语境。"
+    },
+    {
+      "index": 34,
+      "file": "paper/docs/chap05.tex",
+      "v1_aigc_chars": 253,
+      "v1_aigc_share": "0.75%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "完整"
+        ],
+        "passive_formula": [
+          "该结果说明"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(完整)；被动分析套话(该结果说明)",
+      "v1_highlight_text": "该结果说明，YOLOv8n场景化训练模型经过ONNX导出、ATC编译和OM模型部署后，能够在边缘设备上完成完整验证集处理。对于本文而言，这一结果的意义不仅是给出检测精度，更重要的是表明迁移链路具备完整执行能力，为后续分类别分析、阈值敏感性分析和运行时口径拆解提供基础。 表5-2中的1119.510 ms是batch图像验证链路端到端单图处理耗时，包含图像输入、媒体链路、预处理、模型执行、后处理、结果写出等环节。该数值对应验证链路的整体处理成本，与OM模型执行阶段耗时、连续视频链路帧间耗时属于不同运行口径。",
+      "current_text": "该组数据表明，YOLOv8n 场景化训练模型经过 ONNX 导出、ATC 编译和 OM 模型部署后，可以在边缘设备上完成全量验证集处理。对本文而言，它不仅给出了检测精度，也说明迁移链路能够跑通全部样本，为后续分类别分析、阈值敏感性分析和运行时口径拆解打下基础。\n\n表 tab:board_overall_results 中的 1119.510 ms 是 batch 图像验证链路端到端单图处理耗时，包含图像输入、媒体链路、预处理、模型执行、后处理、结果写出等环节。该数值对应验证链路的整体处理成本，与 OM 模型执行阶段耗时、连续视频链路帧间耗时属于不同运行口径。本文后续通过分段计时实验进一步拆解这一差异。",
+      "match": {
+        "file": "paper/docs/chap05.tex",
+        "source": "paragraphs 12-13",
+        "line": 75,
+        "match_score": 0.733,
+        "adjusted_score": 0.719,
+        "sequence_score": 0.802,
+        "key_coverage": 0.75,
+        "start_para": 12,
+        "end_para": 13
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 35,
+      "file": "paper/docs/chap05.tex",
+      "v1_aigc_chars": 387,
+      "v1_aigc_share": "1.15%",
+      "risk_flags": {},
+      "risk_summary": "无显式标签",
+      "v1_highlight_text": "低NMS阈值会更强地抑制重叠框，可能减少重复框但增加遮挡区域漏检；高NMS阈值会保留更多相邻框，可能提高局部目标召回但增加误报和重复框。 该实验与阈值后验重算不同，需要重新运行板端推理，因为NMS在板端应用层已经影响最终输出。三组实验均使用同一OM模型、同一板端二进制和同一验证集切分，且均完成720张图像处理，失败样本数为0；相关产物路径和指标来源记录于实验产物索引。 结果显示，NMS从0.35提高到0.55时，预测框总数从1526增加到1542，FP从146增加到160，FN从116降至114。行人类别F1在三组设置下均为0.878，说明行人结果在该区间内几乎不受NMS参数影响；电动车F1则从0.952下降到0.944，同时电动车召回率从0.960小幅上升到0.963。该趋势表明，提高NMS阈值会保留更多电动车候选框，略微减少漏检，但也引入更多误报，使F1略有下降。",
+      "current_text": "NMS 参数敏感性实验用于观察重叠候选框的保留关系是否依赖单一 IoU 阈值。本文设计的实验固定模型、验证集、置信度阈值和后处理策略，只改变 NMS 阈值，取值为 0.35、0.45 和 0.55。低 NMS 阈值会更强地抑制重叠框，可能减少重复框但增加遮挡区域漏检；高 NMS 阈值会保留更多相邻框，可能提高局部目标召回但增加误报和重复框。\n\n该实验与阈值后验重算不同，需要重新运行板端推理，因为 NMS 在板端应用层已经影响最终输出。三组实验使用同一 OM 模型、同一板端二进制和同一验证集切分，均完成 720 张图像处理，失败样本数为 0；相关产物路径和指标来源记录于实验产物索引。\n\n结果显示，NMS 从 0.35 提高到 0.55 时，预测框总数从 1526 增加到 1542，FP 从 146 增加到 160，FN 从 116 降至 114。行人类别 F1 在三组设置下均为 0.878，说明行人结果在该区间内几乎不受 NMS 参数影响；电动车 F1 则从 0.952 下降到 0.944，同时电动车召回率从 0.960 小幅上升到 0.963。该趋势表明，提高 NMS 阈值会保留更多电动车候选框，略微减少漏检，但也引入更多误报，使 F1 略有下降。",
+      "match": {
+        "file": "paper/docs/chap05.tex",
+        "source": "paragraphs 33-35",
+        "line": 192,
+        "match_score": 0.883,
+        "adjusted_score": 0.858,
+        "sequence_score": 0.892,
+        "key_coverage": 0.961,
+        "start_para": 33,
+        "end_para": 35
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。"
+    },
+    {
+      "index": 36,
+      "file": "paper/docs/chap05.tex",
+      "v1_aigc_chars": 911,
+      "v1_aigc_share": "2.7%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第四"
+        ],
+        "ai_high_freq": [
+          "显著",
+          "稳定",
+          "完整",
+          "可解释"
+        ],
+        "passive_formula": [
+          "该结果说明"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第四)；AI高频词堆叠(显著、稳定、完整、可解释)；被动分析套话(该结果说明)",
+      "v1_highlight_text": "从训练阶段和板端对比看，官方COCO-person基线不足以直接支撑电梯俯视场景检测，YOLOv8n场景化训练显著提高了同集检测能力；板端FP16/OM结果相比训练阶段验证结果存在约0.078的mAP@0.5回退，但仍保持0.910的mAP@0.5。该结果说明，本文的板端指标既不是孤立数值，也不是训练阶段指标的简单复制，而是部署链路实际执行后的实测结果。 从完整验证集结果看，板端模型能够成功处理全部720张图像，并给出与双目标任务一致的分类别输出。该结果支持输入契约、类别契约、输出契约和运行契约在当前板端验证范围内未出现明显失配。特别是person与ebike两类均能形成可解释的TP、FP、FN统计，表明板端后处理没有出现类别顺序错位或输出张量无法解释的问题。 从阈值敏感性结果看，电动车召回率在0.20–0.35阈值区间内变化较小，说明电动车检测结果在当前验证集上具有一定阈值稳定性。相比之下，行人召回率下降更明显，说明近景遮挡和多人重叠场景仍可能产生低置信度候选框。该差异与第四章的场景复杂性分析一致，也说明场景复杂性因素可以用于解释部署后的指标变化。 从NMS敏感性结果看，0.35、0.45和0.55三组设置均能完成720张图像验证，且总体指标变化较小。NMS阈值提高后，电动车候选框数量和FP略有增加，FN略有下降，说明NMS参数主要影响电动车相邻候选框的保留关系。0.45在mAP@0.5、FP和FN之间表现更均衡，适合作为本文主要实验设置。 从后处理消融结果看，完整清理策略虽然减少电动车FP，但显著增加电动车FN，导致recall降至0.765。相反，safe与off都保持较高电动车召回率，其中safe相比off少产生8个电动车FP。该结果说明后处理策略属于部署链路中的重要变量，必须与模型权重结果分开解释。 从视频稳定性结果看，代表性视频片段中窗口1和窗口5的检测保持率、闪烁窗口数和最长无输出段一致，说明该片段中的稳定性问题不能简单归因于平滑窗口设置。该实验补充连续输出观察，与图像验证集检测指标共同解释部署后的稳定性。 从分段计时结果看，batch图像验证链路端到端耗时与模型执行阶段耗时必须分开解释。",
+      "current_text": "从训练阶段和板端对比看，官方 COCO-person 基线不足以直接支撑电梯俯视场景检测，YOLOv8n 场景化训练提高了同集检测能力；板端 FP16/OM 结果相比训练阶段验证结果存在约 0.078 的 mAP@0.5 回退，但仍保持 0.910 的 mAP@0.5。本文的板端指标既不是孤立数值，也不是训练阶段指标的简单复制，而是部署链路实际执行后的实测结果。\n\n完整验证集结果显示，板端模型能够成功处理全部 720 张图像，并给出与双目标任务一致的分类别输出。这支持输入契约、类别契约、输出契约和运行契约在当前板端验证范围内未出现明显失配。特别是 person 与 ebike 两类均能给出含义清楚的 TP、FP、FN 统计，表明板端后处理没有出现类别顺序错位或输出张量无法解读的问题。\n\n从阈值敏感性结果看，电动车召回率在 0.20–0.35 阈值区间内变化较小，说明电动车检测结果在当前验证集上对阈值选择不太敏感。相比之下，行人召回率下降更明显，说明近景遮挡和多人重叠场景仍可能产生低置信度候选框。该差异与第四章的场景复杂性分析一致，也说明场景复杂性因素可以用于解释部署后的指标变化。\n\n从 NMS 敏感性结果看，0.35、0.45 和 0.55 三组设置均能完成 720 张图像验证，且总体指标变化较小。NMS 阈值提高后，电动车候选框数量和 FP 略有增加，FN 略有下降，说明 NMS 参数主要影响电动车相邻候选框的保留关系。0.45 在 mAP@0.5、FP 和 FN 之间表现更均衡，适合作为本文主要实验设置。\n\n从后处理消融结果看，完整清理策略虽然减少电动车 FP，但会增加电动车 FN，导致 recall 降至 0.765。相反，safe 与 off 都保持较高电动车召回率，其中 safe 相比 off 少产生 8 个电动车 FP。后处理策略因此属于部署链路中的重要变量，必须与模型权重结果分开解释。",
+      "match": {
+        "file": "paper/docs/chap05.tex",
+        "source": "paragraphs 54-58",
+        "line": 278,
+        "match_score": 0.816,
+        "adjusted_score": 0.794,
+        "sequence_score": 0.877,
+        "key_coverage": 0.716,
+        "start_para": 54,
+        "end_para": 58
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、第四。"
+    },
+    {
+      "index": 37,
+      "file": "paper/docs/chap05.tex",
+      "v1_aigc_chars": 511,
+      "v1_aigc_share": "1.52%",
+      "risk_flags": {
+        "ordered_three_part": [
+          "第四"
+        ],
+        "generic_conclusion": [
+          "由此可见"
+        ],
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "整齐编号/三段式(第四)；泛化总结句(由此可见)；AI高频词堆叠(稳定、完整)",
+      "v1_highlight_text": "结合第四章的场景复杂性因素，可以进一步解释实验结果中的分类别差异。行人类别的误差主要来自近景截断、多人重叠和门口区域干扰。当人体靠近摄像头或只出现局部身体结构时，边框可能与真实框重合不足；当多人重叠时，NMS可能抑制部分候选框，造成漏检或定位偏差。电动车类别虽然整体召回率较高，但局部可见样本仍然是主要困难来源，尤其是只出现车把、车轮或车身边缘时，置信度更容易接近阈值边界。 阈值敏感性结果也支持这一解释。电动车召回率在0.20–0.35阈值区间内变化较小，说明大部分电动车候选框分数较稳定；行人召回率随阈值升高持续下降，说明行人类别存在更多低置信度但可能正确的候选框。由此可见，阈值选择不能只依据总体F1，还需要考虑不同类别在安全任务中的风险权重。 从部署一致性角度看，场景复杂性分析的价值在于帮助判断误差是否来自模型能力不足，还是来自迁移和后处理过程。如果某类复杂样本在所有阶段都表现困难，问题更可能来自数据和模型表达；如果同一复杂样本在训练阶段结果正确而板端异常，则需要优先检查输入契约、输出契约或后处理契约。本文通过板端完整验证、阈值重算、NMS敏感性、后处理消融、视频稳定性观察和分段计时建立了后续跨阶段分析的基础。",
+      "current_text": "第四章提出的场景复杂性因素，可以用来解释实验结果中的分类别差异。行人类别的误差主要来自近景截断、多人重叠和门口区域干扰。当人体靠近摄像头或只出现局部身体结构时，边框可能与真实框重合不足；当多人重叠时，NMS 可能抑制部分候选框，造成漏检或定位偏差。电动车类别虽然整体召回率较高，但局部可见样本仍然是主要困难来源，尤其是只出现车把、车轮或车身边缘时，置信度更容易接近阈值边界。\n\n阈值敏感性结果也支持这一解释。电动车召回率在 0.20–0.35 阈值区间内变化较小，说明大部分电动车候选框分数较稳定；行人召回率随阈值升高持续下降，说明行人类别存在更多低置信度但可能正确的候选框。阈值选择因此不能只依据总体 F1，还需要考虑不同类别在安全任务中的风险权重。\n\n从迁移行为对照的角度看，场景复杂性分析的价值在于帮助判断误差是否来自模型能力不足，还是来自迁移和后处理过程。如果某类复杂样本在所有阶段都表现困难，问题更可能来自数据和模型表达；如果同一复杂样本在训练阶段结果正确而板端异常，则需要优先检查输入契约、输出契约或后处理契约。本文通过板端完整验证、阈值重算、NMS 敏感性、后处理消融、视频稳定性观察和分段计时建立了后续跨阶段分析的基础。",
+      "match": {
+        "file": "paper/docs/chap05.tex",
+        "source": "paragraphs 62-64",
+        "line": 296,
+        "match_score": 0.942,
+        "adjusted_score": 0.942,
+        "sequence_score": 0.972,
+        "key_coverage": 0.902,
+        "start_para": 62,
+        "end_para": 64
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、稳定、第四。"
+    },
+    {
+      "index": 38,
+      "file": "paper/docs/chap05.tex",
+      "v1_aigc_chars": 221,
+      "v1_aigc_share": "0.66%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "显著",
+          "稳定",
+          "完整"
+        ],
+        "passive_formula": [
+          "上述"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(显著、稳定、完整)；被动分析套话(上述)",
+      "v1_highlight_text": "实验表明，YOLOv8n场景化训练模型达到0.988的mAP@0.5，板端FP16/OM在720张验证图像上取得0.910的mAP@0.5，其中行人类别为0.869、电动车类别为0.952，两类目标在多个置信度阈值和NMS设置下均保持较稳定的召回率。后处理消融说明完整清理策略会显著牺牲电动车召回率，safe策略更适合作为图像验证链路默认口径；视频实验补充说明连续输出状态和分段耗时。上述结果支撑了本文关于兼容迁移和部署一致性评价的主要结论。",
+      "current_text": "本章报告了 YOLO 双目标检测模型的训练阶段与板端同集对比、边缘设备端完整验证结果、分类别结果、阈值敏感性后验重算、NMS 敏感性、后处理消融、视频稳定性和分段计时结果。YOLOv8n 场景化训练模型达到 0.988 的 mAP@0.5，板端 FP16/OM 在 720 张验证图像上取得 0.910 的 mAP@0.5，其中行人类别为 0.869、电动车类别为 0.952。两类目标在多个置信度阈值和 NMS 设置下均保持较稳定的召回率。后处理消融显示，完整清理策略会明显牺牲电动车召回率，safe 策略更适合作为图像验证链路默认口径；视频实验则补充说明连续输出状态和分段耗时。结合这些结果，本文关于兼容迁移和部署一致性评价的主要结论可以得到支撑。",
+      "match": {
+        "file": "paper/docs/chap05.tex",
+        "source": "paragraphs 67-67",
+        "line": 310,
+        "match_score": 0.725,
+        "adjusted_score": 0.695,
+        "sequence_score": 0.783,
+        "key_coverage": 0.683,
+        "start_para": 67,
+        "end_para": 67
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、稳定、评价、部署一致性。"
+    },
+    {
+      "index": 39,
+      "file": "paper/docs/conclusion.tex",
+      "v1_aigc_chars": 700,
+      "v1_aigc_share": "2.08%",
+      "risk_flags": {
+        "ai_high_freq": [
+          "稳定",
+          "完整"
+        ]
+      },
+      "risk_summary": "AI高频词堆叠(稳定、完整)",
+      "v1_highlight_text": "本文围绕电梯轿厢中行人与电动车的双目标检测，探讨了YOLO类模型从训练环境迁移到边缘设备后的行为变化。研究的出发点是：离线训练精度并不能直接代表板端实际表现，模型格式转换、输出解释和后处理策略都会引入额外的不确定性。 针对这一问题，本文的主要工作可归纳为三个层面。在任务层面，将电梯安全视觉的核心需求——人员感知与电动车识别——统一为双目标检测框架，并系统梳理了轿厢场景中影响检测精度的遮挡、反光和近距离透视等因素。在迁移层面，将训练权重到板端推理的转换过程组织为五类约束检查，使每一步格式变换中的输入尺寸、类别顺序、坐标编码和阈值语义都可被逐项核实。在评价层面，不再依赖单一的离线mAP，而是从分类别指标、阈值敏感性、NMS参数影响、后处理消融、分段计时和视频连续输出等多角度交叉验证板端行为。 实验结果揭示了若干值得关注的现象。板端mAP@0.5相比训练阶段回退约0.078，其中行人类别的下降幅度明显大于电动车类别（0.869 vs 0.952），这与轿厢近景遮挡导致行人候选框置信度偏低有关。阈值敏感性实验表明，总体F1在较宽的置信度区间内保持稳定，说明板端模型的安全输出不依赖精确的单一阈值调优。后处理消融则进一步揭示，应用层清理策略对电动车召回率的影响远大于模型本身——完整清理策略使电动车recall骤降至0.765，这意味着部署一致性评价必须将后处理模块从模型权重效果中显式剥离。 总体而言，本文工作表明，边缘安全视觉系统的评价不应止步于“模型能跑、精度达标”，而应覆盖从格式转换到后处理策略的完整部署链路。本文整理的分阶段检查方法和多维评价思路，可为同类电梯或封闭空间的边缘视觉部署提供参考。",
+      "current_text": "本文围绕电梯轿厢中行人与电动车的双目标检测，讨论了 YOLO 类模型从训练环境迁移到边缘设备后的行为变化。研究的出发点很明确：离线训练精度不能直接等同于板端实际表现，模型格式转换、输出解释和后处理策略都会带来额外不确定性。\n\n针对这一问题，本文做了三方面工作。任务上，将电梯安全视觉中的人员感知与电动车识别统一为双目标检测框架，并梳理了轿厢场景中影响检测精度的遮挡、反光和近距离透视等因素。迁移上，将训练权重到板端推理的转换过程组织为五类约束检查，使输入尺寸、类别顺序、坐标编码和阈值语义能够逐项核实。在检查部署行为时，本文没有只依赖离线 mAP，而是结合分类别指标、阈值敏感性、NMS 参数影响、后处理消融、分段计时和视频连续输出，交叉观察板端行为。\n\n实验中有几处现象值得关注。板端 mAP@0.5 相比训练阶段回退约 0.078，其中行人类别的下降幅度大于电动车类别（0.869 vs 0.952），这与轿厢近景遮挡导致行人候选框置信度偏低有关。阈值敏感性实验中，总体 F1 在较宽置信度区间内波动有限，说明板端模型的安全输出不依赖精确的单一阈值调优。后处理消融进一步表明，应用层清理策略对电动车召回率的影响很大：完整清理策略使电动车 recall 降至 0.765。这说明，部署行为对照需要把后处理模块从模型权重效果中单独分离出来。\n\n因此，边缘安全视觉系统的评价不能止步于“模型能跑、精度达标”。从格式转换到后处理策略的完整部署链路，都需要被纳入检查范围。本文整理的分阶段检查方法和多维评价思路，可为同类电梯或封闭空间的边缘视觉部署提供参考。",
+      "match": {
+        "file": "paper/docs/conclusion.tex",
+        "source": "paragraphs 1-4",
+        "line": 7,
+        "match_score": 0.717,
+        "adjusted_score": 0.71,
+        "sequence_score": 0.843,
+        "key_coverage": 0.539,
+        "start_para": 1,
+        "end_para": 4
+      },
+      "judgment": "基本保留",
+      "note": "当前段落与 v1 高光文本仍有较高连续重合度。 仍可见残留触发词：完整、评价。"
+    }
+  ]
+}
