@@ -1,5 +1,5 @@
 \cabstract{
-电梯轿厢空间封闭、使用频繁，镜面反光、近距离遮挡和目标尺度突变经常同时出现。安全视觉系统既要识别轿厢内人员，也要判断电动车入梯风险；训练阶段得到的检测精度，迁移到边缘设备后未必能够原样保持。本文以 YOLOv8n 为检测模型、搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板为部署平台，研究电梯轿厢中行人与电动车的双目标检测、边缘兼容迁移及部署后的行为检查。
+电梯轿厢空间封闭、使用频繁，镜面反光、近距离遮挡和目标尺度突变常常同时出现，给视觉检测带来持续干扰。在这样的场景下，安全视觉系统不仅要同时识别行人与电动车，还要在迁移到边缘设备后继续保持训练阶段的检测能力——而后者往往更难保证。本文以 YOLOv8n 为检测模型、搭载华为海思 Hi3516DV500 视觉 SoC 的 HongOU PI 开发板为部署平台，从双目标检测、边缘兼容迁移和部署行为检查三个层面展开研究。
 
 研究中将电梯安全视觉界定为 \textit{person} 与 \textit{ebike} 双目标检测任务，并结合轿厢成像特点讨论其安全需求。模型迁移方面，训练权重经由 ONNX 导出和 OM 编译到达板端，输入、类别、输出、后处理和运行状态作为逐项核对的约束。实验不只看平均精度，还从分类别指标、阈值与 NMS 敏感性、后处理消融等角度展开，并辅以分段计时和视频片段观察，交叉检查部署后的模型行为。
 
@@ -9,7 +9,7 @@
 \ckeywords{电梯安全视觉；边缘智能；YOLOv8；双目标检测；部署一致性；轿厢人车识别}
 
 \eabstract{
-Elevator cabins are enclosed and frequently used spaces where mirror reflections, close-range occlusions, and rapid scale changes often occur together. A safety vision system in this setting must detect passengers while also recognizing e-bikes entering the cabin; accuracy measured during training, however, does not automatically carry over to an edge device. This thesis studies that gap with YOLOv8n as the detector and the HongOU PI board, based on the Huawei HiSilicon Hi3516DV500 vision SoC, as the deployment platform.
+Elevator cabins are enclosed and frequently used spaces where mirror reflections, close-range occlusions, and rapid scale changes often co-occur, posing persistent challenges for visual detection. In such an environment, a safety vision system must not only detect both passengers and e-bikes, but also retain its training-stage accuracy after migration to an edge device---and the latter is often harder to guarantee. This thesis addresses the problem from three angles---dual-target detection, edge-compatible migration, and post-deployment behavior inspection---using YOLOv8n as the detector and the HongOU PI board (Huawei HiSilicon Hi3516DV500 vision SoC) as the deployment platform.
 
 The task is formulated as dual-target detection for \textit{person} and \textit{ebike}, with cabin imaging conditions used to explain the safety requirements. During migration, trained weights pass through ONNX export and OM compilation before reaching the board; input, category, output, post-processing, and runtime constraints are checked at each stage. Experiments go beyond average precision: per-class metrics, threshold and NMS sensitivity, and post-processing ablation form the main analysis dimensions, supplemented by segmented timing and video-clip observation.
 
