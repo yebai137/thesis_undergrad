@@ -3,7 +3,7 @@
 
 研究中将电梯安全视觉界定为 \textit{person} 与 \textit{ebike} 双目标检测任务，并结合轿厢成像特点讨论其安全需求。模型迁移方面，训练权重经由 ONNX 导出和 OM 编译到达板端，输入、类别、输出、后处理和运行状态作为逐项核对的约束。实验不只看平均精度，还从分类别指标、阈值与 NMS 敏感性、后处理消融等角度展开，并辅以分段计时和视频片段观察，交叉检查部署后的模型行为。
 
-在 720 张验证图像上，板端总体 mAP@0.5 为 0.910，其中行人类别 0.869，电动车类别 0.952。相较训练阶段的 0.988，板端回退约 0.078，行人类别下降更多。置信度阈值在 0.20--0.40 范围内变化时，总体 F1 保持在 0.915--0.922 区间；单帧模型执行耗时约 8.2 ms，满足边缘侧实时处理要求。上述结果表明，该类 YOLO 双目标检测模型迁移到国产边缘平台后仍具备可用的检测能力，本文整理的迁移检查流程和多维度实验方法可为同类封闭空间的安全视觉部署提供参考。
+在 720 张验证图像上，板端总体 mAP@0.5 为 0.910；训练阶段总体 mAP@0.5 为 0.988，板端整体低约 0.078。以训练阶段总体值作为参照，电动车类别板端 mAP@0.5 为 0.952，差距约 0.036；行人类别板端 mAP@0.5 为 0.869，差距约 0.119，下降更明显。尽管存在精度回退，迁移后的模型仍保持较强检测能力。置信度阈值在 0.20--0.40 范围内变化时，总体 F1 保持在 0.915--0.922 区间；单帧模型执行耗时约 8.2 ms，满足边缘侧实时处理要求。上述结果表明，该类 YOLO 双目标检测模型迁移到国产边缘平台后仍具备可用的检测能力，本文整理的迁移检查流程和多维度实验方法可为同类封闭空间的安全视觉部署提供参考。
 }
 
 \ckeywords{电梯安全视觉；边缘智能；YOLOv8；双目标检测；部署一致性；轿厢人车识别}
@@ -13,7 +13,7 @@ Elevator cabins are enclosed and frequently used spaces where mirror reflections
 
 The task is formulated as dual-target detection for \textit{person} and \textit{ebike}, with cabin imaging conditions used to explain the safety requirements. During migration, trained weights pass through ONNX export and OM compilation before reaching the board; input, category, output, post-processing, and runtime constraints are checked at each stage. Experiments go beyond average precision: per-class metrics, threshold and NMS sensitivity, and post-processing ablation form the main analysis dimensions, supplemented by segmented timing and video-clip observation.
 
-On the 720-image validation set, the board-side system obtains 0.910 overall mAP@0.5, with 0.869 for person and 0.952 for ebike. Person accuracy drops more. Compared with the training-stage mAP@0.5 of 0.988, the board-side result is about 0.078 lower, yet the main detection capability is retained. Overall F1 stays within 0.915--0.922 when the confidence threshold varies from 0.20 to 0.40; per-frame model execution takes about 8.2\,ms, meeting edge-side real-time requirements. These results indicate that YOLO-based dual-target models remain viable after migration to this class of domestic edge platform, and the inspection workflow and multi-dimensional experiments presented here may serve as a reference for safety-vision deployment in similar enclosed spaces.
+On the 720-image validation set, the board-side system obtains 0.910 overall mAP@0.5; the training-stage overall mAP@0.5 is 0.988, so the board-side overall result is lower by about 0.078. Using the training-stage overall value as the reference, the ebike class reaches 0.952 on the board, with a gap of about 0.036, whereas the person class reaches 0.869, with a larger gap of about 0.119. Despite this accuracy drop, the migrated model still retains strong detection capability. Overall F1 stays within 0.915--0.922 when the confidence threshold varies from 0.20 to 0.40; per-frame model execution takes about 8.2\,ms, meeting edge-side real-time requirements. These results indicate that YOLO-based dual-target models remain viable after migration to this class of domestic edge platform, and the inspection workflow and multi-dimensional experiments presented here may serve as a reference for safety-vision deployment in similar enclosed spaces.
 }
 
 \ekeywords{Elevator safety vision; Edge intelligence; YOLOv8; Dual-target detection; Deployment consistency; Cabin person-vehicle recognition}

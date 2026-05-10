@@ -152,6 +152,8 @@
 
 % 设定时间为中文日期
 \ctexset{today=small}
+\newcommand\thesisdate[1]{\def\@thesisdate{#1}}
+\newcommand\@thesisdate{2026 年 5 月 4 日}
 
 
 \AtBeginDocument{
@@ -349,7 +351,7 @@
                         \makebox[2.56cm][s]{学生姓名} & \makebox[6.8cm]{\hfill\@cauthor\hfill}                                  \\ \cline{2-2}
                         \makebox[2.56cm][s]{学生学号} & \makebox[6.8cm]{\hfill\@studentid\hfill}                                \\ \cline{2-2}
                         \makebox[2.56cm][s]{指导教师} & \makebox[6.8cm]{\hfill\@cmentor\hfill}                                  \\ \cline{2-2}
-                        \makebox[2.56cm][s]{提交日期} & \makebox[6.8cm]{\hfill\number\year 年\number\month 月\number\day 日\hfill} \\ \cline{2-2}
+                        \makebox[2.56cm][s]{提交日期} & \makebox[6.8cm]{\hfill\@thesisdate\hfill} \\ \cline{2-2}
                     \end{tabular}
                 }
             \end{spacing}
@@ -361,7 +363,7 @@
 }
 
 % 原创性声明
-\newcommand\makedisclaim[1][]{
+\newcommand\makedisclaim[2][]{
     \ctexset {
         chapter = {
           format={\centering\zihao{2}\heiti},
@@ -376,7 +378,7 @@
 
     本人郑重声明：所呈交的论文是本人在导师的指导下独立进行研究所取得的研究成果。除了文中特别加以标注引用的内容外，本论文不包含任何其他个人或集体已经发表或撰写的成果作品。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全意识到本声明的法律后果由本人承担。
 
-    作者签名：\hspace{5cm}日期：\number\year 年\number\month 月\number\day 日
+    作者签名：\hspace{5cm}日期：\@thesisdate
         \ifthenelse{\equal{#1}{}}{%
 
     }{%
@@ -394,9 +396,9 @@
 
     本学位论文作者完全了解学校有关保留、使用学位论文的规定，即：学校有权保存并向国家有关部门或机构送交论文的复印件和电子版，允许学位论文被查阅；学校可以公布学位论文的全部或部分内容，可以允许采用影印、缩印或其它复制手段保存、汇编学位论文。本人电子文档的内容和纸质论文的内容相一致。
 
-    作者签名：\hspace{5cm}日期：\number\year 年\number\month 月\number\day 日
+    作者签名：\hspace{5cm}日期：\@thesisdate
 
-    指导教师签名：\hspace{4cm}日期：\number\year 年\number\month 月\number\day 日
+    指导教师签名：\hspace{4cm}日期：\@thesisdate
 
     作者联系电话： \@phonenum\hspace{1.5cm} 电子邮箱:  \@mailbox
    \ifthenelse{\equal{#1}{}}{%
@@ -405,6 +407,15 @@
 
     \begin{textblock}{5}(3.8,10.745) % 指定图片的位置和大小
         \includegraphics[height=1.5cm]{#1}
+    \end{textblock}
+
+ }%
+   \ifthenelse{\equal{#2}{}}{%
+
+    }{%
+
+    \begin{textblock}{5}(4.90,11.35) % 指定指导教师签名图片的位置和大小
+        \includegraphics[height=1.7cm]{#2}
     \end{textblock}
 
  }%
